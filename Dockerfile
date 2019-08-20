@@ -14,6 +14,22 @@ RUN mkdir -p /opt/fits && \
     cd /opt/fits && unzip fits-1.3.0.zip && chmod +X fits.sh
 ENV PATH /opt/fits:$PATH
 
+# ruby dev image
+FROM essi-sys-deps AS essi-dev
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY Gemfile Gemfile.lock ./
+RUN gem update bundler
+RUN bundle install -j 2 --retry=3
+
+COPY . .
+RUN mkdir -p /run/secrets
+COPY config/essi_config.docker.yml /run/secrets/essi_config.yml
+
+ENV RAILS_LOG_TO_STDOUT true
+
 # ruby dependencies image
 FROM essi-sys-deps AS essi-deps
 

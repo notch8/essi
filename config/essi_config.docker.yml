@@ -1,0 +1,163 @@
+default: &default
+  fedora:
+    user: fedoraAdmin
+    password: fedoraAdmin
+    url: http://fcrepo:8080/rest
+    base_path: /dev
+  solr:
+    url: http://solr:8983/solr/hydra-development
+  db:
+    adapter: sqlite3
+    database: db/development.sqlite3
+  redis:
+    host: redis
+    port: 6379
+  sidekiq:
+    queue_names:
+      - default
+      - ingest
+    max_retries: 3
+  rails:
+    mailer:
+      host: localhost:3000
+    serve_static_files: true
+    secret_key_base: 628b30efcdf28acbbd30a80e53e2b743d44f74bf393462badc49e0f5909ed109812ff12905e3a98bf4f81d3618fac5c061ad4e1ca5c91f9c1dce8226ca3cff25
+    cache:
+      store: memory_store
+      options:
+    active_job:
+      queue_adapter: async
+  derivatives:
+    path: <%= Rails.root.join("tmp/derivatives") %>
+  iucat_libraries:
+    url: http://iucat-feature-tadas.uits.iu.edu/api/library
+  ldap:
+    enabled: false
+    host: ads.iu.edu
+    tree: dc=ads,dc=iu,dc=edu
+    account_ou: ou=Accounts
+    group_ou: ou=BL
+    method: simple
+    user: dlptech,ou=Accounts,dc=ads,dc=iu,dc=edu
+    pass: changeme
+    group_roles:
+      admin:
+        - ESSI-USERS
+    default_email_domain: iu.edu
+  authorized_ldap_groups:
+    - ESSI-USERS
+  essi:
+    iiif_host: essi.docker 
+    notifier_email: example@test.test
+    store_original_files: true
+    master_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/master
+    access_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/access
+    purl_redirect_url: http://server1.variations2.indiana.edu/cgi-bin/access?%s
+    hocr_language: [eng]
+    create_hocr_files: true
+    index_hocr_files: true
+    create_word_boundaries: true
+    allow_pdf_download: false
+    manifest_builder:
+      see_also_hash:
+        id: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=%s&recordSchema=marcxml&version=1.1
+        format: application/xml
+    metadata:
+      url: https://purl.dlib.indiana.edu/iudl/iucat/%s
+      editable:
+        - :identifier
+        - :sort_title
+        - :responsibility_note
+        - :series
+        - :creator
+        - :published
+        - :publication_place
+        - :publisher
+        - :date_published
+        - :physical_description
+        - :lccn_call_number
+        - :local_call_number
+        - :copyright_holder
+        - :date_created
+        - :subject
+        - :alternative_title
+        - :digital_date
+        - :usage_right
+        - :volume_and_issue_no
+        - :digital_collection
+        - :owning_institution
+        - :funding
+        - :digital_specifications
+        - :author
+        - :digital_publisher
+      iiif:
+        - :date_modified
+        - :contributor
+        - :subject
+        - :series
+        - :publisher
+        - :language
+        - :identifier
+        - :date_created
+        - :based_near_label
+        - :related_url
+        - :resource_type
+        - :source
+        - :rights_statement
+        - :holding_location
+    jp2_recipes:
+      default_color: >
+        -rate 2.4,1.48331273,.91673033,.56657224,.35016049,.21641118,.13374944,.08266171
+        -jp2_space sRGB
+        -double_buffering 10
+        -num_threads 1
+        -no_weights
+        Clevels=6
+        Clayers=8
+        Cblk=\{64,64\}
+        Cuse_sop=yes
+        Cuse_eph=yes
+        Corder=RPCL
+        ORGgen_plt=yes
+        ORGtparts=R
+        Stiles=\{1024,1024\}
+      default_gray: >
+        -rate 2.4,1.48331273,.91673033,.56657224,.35016049,.21641118,.13374944,.08266171
+        -jp2_space sLUM
+        -double_buffering 10
+        -num_threads 1
+        -no_weights
+        Clevels=6
+        Clayers=8
+        Cblk=\{64,64\}
+        Cuse_sop=yes
+        Cuse_eph=yes
+        Corder=RPCL
+        ORGgen_plt=yes
+        ORGtparts=R
+        Stiles=\{1024,1024\}
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  fedora:
+    user: fedoraAdmin
+    password: fedoraAdmin
+    url: http://fcrepo:8080/rest
+    base_path: /test
+  solr:
+    url: http://solr:8983/solr/hydra-test
+  db:
+    adapter: sqlite3
+    database: db/test.sqlite3
+  redis:
+    host: redis
+    port: 6379
+    namespace: essi_test
+  rails:
+      secret_key_base: c9dd75fe2cce941807d14e04c09aa1f9ae41b6e1f7ba9d2f33142659acf9491f4a7835aad0c4110bf2fa40f2a1e6f7a62048b5a1e1a32c361c8c16d772e40bf0
+
+production:
+  <<: *default

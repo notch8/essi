@@ -33,3 +33,4 @@ fits.log
 # Ignore local secrets
 .secrets.sh
 /secrets
+.env.*

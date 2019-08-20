@@ -1,0 +1,79 @@
+version: '3.7'
+services:
+  web:
+    image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG}"
+    command: bash -l -c "rake db:migrate && bundle exec puma -b tcp://0.0.0.0:3000"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: essi-dev
+    environment:
+      VIRTUAL_HOST: essi.docker
+      VIRTUAL_PORT: 3000
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env.development
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - solr
+      - fcrepo
+      - worker
+
+  worker:
+    image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG}"
+    command: sidekiq 
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: essi-dev
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env.development
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - solr
+      - fcrepo
+
+  redis:
+    image: redis:3
+    ports:
+      - '6379'
+    volumes:
+      - 'redis:/data'
+
+  solr:
+    image: solr:7.7
+    ports:
+      - "8983"
+    volumes:
+      - './solr/conf:/opt/config:delegated'
+      - solr:/opt/solr/server/solr/mycores
+      - './solr/lib/solr-tokenizing_suggester-7.x.jar:/opt/solr/contrib/solr-tokenizing_suggester-7.x.jar'
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - "${SOLR_CORE}"
+      - /opt/config
+
+  fcrepo:
+    image: botimer/fcrepo:4.5.1
+    volumes:
+      - 'fcrepo:/opt/data'
+    ports:
+      - "8984:8080"
+
+volumes:
+  fcrepo:
+  mysql:
+  redis:
+  solr:
