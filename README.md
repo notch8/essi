@@ -11,3 +11,8 @@ To set up a development environment via Docker:
 
 
 1) Requires [Dory](https://github.com/FreedomBen/dory)
+
+
+# SPECS:
+1. Jasmine - Can run from terminal or by adding /specs path onto the base url (ex: <http://localhost:3000/specs>).
+2. RSPEC - May need to run `sc exec -s solr 'solr-precreate hydra-test /opt/config'`

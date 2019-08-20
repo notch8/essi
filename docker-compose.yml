@@ -25,6 +25,7 @@ services:
       - solr
       - fcrepo
       - worker
+      - chrome
 
   worker:
     image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG}"
