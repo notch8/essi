@@ -10,6 +10,7 @@ services:
     environment:
       VIRTUAL_HOST: essi.docker
       VIRTUAL_PORT: 3000
+      IN_DOCKER: 'true'
     ports:
       - "3000:3000"
     stdin_open: true
@@ -32,6 +33,8 @@ services:
       context: ./
       dockerfile: Dockerfile
       target: essi-dev
+    environment:
+      IN_DOCKER: 'true'
     stdin_open: true
     tty: true
     env_file:
@@ -71,6 +74,9 @@ services:
       - 'fcrepo:/opt/data'
     ports:
       - "8984:8080"
+
+  chrome:
+    image: selenium/standalone-chrome:3.141
 
 volumes:
   fcrepo:

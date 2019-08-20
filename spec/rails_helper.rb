@@ -38,17 +38,44 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 ActiveJob::Base.queue_adapter = :test
 
-# @note In January 2018, TravisCI disabled Chrome sandboxing in its Linux
-#       container build environments to mitigate Meltdown/Spectre
-#       vulnerabilities, at which point Hyrax could no longer use the
-#       Capybara-provided :selenium_chrome_headless driver (which does not
-#       include the `--no-sandbox` argument).
-Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
-  browser_options = ::Selenium::WebDriver::Chrome::Options.new
-  browser_options.args << '--headless'
-  browser_options.args << '--disable-gpu'
-  browser_options.args << '--no-sandbox'
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
+if ENV['IN_DOCKER'].present?
+  TEST_HOST='essi.docker'
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: {
+      args: %w[headless disable-gpu no-sandbox whitelisted-ips window-size=1400,1400]
+    }
+  )
+
+  Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
+    d = Capybara::Selenium::Driver.new(app,
+                                       browser: :remote,
+                                       desired_capabilities: capabilities,
+                                       url: "http://chrome:4444/wd/hub")
+    # Fix for capybara vs remote files. Selenium handles this for us
+    d.browser.file_detector = lambda do |args|
+      str = args.first.to_s
+      str if File.exist?(str)
+    end
+    d
+  end
+  Capybara.server_host = '0.0.0.0'
+  Capybara.server_port = 3001
+  Capybara.app_host = "http://web:#{Capybara.server_port}"
+else
+  TEST_HOST='localhost:3000'
+  # @note In January 2018, TravisCI disabled Chrome sandboxing in its Linux
+  #       container build environments to mitigate Meltdown/Spectre
+  #       vulnerabilities, at which point Hyrax could no longer use the
+  #       Capybara-provided :selenium_chrome_headless driver (which does not
+  #       include the `--no-sandbox` argument).
+
+  Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
+    browser_options = ::Selenium::WebDriver::Chrome::Options.new
+    browser_options.args << '--headless'
+    browser_options.args << '--disable-gpu'
+    browser_options.args << '--no-sandbox'
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
+  end
 end
 
 Capybara.default_driver = :rack_test # This is a faster driver

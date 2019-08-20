@@ -3,7 +3,11 @@
 
 require_relative 'config/application'
 
-task default: :ci
+if ENV['IN_DOCKER']
+  task default: :rspec
+else
+  task default: :ci
+end
 
 Rails.application.load_tasks
 
@@ -14,4 +18,9 @@ task :ci do
     Rake::Task['spec'].invoke
     Rake::Task['spec:javascript'].invoke
   end
+end
+
+task :rspec do
+  Rake::Task['spec'].invoke
+  Rake::Task['spec:javascript'].invoke
 end
