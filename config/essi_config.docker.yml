@@ -2,7 +2,7 @@ default: &default
   fedora:
     user: fedoraAdmin
     password: fedoraAdmin
-    url: http://fcrepo:8080/rest
+    url: http://fcrepo:8080/fcrepo/rest
     base_path: /dev
   solr:
     url: http://solr:8983/solr/hydra-development
@@ -145,7 +145,7 @@ test:
   fedora:
     user: fedoraAdmin
     password: fedoraAdmin
-    url: http://fcrepo:8080/rest
+    url: http://fcrepo:8080/fcrepo/rest
     base_path: /test
   solr:
     url: http://solr:8983/solr/hydra-test

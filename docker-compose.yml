@@ -56,7 +56,7 @@ services:
     ports:
       - "8983"
     volumes:
-      - './solr/conf:/opt/config:delegated'
+      - './solr/config:/opt/config:delegated'
       - solr:/opt/solr/server/solr/mycores
       - './solr/lib/solr-tokenizing_suggester-7.x.jar:/opt/solr/contrib/solr-tokenizing_suggester-7.x.jar'
     entrypoint:
