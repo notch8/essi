@@ -62,7 +62,7 @@ export class FileManagerMember {
 
   track_hint() {
     new InputTracker(this.element.find("[data-member-link^=file_set_viewing_hint]"), this)
-    $("*[name^=file_set_viewing_hint").change(function() {
+    $("*[name^=file_set_viewing_hint]").change(function() {
       let name = $(this).attr('name')
       let val = $("*[name=" + name + "]:checked").val()
       $("[data-member-link=" + name + "]" ).val(val)

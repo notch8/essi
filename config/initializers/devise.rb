@@ -262,6 +262,7 @@ Devise.setup do |config|
                   :login_url => '/cas/login',
                   :service_validate_url => '/cas/serviceValidate',
                   :logout_url => '/cas/logout',
+                  :cassvc => 'ANY',
                   :ssl => true
 
   # ==> Warden configuration
