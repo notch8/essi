@@ -34,6 +34,7 @@ RSpec.feature 'Create a PagedResource', js: true do
       visit '/dashboard'
       click_link "Works"
       click_link "Add new work"
+      expect(page).to have_content "Select type of work"
 
       # If you generate more than one work uncomment these lines
       choose "payload_concern", option: "PagedResource"
