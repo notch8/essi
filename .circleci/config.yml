@@ -112,7 +112,11 @@ jobs:
         name: Run rspec in parallel
         command: |
           mkdir /tmp/test-results
-          bundle exec rake ci
+          bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+    - run:
+        name: Run javascript tests
+        command: bundle exec rake spec:javascript
 
 
 
