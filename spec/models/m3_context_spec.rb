@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe M3Context, type: :model do
+<<<<<<< HEAD
   describe 'associations' do
     it 'belongs_to a m3_profile' do
       assc = described_class.reflect_on_association(:m3_profile)
@@ -17,4 +18,7 @@ RSpec.describe M3Context, type: :model do
     context = FactoryBot.build(:m3_context)
     expect(context).to be_valid
   end
+=======
+  pending "add some examples to (or delete) #{__FILE__}"
+>>>>>>> generate m3 and dynamic schema models / migrations
 end
