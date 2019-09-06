@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe M3Profile, type: :model do
+<<<<<<< HEAD
   describe 'associations' do
     it 'has_many m3_contexts' do
       assc = described_class.reflect_on_association(:m3_contexts)
@@ -24,4 +25,7 @@ RSpec.describe M3Profile, type: :model do
       expect(profile.profile.class).to eq Hash
     end
   end
+=======
+  pending "add some examples to (or delete) #{__FILE__}"
+>>>>>>> generate m3 and dynamic schema models / migrations
 end
