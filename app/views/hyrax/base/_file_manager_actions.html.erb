@@ -10,5 +10,6 @@
     <%= render "file_manager_resource_form" %>
   </div>
   <div class="actions panel-footer text-center">
-    <%= button_tag t('.save_changes'), class: "btn btn-primary disabled", data: { action: "save-actions" } %>
+    <%# save button enable/disable JS (save_manager.es6) requires t('.save') %>
+    <%= button_tag t('.save'), class: "btn btn-primary disabled", data: { action: "save-actions" } %>
   </div>

@@ -37,3 +37,6 @@ If using Dory: [Dory](https://github.com/FreedomBen/dory)
 # SPECS:
 1. Jasmine - Can run from terminal or by adding /specs path onto the base url (ex: <http://localhost:3000/specs>).
 2. RSPEC - May need to run `sc exec -s solr 'solr-precreate hydra-test /opt/config'`
+
+# Hyrax Setup
+For a Hyrax specific guide and setup, please refer to the Hyrax Development Guide at https://github.com/samvera/hyrax/wiki/Hyrax-Development-Guide
