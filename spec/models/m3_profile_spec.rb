@@ -44,6 +44,9 @@ RSpec.describe M3Profile, type: :model do
     expect(profile).to be_valid
   end
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> test serialized fields, populate factories with better example data
 
   describe '#profile' do
     it 'is a Hash' do
@@ -51,9 +54,12 @@ RSpec.describe M3Profile, type: :model do
       expect(profile.profile.class).to eq Hash
     end
   end
+<<<<<<< HEAD
 =======
   pending "add some examples to (or delete) #{__FILE__}"
 >>>>>>> generate m3 and dynamic schema models / migrations
 =======
 >>>>>>> flexible metadata model factories / specs
+=======
+>>>>>>> test serialized fields, populate factories with better example data
 end
