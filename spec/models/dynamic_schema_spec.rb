@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe DynamicSchema, type: :model do
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> flexible metadata model factories / specs
   describe 'associations' do
     it 'belongs_to a m3_context' do
       assc = described_class.reflect_on_association(:m3_context)
@@ -21,7 +17,6 @@ RSpec.describe DynamicSchema, type: :model do
     dynamic_schema = FactoryBot.build(:dynamic_schema)
     expect(dynamic_schema).to be_valid
   end
-<<<<<<< HEAD
 
   describe '#schema' do
     it 'is a Hash' do
@@ -29,9 +24,4 @@ RSpec.describe DynamicSchema, type: :model do
       expect(dynamic_schema.schema.class).to eq Hash
     end
   end
-=======
-  pending "add some examples to (or delete) #{__FILE__}"
->>>>>>> generate m3 and dynamic schema models / migrations
-=======
->>>>>>> flexible metadata model factories / specs
 end
