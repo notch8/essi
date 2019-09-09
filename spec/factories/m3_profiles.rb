@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :m3_profile do
-    name { "MyString" }
+    name            { "Indiana University" }
     profile_version { 1 }
-    profile { "MyText" }
+    profile         { { "version": 0.1, "responsibility_statement":"Indiana University", "date_modified":"2019-09-9" } }
   end
 end

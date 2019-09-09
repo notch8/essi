@@ -17,4 +17,11 @@ RSpec.describe DynamicSchema, type: :model do
     dynamic_schema = FactoryBot.build(:dynamic_schema)
     expect(dynamic_schema).to be_valid
   end
+
+  describe '#schema' do
+    it 'is a Hash' do
+      dynamic_schema = FactoryBot.build(:dynamic_schema)
+      expect(dynamic_schema.schema.class).to eq Hash
+    end
+  end
 end
