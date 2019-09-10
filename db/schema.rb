@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180614174958) do
+ActiveRecord::Schema.define(version: 20190906005616) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -88,6 +88,18 @@ ActiveRecord::Schema.define(version: 20180614174958) do
     t.index ["user_id"], name: "index_curation_concerns_operations_on_user_id"
   end
 
+  create_table "dynamic_schemas", force: :cascade do |t|
+    t.integer "version"
+    t.string "m3_class"
+    t.integer "m3_context_id"
+    t.integer "m3_profile_id"
+    t.text "schema"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["m3_context_id"], name: "index_dynamic_schemas_on_m3_context_id"
+    t.index ["m3_profile_id"], name: "index_dynamic_schemas_on_m3_profile_id"
+  end
+
   create_table "featured_works", force: :cascade do |t|
     t.integer "order", default: 5
     t.string "work_id"
@@ -155,6 +167,22 @@ ActiveRecord::Schema.define(version: 20180614174958) do
     t.datetime "updated_at", null: false
     t.index ["uploaded_file_id"], name: "index_job_io_wrappers_on_uploaded_file_id"
     t.index ["user_id"], name: "index_job_io_wrappers_on_user_id"
+  end
+
+  create_table "m3_contexts", force: :cascade do |t|
+    t.string "name"
+    t.integer "m3_profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["m3_profile_id"], name: "index_m3_contexts_on_m3_profile_id"
+  end
+
+  create_table "m3_profiles", force: :cascade do |t|
+    t.string "name"
+    t.integer "profile_version"
+    t.text "profile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
