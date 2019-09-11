@@ -47,6 +47,9 @@ it:
           title_tesim: Titolo
   hyrax:
     account_name: ID del mio istituto dell'istituto
+    admin:
+      sidebar:
+        m3_profiles: Profili di Metadati Flessibili
     directory:
       suffix: "@ example.org"
     footer:
