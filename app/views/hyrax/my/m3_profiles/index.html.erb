@@ -1,0 +1,14 @@
+<% provide :page_title, t("hyrax.admin.sidebar.m3_profiles") %>
+
+<% provide :head do %>
+  <%= rss_feed_link_tag route_set: hyrax %>
+  <%= atom_feed_link_tag route_set: hyrax %>
+<% end %>
+
+<script>
+//<![CDATA[
+  <%= render partial: 'scripts', formats: [:js] %>
+//]]>
+</script>
+
+<h1>Temporary M3 Profiles Index Page</h1>
