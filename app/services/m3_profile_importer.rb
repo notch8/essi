@@ -1,3 +1,5 @@
+require 'json_schemer'
+
 class M3ProfileImporter
   class_attribute :default_logger
   self.default_logger = Rails.logger
@@ -19,22 +21,48 @@ class M3ProfileImporter
 
   def self.generate_from_yaml_file(path:, **keywords)
     data = YAML.load_file(path)
-    # generate_from_hash(data: data, **keywords)
+    generate_from_hash(data: data, **keywords)
   end
 
-  # def self.generate_from_hash(data:, **keywords)
-    # importer = new(data: data, **keywords)
-    # profiles = importer.call
-    # self.load_errors ||= []
-    # load_errors.concat(importer.errors)
-    # profiles
-  # end
+  def self.generate_from_hash(data:, **keywords)
+    importer = new(data: data, **keywords)
+    profiles = importer.call
+    self.load_errors ||= []
+    load_errors.concat(importer.errors)
+    profiles
+  end
 
-  # def initialize(data:, schema: default_schema, validator: default_validator, logger: default_logger)
-    # self.data = data
-    # self.schema = schema
-    # self.validator = validator
-    # @logger = logger
-    # validate!
-  # end
+  def initialize(data:, schema: default_schema, validator: default_validator, logger: default_logger)
+    self.data = data
+    self.schema = schema
+    self.validator = validator
+    @logger = logger
+    validate!
+  end
+
+  private
+
+    attr_reader :data, :logger
+
+    def data=(input)
+      @data = input.deep_symbolize_keys
+    end
+
+    attr_accessor :validator, :schema
+
+    def default_validator
+      M3ProfileValidator
+    end
+
+    def default_schema
+      @schema_path    = Pathname.new('m3_profile_schema.json')
+      @default_schema = JSONSchemer.schema(@schema_path)
+
+      @default_schema
+    end
+
+    def validate!
+      validator.call(data: data, schema: schema, logger: logger)
+    end
+
 end

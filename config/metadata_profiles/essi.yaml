@@ -10,11 +10,11 @@ m3_version: "1.0.beta2"
 # Administrative information about the profile/model
 
 profile:
-  responsibility: https://indiana.edu/
-  responsibility_statement: Indiana University
-  date_modified: "2019-07-28"
-  type: concept
-  version: 0.1
+  # responsibility: https://indiana.edu/
+  name: Indiana University
+  # date_modified: "2019-07-28"
+  # type: concept
+  profile_version: 0.1
 
 # Class Definitions
 
@@ -33,7 +33,7 @@ contexts:
 properties:
 
   title:
-    display_label: 
+    display_label:
       default: "Title"
       FlexibleMetadata: "Title for Work Type"
       flexible_context: "Title in Context"
