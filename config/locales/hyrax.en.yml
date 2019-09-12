@@ -47,6 +47,9 @@ en:
           title_tesim: Title
   hyrax:
     account_name: My Institution Account Id
+    admin:
+      sidebar:
+        m3_profiles: Flexible Metadata Profiles
     base:
       file_manager_actions:
         save: Save changes
