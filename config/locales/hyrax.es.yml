@@ -47,6 +47,9 @@ es:
           title_tesim: Título
   hyrax:
     account_name: Mi identificador de cuenta institucional
+    admin:
+      sidebar:
+        m3_profiles: Perfiles de Metadatos Flexibles
     directory:
       suffix: "@example.org"
     footer:

@@ -47,6 +47,9 @@ fr:
           title_tesim: Titre
   hyrax:
     account_name: L'ID de compte de mon établissement
+    admin:
+      sidebar:
+        m3_profiles: Profils de Métadonnées Flexibles
     directory:
       suffix: "@ Example.org"
     footer:

@@ -43,6 +43,22 @@ Rails.application.routes.draw do
     end
   end
 
+  Hyrax::Engine.routes.draw do
+    # Dashboard
+    namespace :dashboard do
+      resources :m3_profiles, only: :index
+    end
+
+    # Routes for user's flexible metadata profiles
+    # Preserves existing behavior by maintaining paths to /dashboard
+    # Routes actions to the various My controllers
+    scope :dashboard do
+      namespace :my do
+        resources :m3_profiles, only: :index
+      end
+    end
+  end
+
   concern :exportable, Blacklight::Routes::Exportable.new
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
