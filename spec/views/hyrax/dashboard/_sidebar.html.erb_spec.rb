@@ -10,6 +10,7 @@ RSpec.describe 'hyrax/dashboard/_sidebar.html.erb', type: :view do
   let(:manage_feature) { false }
   let(:manage_workflow) { false }
   let(:manage_collection_types) { false }
+  let(:manage_m3_profiles) { false }
 
   before do
     allow_any_instance_of(User).to receive(:user_key).and_return('mjg')
@@ -24,6 +25,7 @@ RSpec.describe 'hyrax/dashboard/_sidebar.html.erb', type: :view do
     allow(view).to receive(:can?).with(:manage, Hyrax::Feature).and_return(manage_feature)
     allow(view).to receive(:can?).with(:manage, Sipity::WorkflowResponsibility).and_return(manage_workflow)
     allow(view).to receive(:can?).with(:manage, :collection_types).and_return(manage_collection_types)
+    allow(view).to receive(:can?).with(:manage, M3Profile).and_return(manage_m3_profiles)
   end
 
   context 'with any user' do
@@ -38,7 +40,6 @@ RSpec.describe 'hyrax/dashboard/_sidebar.html.erb', type: :view do
     it { is_expected.to have_link t('hyrax.admin.sidebar.transfers') }
     it { is_expected.to have_link t('hyrax.admin.sidebar.collections') }
     it { is_expected.to have_link t('hyrax.admin.sidebar.works') }
-    it { is_expected.to have_link t('hyrax.admin.sidebar.m3_profiles') }
   end
 
   context 'with a user who can read the admin dash' do
@@ -110,6 +111,15 @@ RSpec.describe 'hyrax/dashboard/_sidebar.html.erb', type: :view do
 
     it { is_expected.to have_content t('hyrax.admin.sidebar.configuration') }
     it { is_expected.to have_link t('hyrax.admin.sidebar.collection_types') }
+  end
+
+  context 'with a user who can manage m3 profiles (flexible metadata)' do
+    let(:manage_m3_profiles) { true }
+
+    before { render }
+    subject { rendered }
+
+    it { is_expected.to have_content t('hyrax.admin.sidebar.m3_profiles') }
   end
 
   context 'when proxy deposits are enabled' do
