@@ -53,4 +53,23 @@ RSpec.describe Ability do
       end
     end
   end
+
+  describe '#m3_profile_abilities' do
+    let(:m3_profile) { FactoryBot.create :m3_profile }
+
+    before { ability = Ability.new(user) }
+
+    context 'when not admin' do
+      it "should not be manageable by a user of the buyer" do
+        expect(ability.can?(:manage, m3_profile)).to be_falsey
+      end
+    end
+
+    context 'when admin' do
+      it "should be manageable by a user of the buyer" do
+        user.roles << Role.where(name: 'admin').first_or_create
+        expect(ability.can?(:manage, m3_profile)).to be_truthy
+      end
+    end
+  end
 end
