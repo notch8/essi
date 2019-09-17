@@ -10,7 +10,9 @@
     <span class="fa fa-file" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
   <% end %>
 
-  <%= menu.nav_link(hyrax.my_m3_profiles_path,
-                    also_active_for: hyrax.dashboard_m3_profiles_path) do %>
-    <span class="fa fa-table" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.m3_profiles') %></span>
+  <% if can? :manage, M3Profile %>
+    <%= menu.nav_link(hyrax.my_m3_profiles_path,
+                      also_active_for: hyrax.dashboard_m3_profiles_path) do %>
+      <span class="fa fa-table" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.m3_profiles') %></span>
+    <% end %>
   <% end %>
