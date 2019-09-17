@@ -5,15 +5,14 @@ module Hyrax
       before_action do
         authorize! :manage, M3Profile
       end
-      include Hyrax::ThemedLayoutController
-
 
       #GET /m3_profiles
       def index
-        add_breadcrumb t(:'hyrax.controls.home'), root_path
+        add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb t(:'hyrax.admin.sidebar.m3_profiles'), hyrax.my_m3_profiles_path
         @m3_profiles = M3Profile.all
+        super
       end
 
       # GET /m3_profiles/1
@@ -22,7 +21,7 @@ module Hyrax
 
       # GET /m3_profiles/new
       def new
-        add_breadcrumb t(:'hyrax.controls.home'), root_path
+        add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
         @m3_profile = M3Profile.new
@@ -30,7 +29,7 @@ module Hyrax
 
       # GET /m3_profiles/1/edit
       def edit
-        add_breadcrumb t(:'hyrax.controls.home'), root_path
+        add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
       end
