@@ -22,14 +22,11 @@ RSpec.describe Hyrax::My::M3ProfilesController, type: :controller do
 
     describe 'GET #index' do
       it 'returns a success response' do
-        get :index, params: {}, session: valid_session
-        expect(response).to be_successful
-      end
-
-      xit "shows breadcrumbs" do
         expect(controller).to receive(:add_breadcrumb).with('Home', root_path(locale: 'en'))
         expect(controller).to receive(:add_breadcrumb).with('Dashboard', dashboard_path(locale: 'en'))
         expect(controller).to receive(:add_breadcrumb).with('Flexible Metadata Profiles', my_m3_profiles_path(locale: 'en'))
+        get :index, params: {}, session: valid_session
+        expect(response).to be_successful
       end
     end
   end
