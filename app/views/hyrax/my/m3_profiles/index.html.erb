@@ -5,10 +5,46 @@
   <%= atom_feed_link_tag route_set: hyrax %>
 <% end %>
 
-<script>
-//<![CDATA[
-  <%= render partial: 'scripts', formats: [:js] %>
-//]]>
-</script>
+<% provide :page_header do %>
+  <h1><span aria-hidden="true"></span> M3 Profiles</h1>
+  <div class="pull-right">
+    <%= link_to new_my_m3_profile_path, class: 'btn btn-primary' do %>
+      <span class="fa fa-edit" aria-hidden="true"></span> <%= t(:'helpers.action.m3_profile.new') %>
+    <% end %>
+  </div>
+<% end %>
 
-<h1>Temporary M3 Profiles Index Page</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% if @m3_profiles.present? %>
+      <div class="table-responsive">
+        <table class="table table-striped datatable">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Version</th>
+              <th scope="col">Profile</th>
+              <th scope="col">Created At</th>
+              <th scope="col">Updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @m3_profiles.each do |m3_profile| %>
+              <tr>
+                <th scope="row"><%= m3_profile.name %></th>
+                <td><%= m3_profile.profile_version %></td>
+                <td><%= m3_profile.profile %></td>
+                <td><%= m3_profile.created_at.strftime("%b %d, %Y") if m3_profile.created_at %></td>
+                <td><%= m3_profile.updated_at.strftime("%b %d, %Y") if m3_profile.updated_at %></td>
+                <td><%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_my_m3_profile_path(m3_profile) %></td>
+                <td><%= link_to raw('<span class="glyphicon glyphicon-remove"></span>'), my_m3_profile_path(m3_profile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% else %>
+        <p>No M3 Profiles have been created.</p>
+      <% end %>
+  </div>
+</div>
