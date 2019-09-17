@@ -6,10 +6,10 @@
 <% end %>
 
 <% provide :page_header do %>
-  <h1><span aria-hidden="true"></span> M3 Profiles</h1>
+  <h1><span class="fa fa-table" aria-hidden="true"></span> M3 Profiles</h1>
   <div class="pull-right">
     <%= link_to new_my_m3_profile_path, class: 'btn btn-primary' do %>
-      <span class="fa fa-edit" aria-hidden="true"></span> <%= t(:'helpers.action.m3_profile.new') %>
+      <span class="fa fa-upload" aria-hidden="true"></span> <%= t(:'helpers.action.m3_profile.new') %>
     <% end %>
   </div>
 <% end %>
