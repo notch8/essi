@@ -9,4 +9,3 @@ test:
   <<: *default
 production:
   <<: *default
-
