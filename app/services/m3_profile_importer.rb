@@ -6,6 +6,14 @@ class M3ProfileImporter
   class_attribute :path_to_profile_files
   self.path_to_profile_files = Rails.root.join('config', 'metadata_profiles', '*.yaml')
 
+  class << self
+    attr_reader :load_errors
+
+      private
+
+        attr_writer :load_errors
+  end
+
   def self.load_profiles(logger: default_logger)
     profile_config_filenames = Dir.glob(path_to_profile_files)
     if profile_config_filenames.none?
@@ -61,7 +69,7 @@ class M3ProfileImporter
     end
 
     def validate!
-      validator.call(data: data, schema: schema, logger: logger)
+      validator.validate(data: data, schema: schema, logger: logger)
     end
 
   public
@@ -78,18 +86,14 @@ class M3ProfileImporter
   private
 
   def find_or_create_from(configuration:)
-      workflow = Sipity::Workflow.find_or_initialize_by(name: configuration.fetch(:name))
-      generate_state_diagram!(workflow: workflow, actions_configuration: configuration.fetch(:actions))
+      profile = M3Profile.find_or_initialize_by(name: configuration.fetch(:name))
 
-      find_or_create_workflow_permissions!(
-        workflow: workflow, workflow_permissions_configuration: configuration.fetch(:workflow_permissions, [])
-      )
-      workflow.label = configuration.fetch(:label, nil)
-      workflow.description = configuration.fetch(:description, nil)
-      workflow.allows_access_grant = configuration.fetch(:allows_access_grant, nil)
-      workflow.save!
-      logger.info(%(Loaded Sipity::Workflow "#{workflow.name}" for #{permission_template.class} ID=#{permission_template.id}))
-      workflow
+      profile.profile_version = configuration.fetch(:profile_version, nil)
+      profile.profile = configuration.fetch(:data, nil)
+      profile.save!
+
+      logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
+      profile
     end
 
 end
