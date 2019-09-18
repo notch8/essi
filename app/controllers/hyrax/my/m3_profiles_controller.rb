@@ -1,10 +1,13 @@
 module Hyrax
   module My
     class M3ProfilesController < Hyrax::MyController
-      before_action :set_m3_profile, only: [:show, :edit, :update, :destroy]
+      include Hyrax::ThemedLayoutController
+
       before_action do
         authorize! :manage, M3Profile
       end
+      before_action :set_m3_profile, only: [:show, :edit, :update, :destroy]
+      with_themed_layout 'dashboard'
 
       #GET /m3_profiles
       def index
@@ -24,6 +27,7 @@ module Hyrax
         add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
+        add_breadcrumb 'New'
         @m3_profile = M3Profile.new
       end
 
@@ -32,6 +36,7 @@ module Hyrax
         add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
+        add_breadcrumb 'Edit'
       end
 
       # POST /m3_profiles
@@ -43,6 +48,10 @@ module Hyrax
         else
           render :new
         end
+      end
+
+      def import_profiles
+        #M3ProfileImporter
       end
 
       # PATCH/PUT /m3_profiles/1
