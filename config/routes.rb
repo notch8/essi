@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     scope :dashboard do
       namespace :my do
         resources :m3_profiles
+        get 'import_profiles', to: 'm3_profiles#import_profiles'
       end
     end
   end

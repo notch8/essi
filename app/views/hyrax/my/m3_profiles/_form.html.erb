@@ -1,0 +1,22 @@
+<div class="panel-body">
+  <% if m3_profile && m3_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(m3_profile.errors.count, "error") %> prohibited this m3_profile from being saved:</h2>
+
+      <ul>
+        <% m3_profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.input :name %>
+
+  <%= form.input :profile_version %>
+  
+  <div class="field form-group">
+    <%= form.label :profile, 'Definition' %><br />
+    <%= form.text_area :profile, placeholder: 'json format example {"foo":"bar"}', class: 'form-control', rows: 20, cols: 120 %>
+  </div>
+</div>
