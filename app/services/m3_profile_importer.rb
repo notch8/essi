@@ -57,12 +57,39 @@ class M3ProfileImporter
     def default_schema
       @schema_path    = Pathname.new('m3_profile_schema.json')
       @default_schema = JSONSchemer.schema(@schema_path)
-
       @default_schema
     end
 
     def validate!
       validator.call(data: data, schema: schema, logger: logger)
+    end
+
+  public
+
+  attr_accessor :errors
+
+  def call
+    self.errors = []
+    Array.wrap(data.fetch(:profile)).map do |configuration|
+      find_or_create_from(configuration: configuration)
+    end
+  end
+
+  private
+
+  def find_or_create_from(configuration:)
+      workflow = Sipity::Workflow.find_or_initialize_by(name: configuration.fetch(:name))
+      generate_state_diagram!(workflow: workflow, actions_configuration: configuration.fetch(:actions))
+
+      find_or_create_workflow_permissions!(
+        workflow: workflow, workflow_permissions_configuration: configuration.fetch(:workflow_permissions, [])
+      )
+      workflow.label = configuration.fetch(:label, nil)
+      workflow.description = configuration.fetch(:description, nil)
+      workflow.allows_access_grant = configuration.fetch(:allows_access_grant, nil)
+      workflow.save!
+      logger.info(%(Loaded Sipity::Workflow "#{workflow.name}" for #{permission_template.class} ID=#{permission_template.id}))
+      workflow
     end
 
 end
