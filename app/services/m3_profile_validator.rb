@@ -10,15 +10,23 @@ class M3ProfileValidator
       return true
     else
       result&.to_a&.each do |error|
-        logger.info("Data: #{error['data']}\n")
+        logger.info("\nData: #{error['data']}\n")
         logger.info("Data pointer: #{error['data_pointer']}\n")
         logger.info("Schema: #{error['schema']}\n")
         logger.info("Schema pointer: #{error['schema_pointer']}\n")
         logger.info("Type: #{error['type']}\n")
       end
-      raise Exception.new('Data failed to validate against schema')
+      raise M3ValidatorError
     end
 
     valid
   end
+
+  private
+
+    class M3ValidatorError < StandardError
+      def message
+        'Data failed to validate against schema'
+      end
+    end
 end

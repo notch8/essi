@@ -95,11 +95,13 @@ class M3ProfileImporter
       profile = M3Profile.find_or_initialize_by(name: configuration.fetch(:name))
 
       profile.profile_version = configuration.fetch(:profile_version, nil)
-      profile.profile = configuration.fetch(:data, nil)
+      profile.profile = data
       profile.save!
 
       logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
       profile
     end
 
+    class M3ImporterError < StandardError
+    end
 end
