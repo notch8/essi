@@ -4,7 +4,7 @@ class M3ProfileImporter
   class_attribute :default_logger
   self.default_logger = Rails.logger
   class_attribute :path_to_profile_files
-  self.path_to_profile_files = Rails.root.join('config', 'metadata_profiles', '*.yaml')
+  self.path_to_profile_files = Rails.root.join('config', 'metadata_profiles', '*.y*ml')
 
   class << self
     attr_reader :load_errors
@@ -27,8 +27,14 @@ class M3ProfileImporter
     true
   end
 
-  def self.generate_from_yaml_file(path:, **keywords)
-    data = YAML.load_file(path)
+  def self.generate_from_yaml_file(path:, logger: default_logger, **keywords)
+    begin
+      data = YAML.load_file(path)
+    rescue Psych::SyntaxError => e
+      logger.error("Invalid YAML syntax found in #{path}!")
+      logger.error(e.message)
+      return false
+    end
     generate_from_hash(data: data, **keywords)
   end
 
@@ -85,7 +91,7 @@ class M3ProfileImporter
 
   private
 
-  def find_or_create_from(configuration:)
+    def find_or_create_from(configuration:)
       profile = M3Profile.find_or_initialize_by(name: configuration.fetch(:name))
 
       profile.profile_version = configuration.fetch(:profile_version, nil)
