@@ -44,6 +44,7 @@ module Hyrax
         @m3_profile = M3Profile.new(m3_profile_params)
 
         if @m3_profile.save
+          @m3_profile.update_columns(profile_version: 1)
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
         else
           render :new
@@ -57,6 +58,7 @@ module Hyrax
       # PATCH/PUT /m3_profiles/1
       def update
         if @m3_profile.update(m3_profile_params)
+          @m3_profile.update_columns(profile_version: @m3_profile.profile_version + 1)
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully updated.'
         else
           render :edit
@@ -77,7 +79,7 @@ module Hyrax
 
       # Only allow a trusted parameter "white list" through.
       def m3_profile_params
-        params.require(:m3_profile).permit(:name, :profile_version, :profile, :created_at, :updated_at)
+        params.require(:m3_profile).permit(:name, :profile, :created_at, :updated_at)
       end
     end
   end
