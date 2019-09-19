@@ -13,10 +13,8 @@
 
   <%= form.input :name %>
 
-  <%= form.input :profile_version %>
-  
-  <div class="field form-group">
-    <%= form.label :profile, 'Definition' %><br />
-    <%= form.text_area :profile, placeholder: 'json format example {"foo":"bar"}', class: 'form-control', rows: 20, cols: 120 %>
-  </div>
+  <%= form.label :profile, "Profile Definition" %> <span class="label label-info required-tag">required</span>
+  <%= form.hint 'Must be yml/json format, {"foo":"bar"}' %>
+  <%= form.text_area :profile, class: 'form-control', rows: 20, cols: 120 %>
+
 </div>

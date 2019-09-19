@@ -35,7 +35,7 @@
             <% @m3_profiles.each do |m3_profile| %>
               <tr>
                 <th scope="row"><%= m3_profile.name %></th>
-                <td><%= m3_profile.profile_version %></td>
+                <td><%= m3_profile.profile_version.to_f %></td>
                 <td><%= m3_profile.profile %></td>
                 <td><%= m3_profile.created_at.strftime("%b %d, %Y") if m3_profile.created_at %></td>
                 <td><%= m3_profile.updated_at.strftime("%b %d, %Y") if m3_profile.updated_at %></td>
