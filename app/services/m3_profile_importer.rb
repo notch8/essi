@@ -33,7 +33,7 @@ class M3ProfileImporter
     rescue Psych::SyntaxError => e
       logger.error("Invalid YAML syntax found in #{path}!")
       logger.error(e.message)
-      return false
+      raise e
     end
     generate_from_hash(data: data, **keywords)
   end
@@ -52,6 +52,15 @@ class M3ProfileImporter
     self.validator = validator
     @logger = logger
     validate!
+  end
+
+  attr_accessor :errors
+
+  def call
+    self.errors = []
+    Array.wrap(data.fetch(:profile)).map do |configuration|
+      find_or_create_from(configuration: configuration)
+    end
   end
 
   private
@@ -77,19 +86,6 @@ class M3ProfileImporter
     def validate!
       validator.validate(data: data, schema: schema, logger: logger)
     end
-
-  public
-
-  attr_accessor :errors
-
-  def call
-    self.errors = []
-    Array.wrap(data.fetch(:profile)).map do |configuration|
-      find_or_create_from(configuration: configuration)
-    end
-  end
-
-  private
 
     def find_or_create_from(configuration:)
       profile = M3Profile.find_or_initialize_by(name: configuration.fetch(:name))
