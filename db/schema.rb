@@ -90,8 +90,6 @@ ActiveRecord::Schema.define(version: 20190926002320) do
 
   create_table "dynamic_schemas", force: :cascade do |t|
     t.string "m3_class"
-    t.integer "m3_context_id"
-    t.integer "m3_profile_id"
     t.text "schema"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
