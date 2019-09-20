@@ -90,14 +90,24 @@ class M3ProfileImporter
     def find_or_create_from(configuration:)
       profile = M3Profile.find_or_initialize_by(name: configuration.fetch(:name))
 
-      profile.profile_version = configuration.fetch(:profile_version, nil)
-      profile.profile = data
-      profile.save!
+      if profile.persisted? && profile.profile_version == configuration.fetch(:profile_version)
+        if profile.profile != data
+          logger.error(%(This M3Profile version (#{profile.profile_version}) already exists, please increment the version number))
+          raise M3ImporterError
+        end
+      else
+        profile.profile_version = configuration.fetch(:profile_version, nil)
+        profile.profile = data
+        profile.save!
+      end
 
       logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
       profile
     end
 
     class M3ImporterError < StandardError
+      def message
+        'This M3Profile version already exists, please increment the version number'
+      end
     end
 end
