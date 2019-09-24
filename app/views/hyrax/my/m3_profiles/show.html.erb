@@ -2,65 +2,30 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @importer.name %>
+  <%= @m3_profile.name %>
 </p>
 
 <p>
-  <strong>Admin set:</strong>
-  <%= @importer.admin_set_id %>
+  <strong>Version:</strong>
+  <%= @m3_profile.profile_version.to_f %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @importer.user %>
+  <strong>Schema:</strong>
+  <%= @m3_profile.profile %>
 </p>
 
 <p>
-  <strong>Frequency:</strong>
-  <%= @importer.frequency %>
+  <strong>Created At:</strong>
+  <%= @m3_profile.created_at.strftime("%b %d, %Y") %>
 </p>
 
-<p>
-  <strong>Parser klass:</strong>
-  <%= @importer.parser_klass %>
-</p>
+<% if @m3_profile.updated_at %>
+  <p>
+    <strong>Updated At:</strong>
+    <%= @m3_profile.updated_at.strftime("%b %d, %Y") %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Limit:</strong>
-  <%= @importer.limit %>
-</p>
-
-<p>
-  <strong>Parser fields:</strong>
-  <%= @importer.parser_fields %>
-</p>
-
-<p>
-  <strong>Field mapping:</strong>
-  <%= @importer.field_mapping %>
-</p>
-
-<%# TODO add entry info and paginate it here %>
-<table class='table table-striped'>
-  <thead>
-    <tr>
-      <th>Identifier</th>
-      <th>Status</th>
-      <th>Status Set At</th>
-      <th>Last Error</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @importer.entries.find_each do |e| %>
-      <tr>
-        <td><%= e.identifier %></td>
-        <td><%= e.status %></td>
-        <td><%= e.status_at %></td>
-        <td><%= e.last_error %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'Edit', edit_importer_path(@importer) %> |
-<%= link_to 'Back', importers_path %>
+<%= link_to 'Edit', edit_my_m3_profile_path(@m3_profile) %> |
+<%= link_to 'Back', my_m3_profiles_path %>
