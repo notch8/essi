@@ -8,7 +8,7 @@
 <% provide :page_header do %>
   <h1><span class="fa fa-table" aria-hidden="true"></span> M3 Profiles</h1>
   <div class="pull-right">
-    <%= link_to hyrax.my_import_profiles_path, class: 'btn btn-primary' do %>
+    <%= link_to hyrax.my_import_m3_profiles_path, class: 'btn btn-primary' do %>
       <span class="fa fa-upload" aria-hidden="true"></span> <%= t(:'helpers.action.m3_profile.import_profiles') %>
     <% end %>
     <%= link_to hyrax.new_my_m3_profile_path, class: 'btn btn-primary' do %>
