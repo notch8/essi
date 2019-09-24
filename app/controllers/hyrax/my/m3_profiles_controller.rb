@@ -20,6 +20,10 @@ module Hyrax
 
       # GET /m3_profiles/1
       def show
+        add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
+        add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
+        add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
+        add_breadcrumb 'Show'
       end
 
       # GET /m3_profiles/new
@@ -50,7 +54,7 @@ module Hyrax
         end
       end
 
-      def import_m3_profiles
+      def import_m3_profile
         # @m3_profile = M3ProfileImporter.load_profiles()
 
         #if @m3_profile.save
