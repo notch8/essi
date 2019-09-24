@@ -57,7 +57,6 @@ module Hyrax
         @m3_profile = M3::Profile.new(m3_profile_params)
 
         if @m3_profile.save
-          @m3_profile.update_columns(profile_version: 1)
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
         else
           render :new
