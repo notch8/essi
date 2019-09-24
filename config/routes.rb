@@ -54,8 +54,9 @@ Rails.application.routes.draw do
     # Routes actions to the various My controllers
     scope :dashboard do
       namespace :my do
-        resources :m3_profiles
-        get 'import_m3_profile', to: 'm3_profiles#import_m3_profile'
+        resources :m3_profiles do
+          collection { post :import }
+        end
       end
     end
   end
