@@ -11,10 +11,10 @@ m3_version: "1.0.beta2"
 
 profile:
   responsibility: https://indiana.edu/
-  name: Indiana University
+  responsibility_statement: Indiana University
   date_modified: "2019-07-28"
   type: concept
-  profile_version: 0.1
+  version: 0.1
 
 classes:
   FlexibleMetadata:
@@ -41,7 +41,6 @@ properties:
     cardinality:
       minimum: 1
     index_documentation: "Title should be indexed as searchable and displayable."
-    indexing: [
-      "_tesim",
-      "_ssm"
-    ]
+    indexing:
+      - "_tesim"
+      - "_ssm"
