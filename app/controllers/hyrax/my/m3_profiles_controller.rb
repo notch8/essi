@@ -44,21 +44,28 @@ module Hyrax
         @m3_profile = M3Profile.new(m3_profile_params)
 
         if @m3_profile.save
-          @m3_profile.update_columns(profile_version: 1)
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
         else
           render :new
         end
       end
 
-      def import_profiles
-        #M3ProfileImporter
+      def import_m3_profiles
+        # @m3_profile = M3ProfileImporter.create(m3_profile_params)
+
+        #if @m3_profile.save
+        #  if params[:commit] == 'Create and Import'
+        #    ImporterJob.perform_later(@m3_profile.id)
+        #  end
+        #  redirect_to importers_path, notice: 'M3Profile was successfully created.'
+        #else
+        #  render :index
+        #end
       end
 
       # PATCH/PUT /m3_profiles/1
       def update
         if @m3_profile.update(m3_profile_params)
-          @m3_profile.update_columns(profile_version: @m3_profile.profile_version + 1)
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully updated.'
         else
           render :edit
