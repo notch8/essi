@@ -55,7 +55,7 @@ module Hyrax
       end
 
       def import
-        # @m3_profile = M3ProfileImporter.load_profiles(params[:yml_file])
+        # @m3_profile = M3ProfileImporter.load_profiles(params[:file])
 
         #if @m3_profile.save
         #  if params[:commit] == 'Create and Import'
