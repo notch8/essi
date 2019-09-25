@@ -14,7 +14,7 @@ class M3ProfileImporter
       logger.info("No profiles were found in #{path_to_profile_files}")
       return false
     end
-    # replace w/ path
+    # TODO: replace w/ path
     profile_config_filenames.each do |config|
       logger.info "Loading with profile config #{config}"
       generate_from_yaml_file(path: config, logger: default_logger)
@@ -22,18 +22,18 @@ class M3ProfileImporter
     true
   end
 
-  def self.generate_from_yaml_file(path:, logger: default_logger, **keywords)
+  def self.generate_from_yaml_file(path:, logger: default_logger)
     name = File.basename(path, '.*')
     data = YAML.load_file(path)
-    generate_from_hash(name: name, data: data, **keywords)
+    generate_from_hash(name: name, data: data)
   rescue Psych::SyntaxError => e
     logger.error("Invalid YAML syntax found in #{path}!")
     logger.error(e.message)
     raise e
   end
 
-  def self.generate_from_hash(name:, data:, **keywords)
-    importer = new(name: name, data: data, **keywords)
+  def self.generate_from_hash(name:, data:)
+    importer = new(name: name, data: data)
     profiles = importer.call
     profiles
   end
