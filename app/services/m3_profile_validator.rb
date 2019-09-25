@@ -1,8 +1,8 @@
 class M3ProfileValidator
 
   def self.validate(data:, schema:, logger:)
-    result = schema.validate(data)
-    valid = schema.valid?(data)
+    result = schema.validate(data.deep_stringify_keys)
+    valid  = schema.valid?(data.deep_stringify_keys)
 
     logger.info("Data valid? #{valid}")
 
@@ -10,11 +10,14 @@ class M3ProfileValidator
       return true
     else
       result&.to_a&.each do |error|
-        logger.info("\nData: #{error['data']}\n")
-        logger.info("Data pointer: #{error['data_pointer']}\n")
-        logger.info("Schema: #{error['schema']}\n")
-        logger.info("Schema pointer: #{error['schema_pointer']}\n")
-        logger.info("Type: #{error['type']}\n")
+        logger.error("\nError:")
+        logger.error("\s\sType: #{error['type']}")
+        logger.error("\s\sDetails: #{error['details']}")
+        logger.error("\nMore error information:")
+        logger.error("\s\sData pointer: #{error['data_pointer']}")
+        logger.error("\s\sData: #{error['data']}\n")
+        logger.error("\s\sSchema pointer: #{error['schema_pointer']}")
+        logger.error("\s\sSchema: #{error['schema']}\n")
       end
       raise M3ValidatorError
     end
