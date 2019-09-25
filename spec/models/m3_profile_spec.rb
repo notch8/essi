@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe M3Profile, type: :model do
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:profile) }
+  end
   describe 'associations' do
     it 'has_many m3_contexts' do
       assc = described_class.reflect_on_association(:m3_contexts)

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @m3_profile.name %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @m3_profile.profile_version.to_f %>
+</p>
+
+<p>
+  <strong>Schema:</strong>
+  <%= @m3_profile.profile %>
+</p>
+
+<p>
+  <strong>Created At:</strong>
+  <%= @m3_profile.created_at.strftime("%b %d, %Y") %>
+</p>
+
+<% if @m3_profile.updated_at %>
+  <p>
+    <strong>Updated At:</strong>
+    <%= @m3_profile.updated_at.strftime("%b %d, %Y") %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_my_m3_profile_path(@m3_profile) %> |
+<%= link_to 'Back', my_m3_profiles_path %>
