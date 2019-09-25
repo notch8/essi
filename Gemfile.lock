@@ -769,6 +769,8 @@ GEM
       rdf-xsd (>= 2.2, < 4.0)
       sparql (>= 2.2, < 4.0)
       sxp (~> 1.0)
+    shoulda-matchers (4.1.2)
+      activesupport (>= 4.2.0)
     sidekiq (5.2.7)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (>= 1.5.0)
@@ -908,6 +910,7 @@ DEPENDENCIES
   rspec_junit_formatter
   sass-rails (~> 5.0)
   selenium-webdriver
+  shoulda-matchers
   sidekiq
   solr_wrapper (>= 0.3)
   spring
