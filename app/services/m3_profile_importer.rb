@@ -28,13 +28,12 @@ class M3ProfileImporter
     generate_from_hash(name: name, data: data)
   rescue Psych::SyntaxError => e
     logger.error("Invalid YAML syntax found in #{path}!")
-    logger.error(e.message)
-    raise e
+    raise YamlSyntaxError, e.message
   end
 
   def self.generate_from_hash(name:, data:)
     importer = new(name: name, data: data)
-    profiles = importer.call
+    profiles = importer.construct
     profiles
   end
 
@@ -48,8 +47,8 @@ class M3ProfileImporter
   end
 
   # One profile per yaml file upload
-  def call
-    find_or_create_from(name: name, data: data)
+  def construct
+    FlexibleMetadataConstructor.find_or_create_from(name: name, data: data)
   end
 
   private
@@ -76,28 +75,5 @@ class M3ProfileImporter
       validator.validate(data: data, schema: schema, logger: logger)
     end
 
-    def find_or_create_from(name:, data:)
-      profile_name = data.dig(:name) || name
-      profile = M3Profile.find_or_initialize_by(name: profile_name)
-
-      if profile.persisted? && profile.profile_version == data.dig(:profile, :version)
-        if profile.profile != data
-          logger.error(%(This M3Profile version (#{profile.profile_version}) already exists, please increment the version number))
-          raise M3ImporterError
-        end
-      else
-        profile.profile_version = data.dig(:profile, :version)
-        profile.profile = data
-        profile.save!
-      end
-
-      logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
-      profile
-    end
-
-    class M3ImporterError < StandardError
-      def message
-        'This M3Profile version already exists, please increment the version number'
-      end
-    end
+    class YamlSyntaxError < StandardError; end
 end

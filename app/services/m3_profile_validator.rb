@@ -19,7 +19,7 @@ class M3ProfileValidator
         logger.error("\s\sSchema pointer: #{error['schema_pointer']}")
         logger.error("\s\sSchema: #{error['schema']}\n")
       end
-      raise M3ValidatorError
+      raise InvalidDataError, 'Data failed to validate against schema'
     end
 
     valid
@@ -27,9 +27,5 @@ class M3ProfileValidator
 
   private
 
-    class M3ValidatorError < StandardError
-      def message
-        'Data failed to validate against schema'
-      end
-    end
+    class InvalidDataError < StandardError; end
 end
