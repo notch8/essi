@@ -1,0 +1,19 @@
+<div class="panel-body">
+  <% if m3_profile && m3_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(m3_profile.errors.count, "error") %> prohibited this m3_profile from being saved:</h2>
+
+      <ul>
+        <% m3_profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.input :name %>
+  <%= form.label :profile, "Schema" %> <span class="label label-info required-tag">required</span>
+  <%= form.hint 'Must be yml/json format, {"foo":"bar"}' %>
+  <%= form.text_area :profile, class: 'form-control', rows: 20, cols: 120 %>
+
+</div>
