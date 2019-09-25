@@ -56,6 +56,7 @@ group :development, :test do
   gem 'jasmine-jquery-rails'
   gem 'jasmine-rails'
   gem 'shoulda-matchers'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :development do
