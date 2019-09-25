@@ -17,8 +17,18 @@ require 'selenium-webdriver'
 require 'chromedriver-helper'
 require 'i18n/debug' if ENV['I18N_DEBUG']
 require 'byebug' unless ENV['CI']
+<<<<<<< HEAD
 require 'noid/rails/rspec'
+=======
+require 'shoulda/matchers'
+>>>>>>> Essi 473 add profiles to flexible metadata tab (#9)
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
