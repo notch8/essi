@@ -1,0 +1,10 @@
+en:
+  hyrax:
+    admin:
+      admin_sets:
+        form:
+          permission_update_notices:
+            metadata_context: The administrative set's metadata context has been updated.
+        form_metadata_context:
+          cancel: Cancel
+          page_description: Each administrative set may have a flexible metadata context associated with it. The metadata context is applied to all works added to the administrative set and determines the metadata schema used.

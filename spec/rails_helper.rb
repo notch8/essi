@@ -23,8 +23,12 @@ require 'noid/rails/rspec'
 =======
 =======
 require 'shoulda/matchers'
+<<<<<<< HEAD
 >>>>>>> Essi 473 add profiles to flexible metadata tab (#9)
 >>>>>>> Essi 473 add profiles to flexible metadata tab (#9)
+=======
+require 'rspec-activemodel-mocks'
+>>>>>>> Add metadata_context to the admin_set form; store admin_set_id against context
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
