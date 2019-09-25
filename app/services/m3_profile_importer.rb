@@ -23,21 +23,23 @@ class M3ProfileImporter
   end
 
   def self.generate_from_yaml_file(path:, logger: default_logger, **keywords)
+    name = File.basename(path, '.*')
     data = YAML.load_file(path)
-    generate_from_hash(data: data, **keywords)
+    generate_from_hash(name: name, data: data, **keywords)
   rescue Psych::SyntaxError => e
     logger.error("Invalid YAML syntax found in #{path}!")
     logger.error(e.message)
     raise e
   end
 
-  def self.generate_from_hash(data:, **keywords)
-    importer = new(data: data, **keywords)
+  def self.generate_from_hash(name:, data:, **keywords)
+    importer = new(name: name, data: data, **keywords)
     profiles = importer.call
     profiles
   end
 
-  def initialize(data:, schema: default_schema, validator: default_validator, logger: default_logger)
+  def initialize(name:, data:, schema: default_schema, validator: default_validator, logger: default_logger)
+    self.name = name
     self.data = data
     self.schema = schema
     self.validator = validator
@@ -47,7 +49,7 @@ class M3ProfileImporter
 
   # One profile per yaml file upload
   def call
-    find_or_create_from(data: data)
+    find_or_create_from(name: name, data: data)
   end
 
   private
@@ -58,7 +60,7 @@ class M3ProfileImporter
       @data = input.deep_symbolize_keys
     end
 
-    attr_accessor :validator, :schema
+    attr_accessor :name, :validator, :schema
 
     def default_validator
       M3ProfileValidator
@@ -74,16 +76,17 @@ class M3ProfileImporter
       validator.validate(data: data, schema: schema, logger: logger)
     end
 
-    def find_or_create_from(data:)
-      profile = M3Profile.find_or_initialize_by(name: data.fetch(:name))
+    def find_or_create_from(name:, data:)
+      profile_name = data.dig(:name) || name
+      profile = M3Profile.find_or_initialize_by(name: profile_name)
 
-      if profile.persisted? && profile.profile_version == data.fetch(:profile_version)
+      if profile.persisted? && profile.profile_version == data.dig(:profile, :version)
         if profile.profile != data
           logger.error(%(This M3Profile version (#{profile.profile_version}) already exists, please increment the version number))
           raise M3ImporterError
         end
       else
-        profile.profile_version = data.fetch(:profile_version, nil)
+        profile.profile_version = data.dig(:profile, :version)
         profile.profile = data
         profile.save!
       end
