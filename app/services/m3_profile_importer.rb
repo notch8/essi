@@ -5,21 +5,24 @@ require 'json_schemer'
 class M3ProfileImporter
   class_attribute :default_logger
   self.default_logger = Rails.logger
-  class_attribute :path_to_profile_files
-  self.path_to_profile_files = Rails.root.join('config', 'metadata_profiles', '*.y*ml')
+  class_attribute :default_config_file
+  self.default_config_file = Dir['/app/config/metadata_profiles/*.y*ml'].first
 
-  def self.load_profiles(logger: default_logger)
-    profile_config_filenames = Dir.glob(path_to_profile_files)
-    if profile_config_filenames.none?
-      logger.info("No profiles were found in #{path_to_profile_files}")
-      return false
+  def self.load_profile_from_path(path: nil, logger: default_logger)
+    if path.nil?
+      profile_config_filename = default_config_file
     end
-    # TODO: replace w/ path
-    profile_config_filenames.each do |config|
-      logger.info "Loading with profile config #{config}"
-      generate_from_yaml_file(path: config, logger: default_logger)
+
+    if profile_config_filename.nil?
+      raise ProfileNotFoundError, "No profiles were found in #{path}"
     end
-    true
+
+    logger.info("Loading with profile config #{profile_config_filename}")
+    generate_from_yaml_file(path: profile_config_filename, logger: default_logger)
+  end
+
+  def self.load_profile_from_form(logger: default_logger)
+    # TODO
   end
 
   def self.generate_from_yaml_file(path:, logger: default_logger)
@@ -75,5 +78,6 @@ class M3ProfileImporter
       validator.validate(data: data, schema: schema, logger: logger)
     end
 
+    class ProfileNotFoundError < StandardError; end
     class YamlSyntaxError < StandardError; end
 end
