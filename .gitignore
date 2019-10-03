@@ -34,3 +34,7 @@ fits.log
 .secrets.sh
 /secrets
 .env.*
+
+# Ignore Universal Viewer && yarn dependencies
+public/uv/*
+yarn.lock
