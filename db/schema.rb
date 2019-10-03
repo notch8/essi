@@ -227,12 +227,12 @@ ActiveRecord::Schema.define(version: 20190926002320) do
   create_table "m3_profiles", force: :cascade do |t|
     t.string "name"
     t.integer "profile_version"
-    t.text "profile"
     t.string "m3_version"
     t.string "responsibility"
     t.string "responsibility_statement"
     t.string "date_modified"
-    t.string "type"
+    t.string "profile_type"
+    t.text "profile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
