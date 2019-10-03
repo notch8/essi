@@ -1,8 +1,8 @@
 class M3ProfileValidator
 
   def self.validate(data:, schema:, logger:)
-    result = schema.validate(data.deep_stringify_keys)
-    valid  = schema.valid?(data.deep_stringify_keys)
+    result = schema.validate(data)
+    valid  = schema.valid?(data)
 
     logger.info("Data valid? #{valid}")
 

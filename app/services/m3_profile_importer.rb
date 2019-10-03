@@ -53,11 +53,7 @@ class M3ProfileImporter
 
     attr_reader :data, :logger
 
-    def data=(input)
-      @data = input.deep_symbolize_keys
-    end
-
-    attr_accessor :name, :validator, :schema
+    attr_accessor :name, :data, :validator, :schema
 
     def default_validator
       M3ProfileValidator
