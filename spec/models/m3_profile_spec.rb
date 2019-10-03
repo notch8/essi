@@ -15,6 +15,18 @@ RSpec.describe M3Profile, type: :model do
       assc = described_class.reflect_on_association(:dynamic_schemas)
       expect(assc.macro).to eq :has_many
     end
+    it 'has_many classes' do
+      assc = described_class.reflect_on_association(:classes)
+      expect(assc.macro).to eq :has_many
+    end
+    it 'has_many contexts' do
+      assc = described_class.reflect_on_association(:contexts)
+      expect(assc.macro).to eq :has_many
+    end
+    it 'has_many properties' do
+      assc = described_class.reflect_on_association(:properties)
+      expect(assc.macro).to eq :has_many
+    end
   end
 
   it 'is valid' do

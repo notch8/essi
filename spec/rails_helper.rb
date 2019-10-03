@@ -17,11 +17,9 @@ require 'selenium-webdriver'
 require 'chromedriver-helper'
 require 'i18n/debug' if ENV['I18N_DEBUG']
 require 'byebug' unless ENV['CI']
-<<<<<<< HEAD
 require 'noid/rails/rspec'
-=======
 require 'shoulda/matchers'
->>>>>>> Essi 473 add profiles to flexible metadata tab (#9)
+require 'shoulda/matchers'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
