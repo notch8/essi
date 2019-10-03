@@ -6,16 +6,11 @@ class M3ProfileImporter
   class_attribute :default_logger
   self.default_logger = Rails.logger
   class_attribute :default_config_file
-  self.default_config_file = Dir['/app/config/metadata_profiles/*.y*ml'].first
+  self.default_config_file = Dir['/app/config/metadata_profiles/*.y*ml'].first # TODO: better solution that .first?
 
-  def self.load_profile_from_path(path: nil, logger: default_logger)
-    if path.nil?
-      profile_config_filename = default_config_file
-    end
-
-    if profile_config_filename.nil?
-      raise ProfileNotFoundError, "No profiles were found in #{path}"
-    end
+  def self.load_profile_from_path(path: '', logger: default_logger)
+    profile_config_filename = File.exist?(path) ? path : default_config_file
+    raise ProfileNotFoundError, "No profiles were found in #{path}" if profile_config_filename.blank?
 
     logger.info("Loading with profile config #{profile_config_filename}")
     generate_from_yaml_file(path: profile_config_filename, logger: default_logger)
