@@ -39,7 +39,7 @@ rspec:
     - name: botimer/fcrepo:4.5.1
       alias: fcrepo
   script:
-    - cd /home/app/webapp
+    - cd /app
     - bundle exec rspec
   tags:
     - docker
