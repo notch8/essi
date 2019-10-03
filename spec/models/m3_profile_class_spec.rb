@@ -13,7 +13,7 @@ RSpec.describe M3ProfileClass, type: :model do
     end
 
     it 'has_many texts' do
-      assc = described_class.reflect_on_association(:texts)
+      assc = described_class.reflect_on_association(:class_texts)
       expect(assc.macro).to eq :has_many
     end
   end
