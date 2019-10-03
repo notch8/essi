@@ -177,8 +177,6 @@ ActiveRecord::Schema.define(version: 20190926002320) do
     t.index ["m3_profile_id"], name: "index_m3_contexts_on_m3_profile_id"
   end
 
-<<<<<<< HEAD
-=======
   create_table "m3_profile_classes", force: :cascade do |t|
     t.string "name"
     t.string "display_label"
@@ -226,19 +224,15 @@ ActiveRecord::Schema.define(version: 20190926002320) do
     t.index ["textable_type", "textable_id"], name: "index_m3_profile_texts_on_textable_type_and_textable_id"
   end
 
->>>>>>> f3d8c98e9ae2fb74f8409e55505bbaa197a65831
   create_table "m3_profiles", force: :cascade do |t|
     t.string "name"
     t.integer "profile_version"
     t.text "profile"
-<<<<<<< HEAD
-=======
     t.string "m3_version"
     t.string "responsibility"
     t.string "responsibility_statement"
     t.string "date_modified"
     t.string "type"
->>>>>>> f3d8c98e9ae2fb74f8409e55505bbaa197a65831
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
