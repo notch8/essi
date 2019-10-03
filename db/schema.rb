@@ -205,8 +205,8 @@ ActiveRecord::Schema.define(version: 20190926002320) do
   create_table "m3_profile_properties", force: :cascade do |t|
     t.string "name"
     t.string "property_uri"
-    t.string "cardinality_minimum"
-    t.string "cardinality_maximum"
+    t.integer "cardinality_minimum"
+    t.integer "cardinality_maximum"
     t.string "indexing"
     t.integer "m3_profile_id"
     t.datetime "created_at", null: false
