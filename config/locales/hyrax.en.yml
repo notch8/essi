@@ -71,10 +71,13 @@ en:
     works:
       form:
         show_child_items: Show Child Items
+        hide_child_items: Hide Child Items
       structure:
         breadcrumb: Edit Structure
       file_manager:
         breadcrumb: File Manager
+      link:
+        large_viewer: Open large viewer
   simple_form:
     hints:
       defaults:

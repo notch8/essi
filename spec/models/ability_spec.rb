@@ -56,8 +56,8 @@ RSpec.describe Ability do
 
   describe '#m3_profile_abilities' do
     let(:m3_profile) { create :m3_profile }
-
     context 'when the user is not an admin' do
+
       it "should not be manageable" do
         expect(ability.can?(:manage, m3_profile)).to be_falsey
       end

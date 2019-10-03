@@ -21,6 +21,13 @@ module Hyrax
       @logical_order = presenter.logical_order_object
     end
 
+    def additional_response_formats(wants)
+      wants.uv do
+        presenter && parent_presenter
+        render 'viewer_only.html.erb', layout: 'boilerplate', content_type: 'text/html'
+      end
+    end
+
     def save_structure
       structure = { "label": params["label"], "nodes": params["nodes"] }
       if curation_concern.lock?

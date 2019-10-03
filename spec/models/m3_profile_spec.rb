@@ -33,7 +33,6 @@ RSpec.describe M3Profile, type: :model do
     profile = FactoryBot.build(:m3_profile)
     expect(profile).to be_valid
   end
-
   describe '#profile' do
     it 'is a Hash' do
       profile = FactoryBot.build(:m3_profile)

@@ -14,4 +14,12 @@ module Hyrax
     # Use this line if you want to use a custom presenter
     self.show_presenter = Hyrax::ImagePresenter
   end
+
+  def additional_response_formats(wants)
+    wants.uv do
+      presenter && parent_presenter
+      render 'viewer_only.html.erb', layout: 'boilerplate', content_type: 'text/html'
+    end
+  end
+
 end

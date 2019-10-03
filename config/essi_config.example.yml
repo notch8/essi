@@ -32,6 +32,18 @@ default: &default
   iucat_libraries:
     url: http://iucat-feature-tadas.uits.iu.edu/api/library
     api_enabled: false
+  aws:
+    endpoint: http://localhost:9000
+    bucket: essi-dropbox
+    access_key_id: essi-minio
+    secret_access_key: Essi12345
+    region: us-east-1
+  browse_everything:
+    s3:
+      :bucket: essi-dropbox
+      :response_type: :signed_url
+    file_system:
+      :home: <%= Rails.root.join("staged_files") %>
   ldap:
     enabled: false
     host: ads.iu.edu

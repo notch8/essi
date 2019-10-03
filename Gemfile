@@ -55,6 +55,7 @@ group :development, :test do
   gem 'webmock'
   gem 'jasmine-jquery-rails'
   gem 'jasmine-rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
