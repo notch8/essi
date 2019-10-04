@@ -33,6 +33,9 @@ module Hyrax
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
         add_breadcrumb 'New'
         @m3_profile = M3::Profile.new
+        @m3_profile.classes.build
+        @m3_profile.contexts.build
+        @m3_profile.properties.build.texts.build
       end
 
       # GET /m3_profiles/1/edit
@@ -90,7 +93,11 @@ module Hyrax
 
       # Only allow a trusted parameter "white list" through.
       def m3_profile_params
-        params.require(:m3_profile).permit(:name, :profile, :created_at, :updated_at)
+        params.require(:m3_profile).permit(:name, :profile_type, :responsibility, :responsibility_statement, :created_at, :updated_at,
+                                          :classes_attributes => [:id, :display_label], 
+                                          :contexts_attributes => [:id, :display_label],
+                                          :properties_attributes => [:id, :name, :property_uri, :cardinality_minimum, :cardinality_maximum, :indexing,
+                                                                     :texts_attributes => [:id, :name, :value]])
       end
     end
   end
