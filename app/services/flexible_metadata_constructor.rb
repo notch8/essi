@@ -21,25 +21,48 @@ class FlexibleMetadataConstructor
       profile.profile                  = data
     end
 
-    construct_profile_classes(profile: profile)
+    construct_profile_properties(profile: profile)
 
+    # TODO: figure out how to get save to cascade
     profile.save!
 
     logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
     profile
   end
 
-  def self.construct_profile_classes(profile:, logger: default_logger)
+  def self.construct_profile_properties(profile:, logger: default_logger)
+    profile.profile.dig('properties').keys.each do |name|
+      property = M3ProfileProperty.new
+
+      property.name                = name
+      property.property_uri        = profile.profile.dig('properties', name, 'property_uri')
+      property.cardinality_minimum = profile.profile.dig('properties', name, 'cardinality', 'minimum')
+      property.cardinality_maximum = profile.profile.dig('properties', name, 'cardinality', 'maximum')
+      property.indexing            = profile.profile.dig('properties', name, 'indexing')
+
+      # TODO: mutates; would prefer to cascade from profile.save!
+      profile.properties << property
+
+      logger.info(%(Constructed M3ProfileProperty "#{property.name}"))
+      construct_profile_classes(profile: profile, property: property)
+      property
+    end
+  end
+
+  def self.construct_profile_classes(profile:, property:, logger: default_logger)
     profile.profile.dig('classes').keys.each do |name|
       profile_class = M3ProfileClass.new
 
       profile_class.name                   = name
       profile_class.display_label          = profile.profile.dig('classes', name, 'display_label')
       profile_class.schema_uri             = profile.profile.dig('classes', name, 'schema_uri')
-      profile_class.m3_profile             = profile
-      profile_class.m3_profile_property_id = nil # TODO
+
+      # TODO: mutates; would prefer to cascade from profile.save!
+      profile.classes << profile_class
+      property.available_on_classes << profile_class
 
       logger.info(%(Constructed M3ProfileClass "#{profile_class.name}"))
+      profile_class
     end
   end
 
