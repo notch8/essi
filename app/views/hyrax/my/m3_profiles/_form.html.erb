@@ -13,32 +13,34 @@
 
   <h4>Profile</h4>
   <%= form.input :name %>
-  <%= form.input :type %>
+  <%= form.input :profile_type %>
   <%= form.input :responsibility %>
-  <%= form.input :profile %>
-
   <%= form.label :responsiblity_statement %>
   <%= form.select(:responsibility_statement, ["Indiana University"], {}, { class: "form-control" }) %><hr>
+  <%#=form.label :work %>
+  <%#=form.select(curation_concern.human_readable_type) %>
 
   <h4>Classes</h4>
-  <%= form.fields_for :m3_profile_classes do |c| %>
+  <%= form.fields_for :classes do |c| %>
     <%= c.input :display_label %><hr>
-    <h4>Contexts</h4>
-    <%= c.fields_for :m3_profile_contexts do |cc| %>
-      <%= cc.input :display_label %><hr>
-      <h4>Properties</h4>
-      <%= cc.fields_for :m3_profile_properties do |p| %>
-        <%= p.input :name %>
-        <%= p.input :property_uri %>
-        <%= p.input :cardinality_minimum %>
-        <%= p.input :cardinality_maximum %>
-        <%= p.input :indexing %><hr>
-        <h4>Text</h4>
-        <%= p.fields_for :m3_profile_texts do |t| %>
-          <%= t.input :name %>
-          <%= t.input :value %>
-        <% end %>
-      <% end %>
+  <% end %>
+
+  <h4>Contexts</h4>
+  <%= form.fields_for :contexts do |cc| %>
+    <%= cc.input :display_label %><hr>
+  <% end %>
+
+  <h4>Properties</h4>
+  <%= form.fields_for :properties do |p| %>
+    <%= p.input :name %>
+    <%= p.input :property_uri %>
+    <%= p.input :cardinality_minimum %>
+    <%= p.input :cardinality_maximum %>
+    <%= p.input :indexing %><hr>
+    <h4>Text</h4>
+    <%= p.fields_for :texts do |t| %>
+      <%= t.input :name %>
+      <%= t.input :value %>
     <% end %>
   <% end %>
 </div>
