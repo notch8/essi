@@ -1,6 +1,8 @@
 class M3ProfileValidator
 
   def self.validate(data:, schema:, logger:)
+    ensure_work_types_exist(data: data, logger: logger)
+
     result = schema.validate(data)
     valid  = schema.valid?(data)
 
@@ -26,6 +28,20 @@ class M3ProfileValidator
   end
 
   private
+
+    def self.ensure_work_types_exist(data:, logger:)
+      data.dig('classes').keys.each do |c|
+        c.constantize.ancestors.include?(ActiveFedora::Base)
+      rescue NameError => e
+        if e.message.include?('uninitialized constant')
+          logger.error(%(\nThe class #{c} does not exist as a Work in this repository))
+          logger.error(%(Please ensure the Work exists, e.g. by running: rails generate hyrax:work #{c}))
+        elsif e.message.include?('wrong constant name')
+          logger.error(%(\nThe class "#{c}" must be CamelCase))
+        end
+        raise e
+      end
+    end
 
     class InvalidDataError < StandardError; end
 end
