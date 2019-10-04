@@ -19,11 +19,28 @@ class FlexibleMetadataConstructor
       profile.date_modified            = data.dig('profile', 'date_modified')
       profile.profile_type             = data.dig('profile', 'type')
       profile.profile                  = data
-      profile.save!
     end
+
+    construct_profile_classes(profile: profile)
+
+    profile.save!
 
     logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
     profile
+  end
+
+  def self.construct_profile_classes(profile:, logger: default_logger)
+    profile.profile.dig('classes').keys.each do |name|
+      profile_class = M3ProfileClass.new
+
+      profile_class.name                   = name
+      profile_class.display_label          = profile.profile.dig('classes', name, 'display_label')
+      profile_class.schema_uri             = profile.profile.dig('classes', name, 'schema_uri')
+      profile_class.m3_profile             = profile
+      profile_class.m3_profile_property_id = nil # TODO
+
+      logger.info(%(Constructed M3ProfileClass "#{profile_class.name}"))
+    end
   end
 
   private
