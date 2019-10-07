@@ -35,15 +35,20 @@
             </tr>
           </thead>
           <tbody>
-            <% @m3_profiles.each do |m3_profile| %>
+            <% @m3_profiles.order("updated_at DESC").each do |m3_profile| %>
               <tr>
                 <td><%= link_to m3_profile.name, hyrax.my_m3_profile_path(m3_profile) %></td>
                 <td><%= m3_profile.profile_version.to_f %></td>
                 <td><%= m3_profile.profile_type %></td>
                 <td><%= m3_profile.created_at.strftime("%b %d, %Y") %></td>
                 <td><%= m3_profile.updated_at.strftime("%b %d, %Y") if m3_profile.updated_at %></td>
-                <td><%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), hyrax.edit_my_m3_profile_path(m3_profile) %></td>
-                <td><%= link_to raw('<span class="glyphicon glyphicon-remove"></span>'), hyrax.my_m3_profile_path(m3_profile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% if m3_profile == m3_profile.latest_version?(@m3_profiles) %>
+                  <td><%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), hyrax.edit_my_m3_profile_path(m3_profile) %></td>
+                  <td><%= link_to raw('<span class="glyphicon glyphicon-remove"></span>'), hyrax.my_m3_profile_path(m3_profile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% else %>
+                  <td></td>
+                  <td></td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>

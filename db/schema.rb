@@ -239,7 +239,7 @@ ActiveRecord::Schema.define(version: 20191009144806) do
 
   create_table "m3_profiles", force: :cascade do |t|
     t.string "name"
-    t.float "profile_version"
+    t.integer "profile_version", default: 0
     t.string "m3_version"
     t.string "responsibility"
     t.string "responsibility_statement"
