@@ -19,7 +19,7 @@ require 'i18n/debug' if ENV['I18N_DEBUG']
 require 'byebug' unless ENV['CI']
 require 'noid/rails/rspec'
 require 'shoulda/matchers'
-require 'shoulda/matchers'
+require 'rspec-activemodel-mocks'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
