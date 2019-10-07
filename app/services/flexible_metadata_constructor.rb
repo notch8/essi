@@ -19,12 +19,11 @@ class FlexibleMetadataConstructor
       profile.date_modified            = data.dig('profile', 'date_modified')
       profile.profile_type             = data.dig('profile', 'type')
       profile.profile                  = data
+
+      construct_profile_properties(profile: profile)
+
+      profile.save!
     end
-
-    construct_profile_properties(profile: profile)
-
-    # TODO: figure out how to get save to cascade
-    profile.save!
 
     logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
     profile
@@ -32,16 +31,14 @@ class FlexibleMetadataConstructor
 
   def self.construct_profile_properties(profile:, logger: default_logger)
     profile.profile.dig('properties').keys.each do |name|
-      property = M3ProfileProperty.new
+      property = profile.properties.find_or_initialize_by(name: name)
 
-      property.name                = name
-      property.property_uri        = profile.profile.dig('properties', name, 'property_uri')
-      property.cardinality_minimum = profile.profile.dig('properties', name, 'cardinality', 'minimum')
-      property.cardinality_maximum = profile.profile.dig('properties', name, 'cardinality', 'maximum')
-      property.indexing            = profile.profile.dig('properties', name, 'indexing')
-
-      # TODO: mutates; would prefer to cascade from profile.save!
-      profile.properties << property
+      property.assign_attributes(
+        property_uri:        profile.profile.dig('properties', name, 'property_uri'),
+        cardinality_minimum: profile.profile.dig('properties', name, 'cardinality', 'minimum'),
+        cardinality_maximum: profile.profile.dig('properties', name, 'cardinality', 'maximum'),
+        indexing:            profile.profile.dig('properties', name, 'indexing')
+      )
 
       logger.info(%(Constructed M3ProfileProperty "#{property.name}"))
       construct_profile_classes(profile: profile, property: property)
