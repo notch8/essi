@@ -31,7 +31,11 @@ class M3ProfileValidator
 
     def self.ensure_work_types_exist(data:, logger:)
       data.dig('classes').keys.each do |c|
-        c.constantize.ancestors.include?(ActiveFedora::Base)
+        if c.constantize.ancestors.include?(ActiveFedora::Base) == false
+          logger.error("\nThe class #{c} must inherit from ActiveFedora::Base")
+          raise InvalidDataError, "The class #{c} must inherit from ActiveFedora::Base"
+        end
+
       rescue NameError => e
         if e.message.include?('uninitialized constant')
           logger.error(%(\nThe class #{c} does not exist as a Work in this repository))
