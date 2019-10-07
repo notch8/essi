@@ -26,7 +26,6 @@ build:
     - docker-compose build --pull web
     - docker-compose push web
 
-
 rspec:
   stage: test
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
@@ -35,7 +34,7 @@ rspec:
     - name: postgres
     - name: solr:7.7
       alias: solr
-      entrypoint: ["docker-entrypoint.sh", "solr-precreate", "hyrax-test", "/opt/config"]
+      entrypoint: ["docker-entrypoint.sh", "solr-precreate", "hydra-test", "/opt/config"]
     - name: botimer/fcrepo:4.5.1
       alias: fcrepo
   script:
