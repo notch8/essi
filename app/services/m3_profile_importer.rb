@@ -20,6 +20,11 @@ class M3ProfileImporter
     # TODO
   end
 
+  # One profile per yaml file upload
+  def construct
+    FlexibleMetadataConstructor.find_or_create_from(name: name, data: data)
+  end
+
   private
 
   def self.generate_from_yaml_file(path:, logger: default_logger)
@@ -44,11 +49,6 @@ class M3ProfileImporter
     self.validator = validator
     @logger = logger
     validate!
-  end
-
-  # One profile per yaml file upload
-  def construct
-    FlexibleMetadataConstructor.find_or_create_from(name: name, data: data)
   end
 
   attr_reader :data, :logger
