@@ -17,18 +17,20 @@
   <h4>Profile:</h4>
   <%= form.input :name %>
   <%= form.input :profile_type %>
-  <%= form.input :responsibility %>
+  <%= form.input :responsibility %> 
   <%= form.label :responsiblity_statement %>
   <%= form.select(:responsibility_statement, ["Indiana University"], {}, { class: "form-control" }) %><hr>
   
   <h4>Classes:</h4>
   <%= form.fields_for :classes do |c| %>
-    <%= c.label :display_label %>
-    <%= c.select(:display_label, @m3_profile.available_classes, { include_blank: true }, { class: "form-control" }) %><hr>
+    <%= c.label :name %>
+    <%= c.select(:name, @m3_profile.available_classes, { include_blank: true }, { class: "form-control" }) %>
+    <%= c.input :display_label %><hr>
   <% end %>
 
   <h4>Contexts:</h4>
   <%= form.fields_for :contexts do |cc| %>
+    <%= cc.input :name %>
     <%= cc.input :display_label %><hr>
   <% end %>
 
@@ -38,7 +40,7 @@
     <%= p.input :property_uri %>
     <%= p.input :cardinality_minimum %>
     <%= p.input :cardinality_maximum %>
-    <%= p.input :indexing %><hr>
+    <%= p.select(:indexing, M3::ProfileProperty::INDEXING, { include_hidden: false }, { multiple: true, class: "form-control" }) %><hr>
     <h4>Text:</h4>
     <%= p.fields_for :texts do |t| %>
       <%= t.input :name %>
