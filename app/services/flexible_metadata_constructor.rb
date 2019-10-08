@@ -29,6 +29,24 @@ class FlexibleMetadataConstructor
     profile
   end
 
+  def self.construct_profile_classes(profile:, logger: default_logger)
+    profile_classes_hash = profile.profile.dig('classes')
+
+    profile_classes_hash.keys.each do |name|
+      profile_class = profile.classes.find_or_initialize_by(name: name)
+
+      profile_class.assign_attributes(
+        display_label:          profile_classes_hash.dig(name, 'display_label'),
+        schema_uri:             profile_classes_hash.dig(name, 'schema_uri')
+      )
+      logger.info(%(Constructed M3ProfileClass "#{profile_class.name}"))
+
+      construct_profile_properties(profile: profile, profile_class: profile_class)
+
+      profile_class
+    end
+  end
+
   def self.construct_profile_properties(profile:, profile_class:, logger: default_logger)
     properties_hash = profile.profile.dig('properties')
 
@@ -46,24 +64,6 @@ class FlexibleMetadataConstructor
       property.available_on_classes << profile_class
 
       property
-    end
-  end
-
-  def self.construct_profile_classes(profile:, logger: default_logger)
-    profile_classes_hash = profile.profile.dig('classes')
-
-    profile_classes_hash.keys.each do |name|
-      profile_class = profile.classes.find_or_initialize_by(name: name)
-
-      profile_class.assign_attributes(
-        display_label:          profile_classes_hash.dig(name, 'display_label'),
-        schema_uri:             profile_classes_hash.dig(name, 'schema_uri')
-      )
-      logger.info(%(Constructed M3ProfileClass "#{profile_class.name}"))
-
-      construct_profile_properties(profile: profile, profile_class: profile_class)
-
-      profile_class
     end
   end
 
