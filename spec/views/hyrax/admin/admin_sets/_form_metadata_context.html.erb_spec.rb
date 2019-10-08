@@ -1,6 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'hyrax/admin/admin_sets/_form_metadata_context.html.erb', type: :view do
   let(:template) { stub_model(Hyrax::PermissionTemplate) }
+  let(:admin_set) { stub_model(AdminSet) }
   let(:m3_context) { build(:m3_context) }
   let(:pt_form) do
     instance_double(Hyrax::Forms::PermissionTemplateForm,
@@ -8,7 +9,9 @@ RSpec.describe 'hyrax/admin/admin_sets/_form_metadata_context.html.erb', type: :
                     persisted?: template.persisted?,
                     to_key: template.to_key,
                     available_contexts: [m3_context],
-                    metadata_context_options: [[m3_context.id, m3_context.name]])
+                    metadata_context_options: [[m3_context.id, m3_context.name]],
+                    source_model: admin_set
+                  )
   end
 
   before do

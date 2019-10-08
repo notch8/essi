@@ -31,7 +31,7 @@ module M3
     end
 
     def create_m3_context
-      # M3Context.create(m3_profile_id: self.id)
+      # M3::Context.create(m3_profile_id: self.id)
     end
   end
 end
