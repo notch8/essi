@@ -60,12 +60,10 @@ module Hyrax
       end
 
       def import
-        # @m3_profile = M3ProfileImporter.load_profiles(params[:file])
+        uploaded_io = params[:file]
+        # @m3_profile = M3ProfileImporter.load_profiles(uploaded_io.path)
 
         #if @m3_profile.save
-        #  if params[:commit] == 'Create and Import'
-        #    ImporterJob.perform_later(@m3_profile.id)
-        #  end
         #  redirect_to import_my_m3_profile_path, notice: 'M3Profile was successfully created.'
         #else
         #redirect_to my_m3_profiles_path, alert: "#{@m3_profile.errors.messages}"
