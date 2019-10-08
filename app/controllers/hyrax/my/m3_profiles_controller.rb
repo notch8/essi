@@ -4,7 +4,7 @@ module Hyrax
       include Hyrax::ThemedLayoutController
 
       before_action do
-        authorize! :manage, M3Profile
+        authorize! :manage, M3::Profile
       end
       before_action :set_m3_profile, only: [:show, :edit, :update, :destroy]
       with_themed_layout 'dashboard'
@@ -14,7 +14,7 @@ module Hyrax
         add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb t(:'hyrax.admin.sidebar.m3_profiles'), hyrax.my_m3_profiles_path
-        @m3_profiles = M3Profile.all
+        @m3_profiles = M3::Profile.all
         super
       end
 
@@ -32,7 +32,7 @@ module Hyrax
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
         add_breadcrumb 'New'
-        @m3_profile = M3Profile.new
+        @m3_profile = M3::Profile.new
       end
 
       # GET /m3_profiles/1/edit
@@ -45,7 +45,7 @@ module Hyrax
 
       # POST /m3_profiles
       def create
-        @m3_profile = M3Profile.new(m3_profile_params)
+        @m3_profile = M3::Profile.new(m3_profile_params)
 
         if @m3_profile.save
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
@@ -85,7 +85,7 @@ module Hyrax
       private
       # Use callbacks to share common setup or constraints between actions.
       def set_m3_profile
-        @m3_profile = M3Profile.find(params[:id])
+        @m3_profile = M3::Profile.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.

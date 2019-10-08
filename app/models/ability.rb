@@ -24,7 +24,7 @@ class Ability
 
   def m3_profile_abilities
     if current_user.admin?
-      can :manage, M3Profile
+      can :manage, M3::Profile
     end
   end
 

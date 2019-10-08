@@ -25,7 +25,7 @@ RSpec.describe 'hyrax/dashboard/_sidebar.html.erb', type: :view do
     allow(view).to receive(:can?).with(:manage, Hyrax::Feature).and_return(manage_feature)
     allow(view).to receive(:can?).with(:manage, Sipity::WorkflowResponsibility).and_return(manage_workflow)
     allow(view).to receive(:can?).with(:manage, :collection_types).and_return(manage_collection_types)
-    allow(view).to receive(:can?).with(:manage, M3Profile).and_return(manage_m3_profiles)
+    allow(view).to receive(:can?).with(:manage, M3::Profile).and_return(manage_m3_profiles)
   end
 
   context 'with any user' do
