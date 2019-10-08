@@ -28,7 +28,7 @@ RSpec.describe Hyrax::Forms::PermissionTemplateForm do
     subject { form.metadata_context_options }
 
     before do
-      allow(M3Context).to receive(:available_contexts).and_return([m3_context])
+      allow(M3::Context).to receive(:available_contexts).and_return([m3_context])
     end
 
     it 'returns a collection of m3_context id/name arrays' do
