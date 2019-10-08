@@ -20,12 +20,11 @@
   <%= form.input :responsibility %>
   <%= form.label :responsiblity_statement %>
   <%= form.select(:responsibility_statement, ["Indiana University"], {}, { class: "form-control" }) %><hr>
-  <%#=form.label :work %>
-  <%#=form.select(curation_concern.human_readable_type) %>
-
+  
   <h4>Classes:</h4>
   <%= form.fields_for :classes do |c| %>
-    <%= c.input :display_label %><hr>
+    <%= c.label :display_label %>
+    <%= c.select(:display_label, @m3_profile.available_classes, { include_blank: true }, { class: "form-control" }) %><hr>
   <% end %>
 
   <h4>Contexts:</h4>
