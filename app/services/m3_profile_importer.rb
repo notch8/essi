@@ -20,6 +20,8 @@ class M3ProfileImporter
     # TODO
   end
 
+  private
+
   def self.generate_from_yaml_file(path:, logger: default_logger)
     name = File.basename(path, '.*')
     data = YAML.load_file(path)
@@ -49,26 +51,24 @@ class M3ProfileImporter
     FlexibleMetadataConstructor.find_or_create_from(name: name, data: data)
   end
 
-  private
+  attr_reader :data, :logger
 
-    attr_reader :data, :logger
+  attr_accessor :name, :data, :validator, :schema
 
-    attr_accessor :name, :data, :validator, :schema
+  def default_validator
+    M3ProfileValidator
+  end
 
-    def default_validator
-      M3ProfileValidator
-    end
+  def default_schema
+    @schema_path    = Pathname.new('m3_profile_schema.json')
+    @default_schema = JSONSchemer.schema(@schema_path)
+    @default_schema
+  end
 
-    def default_schema
-      @schema_path    = Pathname.new('m3_profile_schema.json')
-      @default_schema = JSONSchemer.schema(@schema_path)
-      @default_schema
-    end
+  def validate!
+    validator.validate(data: data, schema: schema, logger: logger)
+  end
 
-    def validate!
-      validator.validate(data: data, schema: schema, logger: logger)
-    end
-
-    class ProfileNotFoundError < StandardError; end
-    class YamlSyntaxError < StandardError; end
+  class ProfileNotFoundError < StandardError; end
+  class YamlSyntaxError < StandardError; end
 end

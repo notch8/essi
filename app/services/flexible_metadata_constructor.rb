@@ -12,22 +12,26 @@ class FlexibleMetadataConstructor
         raise ProfileVersionError, "This M3Profile version (#{profile.profile_version}) already exists, please increment the version number"
       end
     else
-      profile.m3_version               = data.dig('m3_version')
-      profile.profile_version          = data.dig('profile', 'version')
-      profile.responsibility           = data.dig('profile', 'responsibility')
-      profile.responsibility_statement = data.dig('profile', 'responsibility_statement')
-      profile.date_modified            = data.dig('profile', 'date_modified')
-      profile.profile_type             = data.dig('profile', 'type')
-      profile.profile                  = data
+      profile.assign_attributes(
+        m3_version:               data.dig('m3_version'),
+        profile_version:          data.dig('profile', 'version'),
+        responsibility:           data.dig('profile', 'responsibility'),
+        responsibility_statement: data.dig('profile', 'responsibility_statement'),
+        date_modified:            data.dig('profile', 'date_modified'),
+        profile_type:             data.dig('profile', 'type'),
+        profile:                  data
+      )
 
       construct_profile_contexts(profile: profile)
 
       profile.save!
+      logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
     end
 
-    logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
     profile
   end
+
+  private
 
   def self.construct_profile_contexts(profile:, logger: default_logger)
     profile_contexts_hash = profile.profile.dig('contexts')
@@ -87,7 +91,5 @@ class FlexibleMetadataConstructor
     end
   end
 
-  private
-
-    class ProfileVersionError < StandardError; end
+  class ProfileVersionError < StandardError; end
 end
