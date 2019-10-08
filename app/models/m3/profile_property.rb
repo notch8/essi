@@ -8,7 +8,7 @@ module M3
     accepts_nested_attributes_for :texts
 
     serialize :indexing, Array
-    validates :name, presence: true
+    validates :name, :indexing, presence: true
     validate :validate_indexing
 
     # array of valid values for indexing
@@ -29,5 +29,5 @@ module M3
         errors.add(:indexing, "#{i} is not a valid indexing term") unless INDEXING.include? i
       end
     end
-    end
+  end
 end

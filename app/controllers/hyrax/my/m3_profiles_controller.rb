@@ -28,6 +28,10 @@ module Hyrax
 
       # GET /m3_profiles/new
       def new
+        if M3::Profile.count > 0
+          redirect_to my_m3_profiles_path, alert: 'Edit an Existing Profile or Upload a New One'
+        end
+
         add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
@@ -45,7 +49,7 @@ module Hyrax
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
         add_breadcrumb 'Edit'
 
-        @m3_profile = M3Profile.last
+        @m3_profile = M3::Profile.last
       end
 
       # POST /m3_profiles
@@ -61,12 +65,12 @@ module Hyrax
 
       def import
         uploaded_io = params[:file]
-        # @m3_profile = M3ProfileImporter.load_profiles(uploaded_io.path)
+        # @m3_profile = M3::ProfileImporter.load_profiles(uploaded_io.path)
 
         #if @m3_profile.save
-        #  redirect_to import_my_m3_profile_path, notice: 'M3Profile was successfully created.'
+          # redirect_to import_my_m3_profile_path, notice: 'M3Profile was successfully created.'
         #else
-        #redirect_to my_m3_profiles_path, alert: "#{@m3_profile.errors.messages}"
+          # redirect_to my_m3_profiles_path, alert: "#{@m3_profile.errors.messages}"
         #end
       end
 
@@ -85,9 +89,9 @@ module Hyrax
       # Only allow a trusted parameter "white list" through.
       def m3_profile_params
         params.require(:m3_profile).permit(:name, :profile_type, :profile_version, :responsibility, :responsibility_statement, :created_at, :updated_at,
-                                          :classes_attributes => [:display_label], 
-                                          :contexts_attributes => [:display_label],
-                                          :properties_attributes => [:name, :property_uri, :cardinality_minimum, :cardinality_maximum, :indexing,
+                                          :classes_attributes => [:name, :display_label], 
+                                          :contexts_attributes => [:name, :display_label],
+                                          :properties_attributes => [:name, :property_uri, :cardinality_minimum, :cardinality_maximum, indexing: [],
                                                                      :texts_attributes => [:name, :value]])
       end
     end

@@ -2,10 +2,10 @@ FactoryBot.define do
 
   factory :m3_profile, class: M3::Profile do
     name            { "Indiana University" }
-    profile_version { 1 }
+    sequence(:profile_version) { |n| n }
     responsibility { 'http://iu.edu' }
     date_modified { '2019-09-23' }
-    profile         { { "version": 0.1, "responsibility_statement":"Indiana University", "date_modified":"2019-09-9" } }
+    profile         { { "version": profile_version, "responsibility_statement":"Indiana University", "date_modified":"2019-09-9" } }
     classes { [FactoryBot.build(:m3_profile_class)] }
     contexts { [FactoryBot.build(:m3_profile_context)] }
     properties { [FactoryBot.build(:m3_profile_property)] }
