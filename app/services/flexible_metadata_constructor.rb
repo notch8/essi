@@ -20,7 +20,7 @@ class FlexibleMetadataConstructor
       profile.profile_type             = data.dig('profile', 'type')
       profile.profile                  = data
 
-      construct_profile_properties(profile: profile)
+      construct_profile_classes(profile: profile)
 
       profile.save!
     end
@@ -29,7 +29,7 @@ class FlexibleMetadataConstructor
     profile
   end
 
-  def self.construct_profile_properties(profile:, logger: default_logger)
+  def self.construct_profile_properties(profile:, profile_class:, logger: default_logger)
     properties_hash = profile.profile.dig('properties')
 
     properties_hash.keys.each do |name|
@@ -43,13 +43,13 @@ class FlexibleMetadataConstructor
       )
       logger.info(%(Constructed M3ProfileProperty "#{property.name}"))
 
-      construct_profile_classes(profile: profile, property: property)
+      property.available_on_classes << profile_class
 
       property
     end
   end
 
-  def self.construct_profile_classes(profile:, property:, logger: default_logger)
+  def self.construct_profile_classes(profile:, logger: default_logger)
     profile_classes_hash = profile.profile.dig('classes')
 
     profile_classes_hash.keys.each do |name|
@@ -57,11 +57,11 @@ class FlexibleMetadataConstructor
 
       profile_class.assign_attributes(
         display_label:          profile_classes_hash.dig(name, 'display_label'),
-        schema_uri:             profile_classes_hash.dig(name, 'schema_uri'),
-        # TODO: Currently assigns nil since property.id doesn't exist yet. Fix with #after_save?
-        m3_profile_property_id: property.id
+        schema_uri:             profile_classes_hash.dig(name, 'schema_uri')
       )
       logger.info(%(Constructed M3ProfileClass "#{profile_class.name}"))
+
+      construct_profile_properties(profile: profile, profile_class: profile_class)
 
       profile_class
     end
