@@ -9,7 +9,7 @@ module M3
 
     # override (from Hyrax 2.5.0) - new method to setup the metadata_context_class
     def metadata_context_class
-      M3Context
+      M3::Context
     end
 
     # override (from Hyrax 2.5.0) - new method to setup dropdown for metadata_context
@@ -57,11 +57,11 @@ module M3
       super
     end
 
-    # override (from Hyrax 2.5.0) - new method to add the admin_set_id to the M3Context
+    # override (from Hyrax 2.5.0) - new method to add the admin_set_id to the M3::Context
     # @return [Nil]
     def update_metadata_context
       if attributes['metadata_context_id'].present?
-        metadata_context = M3Context.find(attributes['metadata_context_id'])
+        metadata_context = M3::Context.find(attributes['metadata_context_id'])
         metadata_context.admin_set_ids += [source_model.id]
         metadata_context.save
       end

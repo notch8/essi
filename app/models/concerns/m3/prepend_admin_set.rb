@@ -6,10 +6,10 @@ module M3
     # override (from Hyrax 2.5.0) - new method to add metadata_context
     # @api public
     #
-    # @return [M3Context]
+    # @return [M3::Context]
     # @raise [ActiveRecord::RecordNotFound]
     def metadata_context
-      M3Context.find_metadata_context_for(admin_set_id: id)
+      M3::Context.find_metadata_context_for(admin_set_id: id)
     end
   end
 end
