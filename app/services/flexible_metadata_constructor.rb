@@ -30,35 +30,39 @@ class FlexibleMetadataConstructor
   end
 
   def self.construct_profile_properties(profile:, logger: default_logger)
-    profile.profile.dig('properties').keys.each do |name|
+    properties_hash = profile.profile.dig('properties')
+
+    properties_hash.keys.each do |name|
       property = profile.properties.find_or_initialize_by(name: name)
 
       property.assign_attributes(
-        property_uri:        profile.profile.dig('properties', name, 'property_uri'),
-        cardinality_minimum: profile.profile.dig('properties', name, 'cardinality', 'minimum'),
-        cardinality_maximum: profile.profile.dig('properties', name, 'cardinality', 'maximum'),
-        indexing:            profile.profile.dig('properties', name, 'indexing')
+        property_uri:        properties_hash.dig(name, 'property_uri'),
+        cardinality_minimum: properties_hash.dig(name, 'cardinality', 'minimum'),
+        cardinality_maximum: properties_hash.dig(name, 'cardinality', 'maximum'),
+        indexing:            properties_hash.dig(name, 'indexing')
       )
-
       logger.info(%(Constructed M3ProfileProperty "#{property.name}"))
+
       construct_profile_classes(profile: profile, property: property)
+
       property
     end
   end
 
   def self.construct_profile_classes(profile:, property:, logger: default_logger)
-    profile.profile.dig('classes').keys.each do |name|
-      profile_class = M3ProfileClass.new
+    profile_classes_hash = profile.profile.dig('classes')
 
-      profile_class.name                   = name
-      profile_class.display_label          = profile.profile.dig('classes', name, 'display_label')
-      profile_class.schema_uri             = profile.profile.dig('classes', name, 'schema_uri')
+    profile_classes_hash.keys.each do |name|
+      profile_class = profile.classes.find_or_initialize_by(name: name)
 
-      # TODO: mutates; would prefer to cascade from profile.save!
-      profile.classes << profile_class
-      property.available_on_classes << profile_class
-
+      profile_class.assign_attributes(
+        display_label:          profile_classes_hash.dig(name, 'display_label'),
+        schema_uri:             profile_classes_hash.dig(name, 'schema_uri'),
+        # TODO: Currently assigns nil since property.id doesn't exist yet. Fix with #after_save?
+        m3_profile_property_id: property.id
+      )
       logger.info(%(Constructed M3ProfileClass "#{profile_class.name}"))
+
       profile_class
     end
   end
