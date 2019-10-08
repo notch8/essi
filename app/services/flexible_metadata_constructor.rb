@@ -3,16 +3,12 @@ class FlexibleMetadataConstructor
   self.default_logger = Rails.logger
 
   def self.find_or_create_from(name:, data:, logger: default_logger)
-    profile_name = data.dig(:name) || name
-    profile = M3Profile.find_or_initialize_by(name: profile_name)
+    profile_name = data.dig('name') || name
+    profile_match = M3Profile.where(name: profile_name, profile_version: data.dig('profile', 'version')).first
 
-    if profile.persisted? && profile.profile_version == data.dig(:profile, :version)
-      if profile.profile != data
-        logger.error(%(M3Profile version #{profile.profile_version} found, but the content has changed))
-        raise ProfileVersionError, "This M3Profile version (#{profile.profile_version}) already exists, please increment the version number"
-      end
-    else
-      profile.assign_attributes(
+    if profile_match.blank?
+      profile = M3Profile.new(
+        name:                     profile_name,
         m3_version:               data.dig('m3_version'),
         profile_version:          data.dig('profile', 'version'),
         responsibility:           data.dig('profile', 'responsibility'),
@@ -26,9 +22,17 @@ class FlexibleMetadataConstructor
 
       profile.save!
       logger.info(%(Loaded M3Profile "#{profile.name}" ID=#{profile.id}))
-    end
 
-    profile
+      profile
+    else
+      if profile_match.profile != data
+        logger.error(%(\nM3Profile version #{profile_match.profile_version} found, but the content has changed))
+        raise ProfileVersionError, "This M3Profile version (#{profile_match.profile_version}) already exists, please increment the version number"
+      else
+        logger.info(%(Loaded M3Profile "#{profile_match.name}" ID=#{profile_match.id}))
+        profile_match
+      end
+    end
   end
 
   private
@@ -37,10 +41,9 @@ class FlexibleMetadataConstructor
     profile_contexts_hash = profile.profile.dig('contexts')
 
     profile_contexts_hash.keys.each do |name|
-      profile_context = profile.contexts.find_or_initialize_by(name: name)
-
-      profile_context.assign_attributes(
-        display_label: profile_contexts_hash.dig(name, 'display_label'),
+      profile_context = profile.contexts.new(
+        name:          name,
+        display_label: profile_contexts_hash.dig(name, 'display_label')
       )
       logger.info(%(Constructed M3ProfileContext "#{profile_context.name}"))
 
@@ -54,9 +57,8 @@ class FlexibleMetadataConstructor
     profile_classes_hash = profile.profile.dig('classes')
 
     profile_classes_hash.keys.each do |name|
-      profile_class = profile.classes.find_or_initialize_by(name: name)
-
-      profile_class.assign_attributes(
+      profile_class = profile.classes.new(
+        name:          name,
         display_label: profile_classes_hash.dig(name, 'display_label'),
         schema_uri:    profile_classes_hash.dig(name, 'schema_uri')
       )
@@ -74,9 +76,8 @@ class FlexibleMetadataConstructor
     properties_hash = profile.profile.dig('properties')
 
     properties_hash.keys.each do |name|
-      property = profile.properties.find_or_initialize_by(name: name)
-
-      property.assign_attributes(
+      property = profile.properties.new(
+        name:                name,
         property_uri:        properties_hash.dig(name, 'property_uri'),
         cardinality_minimum: properties_hash.dig(name, 'cardinality', 'minimum'),
         cardinality_maximum: properties_hash.dig(name, 'cardinality', 'maximum'),
