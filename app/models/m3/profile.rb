@@ -15,7 +15,7 @@ module M3
     validates :name, :responsibility, presence: true
     validates :profile_version, uniqueness: true
     # callbacks
-    before_validation :set_profile_version, on: :create
+    before_save :set_profile_version, on: :create
 
     after_save :set_profile_version
     #after_create :create_m3_context, :create_dynamic_schema
