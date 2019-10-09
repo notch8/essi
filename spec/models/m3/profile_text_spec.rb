@@ -12,6 +12,5 @@ RSpec.describe M3::ProfileText, type: :model do
   end
   describe 'associations' do
     it { should belong_to(:textable).optional }
-    it { should belong_to(:textable).optional }
   end
 end
