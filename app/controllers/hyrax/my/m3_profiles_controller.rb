@@ -66,13 +66,13 @@ module Hyrax
 
       def import
         uploaded_io = params[:file]
-        # @m3_profile = M3::ProfileImporter.load_profiles(uploaded_io.path)
+        @m3_profile = M3::Importer.load_profile_from_path(path: uploaded_io.path)
 
-        #if @m3_profile.save
-          # redirect_to import_my_m3_profile_path, notice: 'M3Profile was successfully created.'
-        #else
-          # redirect_to my_m3_profiles_path, alert: "#{@m3_profile.errors.messages}"
-        #end
+        if @m3_profile.save
+          redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
+        else
+          redirect_to my_m3_profiles_path, alert: "#{@m3_profile.errors.messages}"
+        end
       end
 
       # DELETE /m3_profiles/1
