@@ -41,7 +41,7 @@ class FlexibleMetadataConstructor
     profile_contexts_hash = profile.profile.dig('contexts')
 
     profile_contexts_hash.keys.each do |name|
-      profile_context = profile.contexts.new(
+      profile_context = profile.contexts.build(
         name:          name,
         display_label: profile_contexts_hash.dig(name, 'display_label')
       )
@@ -57,7 +57,7 @@ class FlexibleMetadataConstructor
     profile_classes_hash = profile.profile.dig('classes')
 
     profile_classes_hash.keys.each do |name|
-      profile_class = profile.classes.new(
+      profile_class = profile.classes.build(
         name:          name,
         display_label: profile_classes_hash.dig(name, 'display_label'),
         schema_uri:    profile_classes_hash.dig(name, 'schema_uri')
@@ -76,7 +76,7 @@ class FlexibleMetadataConstructor
     properties_hash = profile.profile.dig('properties')
 
     properties_hash.keys.each do |name|
-      property = profile.properties.new(
+      property = profile.properties.build(
         name:                name,
         property_uri:        properties_hash.dig(name, 'property_uri'),
         cardinality_minimum: properties_hash.dig(name, 'cardinality', 'minimum'),
@@ -87,6 +87,16 @@ class FlexibleMetadataConstructor
 
       property.available_on_contexts << profile_context
       property.available_on_classes << profile_class
+
+      property_text = property.texts.build(
+        name:  name,
+        # TODO: figure out how to replace 'default' with profile_context / profile_class
+        value: properties_hash.dig(name, 'display_label', 'default')
+        # TODO: need to implement these two attrs here?
+        # textable_type:,
+        # textable_id:
+      )
+      logger.info(%(Constructed M3ProfileText "#{property_text.value}" for M3ProfileProperty "#{property.name}"))
 
       property
     end
