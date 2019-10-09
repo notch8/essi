@@ -15,9 +15,6 @@ module M3
     validates :name, :responsibility, presence: true
     validates :profile_version, uniqueness: true
     # callbacks
-    before_save :set_profile_version, on: :create
-
-    after_save :set_profile_version
     #after_create :create_m3_context, :create_dynamic_schema
 
     def self.current_version?(profiles)
@@ -27,12 +24,6 @@ module M3
     def available_classes
       #must be associated with a work
       Hyrax.config.curation_concerns.map(&:to_s)
-    end
-
-    private
-
-    def create_dynamic_schema
-      #DynamicSchema.create(m3_context_id: self.contexts.last.id, m3_profile_id: self.id)
     end
 
     def set_profile_version
@@ -48,6 +39,12 @@ module M3
       # else
       #  update version attribute by 1
       # end
+    end
+
+    private
+
+    def create_dynamic_schema
+      #DynamicSchema.create(m3_context_id: self.contexts.last.id, m3_profile_id: self.id)
     end
   end
 end
