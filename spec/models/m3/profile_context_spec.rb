@@ -12,5 +12,6 @@ RSpec.describe M3::ProfileContext, type: :model do
   end
   describe 'associations' do
     it { should have_many(:context_texts).class_name('M3::ProfileText') }
+    it { should have_many(:properties).class_name('M3::ProfileProperty').through(:available_properties) }
   end
 end

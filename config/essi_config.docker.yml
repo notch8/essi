@@ -53,7 +53,7 @@ default: &default
   authorized_ldap_groups:
     - ESSI-USERS
   essi:
-    iiif_host: essi.docker 
+    iiif_host: essi.docker
     notifier_email: example@test.test
     store_original_files: true
     master_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/master
