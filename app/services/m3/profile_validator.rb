@@ -2,7 +2,7 @@ module M3
   class ProfileValidator
 
     def self.validate(data:, schema:, logger:)
-      # ensure_work_types_exist(data: data, logger: logger)
+      ensure_work_types_exist(data: data, logger: logger)
 
       result = schema.validate(data)
       valid  = schema.valid?(data)

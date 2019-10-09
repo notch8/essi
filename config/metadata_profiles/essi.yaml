@@ -17,25 +17,25 @@ profile:
   version: 0.1
 
 classes:
-  FlexibleMetadata:
-    display_label: "Flexible Metadata Example"
+  FlexibleWork:
+    display_label: "Flexible Work Example"
     contexts:
       - "flexible_context"
 
 contexts:
   flexible_context:
-    display_label: "Flexible Metadata Example"
+    display_label: "Flexible Work Example"
 
 properties:
   title:
     display_label:
       default: "Title"
-      FlexibleMetadata: "Title for Work Type"
+      FlexibleWork: "Title for Work Type"
       flexible_context: "Title in Context"
     property_uri: http://purl.org/dc/terms/title
     available_on:
       class:
-        - FlexibleMetadata
+        - FlexibleWork
       context:
         - flexible_context
     cardinality:
