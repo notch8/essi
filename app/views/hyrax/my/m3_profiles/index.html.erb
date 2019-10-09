@@ -37,7 +37,8 @@
           <tbody>
             <% @m3_profiles.order("updated_at DESC").each do |m3_profile| %>
               <tr>
-                <td><%= link_to m3_profile.name, hyrax.my_m3_profile_path(m3_profile) %></td>
+                <!-- TODO: fix show pgs --> 
+                <td><%= m3_profile.name %></td>
                 <td><%= m3_profile.profile_version.to_f %></td>
                 <td><%= m3_profile.profile_type %></td>
                 <td><%= m3_profile.created_at.strftime("%b %d, %Y") %></td>
