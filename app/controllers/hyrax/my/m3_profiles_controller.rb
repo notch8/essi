@@ -55,6 +55,7 @@ module Hyrax
       # POST /m3_profiles
       def create
         @m3_profile = M3::Profile.new(m3_profile_params)
+        @m3_profile.set_profile_version
 
         if @m3_profile.save
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
