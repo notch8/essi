@@ -3,7 +3,7 @@
 require 'json_schemer'
 
 module M3
-  class ProfileImporter
+  class Importer
     class_attribute :default_logger
     self.default_logger = Rails.logger
     class_attribute :default_config_file
@@ -57,7 +57,7 @@ module M3
     attr_accessor :name, :data, :validator, :schema
 
     def default_validator
-      M3::ProfileValidator
+      M3::Validator
     end
 
     def default_schema

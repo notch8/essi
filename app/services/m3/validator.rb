@@ -1,5 +1,5 @@
 module M3
-  class ProfileValidator
+  class Validator
 
     def self.validate(data:, schema:, logger:)
       ensure_work_types_exist(data: data, logger: logger)
