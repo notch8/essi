@@ -18,7 +18,7 @@ module M3
     end
 
     def self.load_profile_from_form(logger: default_logger)
-      # TODO
+      # TODO: accept form input from controller, pass directly to #generate_from_hash
     end
 
     # One profile per yaml file upload

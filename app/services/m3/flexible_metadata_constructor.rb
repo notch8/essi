@@ -83,9 +83,9 @@ module M3
           cardinality_minimum: properties_hash.dig(name, 'cardinality', 'minimum'),
           cardinality_maximum: properties_hash.dig(name, 'cardinality', 'maximum'),
           ## TODO: Fails with the following error:
-          #  ActiveRecord::RecordInvalid (Validation failed: Properties indexing _tesim is not a valid indexing term, Properties indexing _ssm is not a valid indexing term)
-          #  (See: app/models/m3/profile_property.rb)
-          #  Is :indexing supposed to be like ['_tesim', '_ssm'] or ['displayable', 'facetable']?
+          #        ActiveRecord::RecordInvalid (Validation failed: Properties indexing _tesim is not a valid indexing term, Properties indexing _ssm is not a valid indexing term)
+          #        (See: app/models/m3/profile_property.rb)
+          #        Is :indexing supposed to be like ['_tesim', '_ssm'] or ['displayable', 'facetable']?
           indexing:            properties_hash.dig(name, 'indexing')
         )
         logger.info(%(Constructed M3::ProfileProperty "#{property.name}"))
