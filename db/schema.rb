@@ -193,11 +193,18 @@ ActiveRecord::Schema.define(version: 20191009144806) do
     t.string "display_label"
     t.string "schema_uri"
     t.integer "m3_profile_id"
-    t.integer "m3_profile_property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["m3_profile_id"], name: "index_m3_profile_classes_on_m3_profile_id"
-    t.index ["m3_profile_property_id"], name: "index_m3_profile_classes_on_m3_profile_property_id"
+  end
+
+  create_table "m3_profile_classes_contexts", force: :cascade do |t|
+    t.integer "m3_profile_context_id"
+    t.integer "m3_profile_class_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["m3_profile_class_id"], name: "index_m3_profile_classes_contexts_on_m3_profile_class_id"
+    t.index ["m3_profile_context_id"], name: "index_m3_profile_classes_contexts_on_m3_profile_context_id"
   end
 
   create_table "m3_profile_classes_contexts", force: :cascade do |t|
@@ -213,13 +220,9 @@ ActiveRecord::Schema.define(version: 20191009144806) do
     t.string "name"
     t.string "display_label"
     t.integer "m3_profile_id"
-    t.integer "m3_profile_class_id"
-    t.integer "m3_profile_property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["m3_profile_class_id"], name: "index_m3_profile_contexts_on_m3_profile_class_id"
     t.index ["m3_profile_id"], name: "index_m3_profile_contexts_on_m3_profile_id"
-    t.index ["m3_profile_property_id"], name: "index_m3_profile_contexts_on_m3_profile_property_id"
   end
 
   create_table "m3_profile_properties", force: :cascade do |t|
