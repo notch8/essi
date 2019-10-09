@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 20190926002320) do
   end
 
   create_table "dynamic_schemas", force: :cascade do |t|
-    t.integer "version"
     t.string "m3_class"
     t.integer "m3_context_id"
     t.integer "m3_profile_id"
@@ -206,8 +205,8 @@ ActiveRecord::Schema.define(version: 20190926002320) do
   create_table "m3_profile_properties", force: :cascade do |t|
     t.string "name"
     t.string "property_uri"
-    t.integer "cardinality_minimum"
-    t.integer "cardinality_maximum"
+    t.integer "cardinality_minimum", default: 0
+    t.integer "cardinality_maximum", default: 100
     t.string "indexing"
     t.integer "m3_profile_id"
     t.datetime "created_at", null: false
@@ -227,7 +226,7 @@ ActiveRecord::Schema.define(version: 20190926002320) do
 
   create_table "m3_profiles", force: :cascade do |t|
     t.string "name"
-    t.integer "profile_version"
+    t.float "profile_version"
     t.string "m3_version"
     t.string "responsibility"
     t.string "responsibility_statement"
