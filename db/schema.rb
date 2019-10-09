@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190926002320) do
+ActiveRecord::Schema.define(version: 20191009144806) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -177,29 +177,42 @@ ActiveRecord::Schema.define(version: 20190926002320) do
     t.index ["m3_profile_id"], name: "index_m3_contexts_on_m3_profile_id"
   end
 
+  create_table "m3_profile_available_properties", force: :cascade do |t|
+    t.integer "m3_profile_property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "available_on_type"
+    t.integer "available_on_id"
+    t.index ["available_on_type", "available_on_id"], name: "index_m3_profile_properties_available_on"
+    t.index ["m3_profile_property_id"], name: "index_m3_available_properties_on_m3_property_id"
+  end
+
   create_table "m3_profile_classes", force: :cascade do |t|
     t.string "name"
     t.string "display_label"
     t.string "schema_uri"
     t.integer "m3_profile_id"
-    t.integer "m3_profile_property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["m3_profile_id"], name: "index_m3_profile_classes_on_m3_profile_id"
-    t.index ["m3_profile_property_id"], name: "index_m3_profile_classes_on_m3_profile_property_id"
+  end
+
+  create_table "m3_profile_classes_contexts", force: :cascade do |t|
+    t.integer "m3_profile_context_id"
+    t.integer "m3_profile_class_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["m3_profile_class_id"], name: "index_m3_profile_classes_contexts_on_m3_profile_class_id"
+    t.index ["m3_profile_context_id"], name: "index_m3_profile_classes_contexts_on_m3_profile_context_id"
   end
 
   create_table "m3_profile_contexts", force: :cascade do |t|
     t.string "name"
     t.string "display_label"
     t.integer "m3_profile_id"
-    t.integer "m3_profile_class_id"
-    t.integer "m3_profile_property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["m3_profile_class_id"], name: "index_m3_profile_contexts_on_m3_profile_class_id"
     t.index ["m3_profile_id"], name: "index_m3_profile_contexts_on_m3_profile_id"
-    t.index ["m3_profile_property_id"], name: "index_m3_profile_contexts_on_m3_profile_property_id"
   end
 
   create_table "m3_profile_properties", force: :cascade do |t|
