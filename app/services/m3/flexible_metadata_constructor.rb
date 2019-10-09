@@ -82,10 +82,6 @@ module M3
           property_uri:        properties_hash.dig(name, 'property_uri'),
           cardinality_minimum: properties_hash.dig(name, 'cardinality', 'minimum'),
           cardinality_maximum: properties_hash.dig(name, 'cardinality', 'maximum'),
-          ## TODO: Fails with the following error:
-          #        ActiveRecord::RecordInvalid (Validation failed: Properties indexing _tesim is not a valid indexing term, Properties indexing _ssm is not a valid indexing term)
-          #        (See: app/models/m3/profile_property.rb)
-          #        Is :indexing supposed to be like ['_tesim', '_ssm'] or ['displayable', 'facetable']?
           indexing:            properties_hash.dig(name, 'indexing')
         )
         logger.info(%(Constructed M3::ProfileProperty "#{property.name}"))
@@ -94,17 +90,33 @@ module M3
         property.available_on_classes << profile_class
 
         property_text = property.texts.build(
-          name:  name,
-          # TODO: figure out how to replace 'default' with profile_context / profile_class
+          name:  'display_label',
           value: properties_hash.dig(name, 'display_label', 'default')
-          # TODO: need to implement these two attrs here?
-          # textable_type:,
-          # textable_id:
         )
+
         logger.info(%(Constructed M3::ProfileText "#{property_text.value}" for M3::ProfileProperty "#{property.name}"))
+
+        if properties_hash.dig(name, 'display_label').keys.include? profile_context.name
+          property_text = property.texts.build(
+            name:  'display_label',
+            value: properties_hash.dig(name, 'display_label', profile_context.name),
+            textable: profile_context
+          )
+          logger.info(%(Constructed M3::ProfileText "#{property_text.value}" for M3::ProfileProperty "#{property.name} on #{profile_context.name}")) 
+        end
+        if properties_hash.dig(name, 'display_label').keys.include? profile_class.name
+          property_text = property.texts.build(
+            name:  'display_label',
+            value: properties_hash.dig(name, 'display_label', profile_class.name),
+            textable: profile_class
+          )
+          logger.info(%(Constructed M3::ProfileText "#{property_text.value}" for M3::ProfileProperty "#{property.name}" on #{profile_class.name}))
+        end
 
         property
       end
+
+
     end
 
     class ProfileVersionError < StandardError; end
