@@ -3,7 +3,7 @@ module M3
     self.table_name = 'm3_profiles'
     # flexible metadata objects
     has_many :m3_contexts, class_name: 'M3::Context', foreign_key: 'm3_profile_id', dependent: :destroy
-    has_many :dynamic_schemas, foreign_key: 'm3_profile_id', dependent: :destroy
+    has_many :dynamic_schemas, class_name: 'M3::DynamicSchema', foreign_key: 'm3_profile_id', dependent: :destroy
     # profile elements
     has_many :classes, class_name: 'M3::ProfileClass', foreign_key: 'm3_profile_id', dependent: :destroy
     has_many :contexts, class_name: 'M3::ProfileContext', foreign_key: 'm3_profile_id', dependent: :destroy

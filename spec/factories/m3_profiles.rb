@@ -42,7 +42,7 @@ FactoryBot.define do
 
   factory :m3_profile_text_for_class, class: M3::ProfileText do
     name            { "display_label" }
-    value            { "Title in Class" }
+    value           { "Title in Class" }
   end
 
   factory :m3_profile_text_for_context, class: M3::ProfileText do

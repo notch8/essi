@@ -2,8 +2,9 @@ module M3
   class ProfileProperty < ApplicationRecord
     self.table_name = 'm3_profile_properties'
 
-    has_many :available_on_classes, class_name: 'M3::ProfileClass', foreign_key: 'm3_profile_property_id'
-    has_many :available_on_contexts, class_name: 'M3::ProfileContext', foreign_key: 'm3_profile_property_id'
+    has_many :available_properties, class_name: 'M3::ProfileAvailableProperty', foreign_key: 'm3_profile_property_id', dependent: :destroy
+    has_many :available_on_classes, through: :available_properties, source: :available_on, source_type: 'M3::ProfileClass'
+    has_many :available_on_contexts, through: :available_properties, source: :available_on, source_type: 'M3::ProfileContext'
     has_many :texts, class_name: 'M3::ProfileText', foreign_key: 'm3_profile_property_id', dependent: :destroy
     accepts_nested_attributes_for :texts
 
