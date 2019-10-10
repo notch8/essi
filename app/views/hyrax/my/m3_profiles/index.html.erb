@@ -9,7 +9,8 @@
   <h1><span class="fa fa-table" aria-hidden="true"></span> M3 Profiles</h1>
   <div class="pull-right">
     <%#= link_to hyrax.my_import_m3_profiles_path, class: 'btn btn-primary' do %>
-    <button type="button" class="fa fa-upload btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      <span class="fa fa-upload" aria-hidden="true"></span>
       <%= t(:'helpers.action.m3_profile.import_profile') %>
     </button>
     <% if @m3_profiles.empty? %>
