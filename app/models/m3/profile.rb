@@ -12,7 +12,7 @@ module M3
     # serlializations
     serialize :profile
     # validations
-    validates :name, :responsibility, presence: true
+    validates :name, :profile, :profile_version, :responsibility, :date_modified, presence: true
     validates :profile_version, uniqueness: true
     # callbacks
     #after_create :create_m3_context, :create_dynamic_schema
