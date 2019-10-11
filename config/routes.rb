@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     # Routes actions to the various My controllers
     scope :dashboard do
       namespace :my do
-        resources :m3_profiles do
+        resources :m3_profiles, except: :update do
           collection { post :import }
         end
       end
