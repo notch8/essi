@@ -13,22 +13,11 @@ module M3
     serialize :profile
     # validations
     validates :name, :profile, :profile_version, :responsibility, :date_modified, presence: true
-    validates :profile_version, uniqueness: true
     # callbacks
-    #after_create :create_m3_context, :create_dynamic_schema
+    after_save :check_profile_version
+    after_create :create_m3_context
 
-    def self.current_version?(profiles)
-      newest_record = profiles.order("created_at").last
-    end
-
-    def available_classes
-      #must be associated with a work
-      Hyrax.config.curation_concerns.map(&:to_s)
-    end
-
-    def set_profile_version
-      self.profile_version ? self.profile_version += 1 : self.profile_version = 1
-
+    def check_profile_version
       # if we already have this version,
       #    compare the data,
       #    if it's the same,
@@ -41,10 +30,8 @@ module M3
       # end
     end
 
-    private
-
-    def create_dynamic_schema
-      #DynamicSchema.create(m3_context_id: self.contexts.last.id, m3_profile_id: self.id)
+    def create_m3_context
+      # M3::Context.create(m3_profile_id: self.id)
     end
   end
 end

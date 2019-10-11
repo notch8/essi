@@ -6,7 +6,7 @@ module Hyrax
       before_action do
         authorize! :manage, M3::Profile
       end
-      before_action :set_m3_profile, only: [:show, :destroy]
+      before_action :set_m3_profile, only: [:show, :edit, :update, :destroy]
       with_themed_layout 'dashboard'
 
       #GET /m3_profiles
@@ -28,18 +28,11 @@ module Hyrax
 
       # GET /m3_profiles/new
       def new
-        if M3::Profile.count > 0
-          redirect_to my_m3_profiles_path, alert: 'Edit an Existing Profile or Upload a New One'
-        end
-
         add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
         add_breadcrumb 'New'
         @m3_profile = M3::Profile.new
-        @m3_profile.classes.build
-        @m3_profile.contexts.build
-        @m3_profile.properties.build.texts.build
       end
 
       # GET /m3_profiles/1/edit
@@ -48,14 +41,11 @@ module Hyrax
         add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
         add_breadcrumb 'M3Profiles', hyrax.my_m3_profiles_path
         add_breadcrumb 'Edit'
-
-        @m3_profile = M3::Profile.last
       end
 
       # POST /m3_profiles
       def create
         @m3_profile = M3::Profile.new(m3_profile_params)
-        @m3_profile.set_profile_version
 
         if @m3_profile.save
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
@@ -65,13 +55,24 @@ module Hyrax
       end
 
       def import
-        uploaded_io = params[:file]
-        @m3_profile = M3::Importer.load_profile_from_path(path: uploaded_io.path)
+        # @m3_profile = M3ProfileImporter.load_profiles(params[:file])
 
-        if @m3_profile.save
-          redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
+        #if @m3_profile.save
+        #  if params[:commit] == 'Create and Import'
+        #    ImporterJob.perform_later(@m3_profile.id)
+        #  end
+        #  redirect_to import_my_m3_profile_path, notice: 'M3Profile was successfully created.'
+        #else
+        #redirect_to my_m3_profiles_path, alert: "#{@m3_profile.errors.messages}"
+        #end
+      end
+
+      # PATCH/PUT /m3_profiles/1
+      def update
+        if @m3_profile.update(m3_profile_params)
+          redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully updated.'
         else
-          redirect_to my_m3_profiles_path, alert: "#{@m3_profile.errors.messages}"
+          render :edit
         end
       end
 
@@ -89,11 +90,7 @@ module Hyrax
 
       # Only allow a trusted parameter "white list" through.
       def m3_profile_params
-        params.require(:m3_profile).permit(:name, :profile_type, :profile_version, :responsibility, :responsibility_statement, :created_at, :updated_at,
-                                          :classes_attributes => [:name, :display_label], 
-                                          :contexts_attributes => [:name, :display_label],
-                                          :properties_attributes => [:name, :property_uri, :cardinality_minimum, :cardinality_maximum, indexing: [],
-                                                                     :texts_attributes => [:name, :value]])
+        params.require(:m3_profile).permit(:name, :profile, :created_at, :updated_at)
       end
     end
   end
