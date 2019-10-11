@@ -78,7 +78,9 @@ module Hyrax
       # DELETE /m3_profiles/1
       def destroy
         @m3_profile.destroy
-        redirect_to my_m3_profiles_url, notice: 'M3Profile was successfully destroyed.'
+        message = 'M3Profile was successfully destroyed.'
+        message = @m3_profile.errors[:base] if @m3_profile.errors[:base]
+        redirect_to my_m3_profiles_url, notice: message
       end
 
       private

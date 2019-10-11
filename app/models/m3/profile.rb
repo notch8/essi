@@ -1,6 +1,8 @@
 module M3
   class Profile < ApplicationRecord
     self.table_name = 'm3_profiles'
+    # 
+    before_destroy :check_for_works
     # flexible metadata objects
     has_many :m3_contexts, class_name: 'M3::Context', foreign_key: 'm3_profile_id', dependent: :destroy
     has_many :dynamic_schemas, class_name: 'M3::DynamicSchema', foreign_key: 'm3_profile_id', dependent: :destroy
@@ -12,9 +14,10 @@ module M3
     # serlializations
     serialize :profile
     # validations
-    validates :name, :profile, :profile_version, :responsibility, :date_modified, presence: true
+    validates :name, :profile_version, :responsibility, presence: true
     validates :profile_version, uniqueness: true
     # callbacks
+    before_create :add_date_modified
     #after_create :create_m3_context, :create_dynamic_schema
 
     def self.current_version?(profiles)
@@ -24,6 +27,13 @@ module M3
     def available_classes
       #must be associated with a work
       Hyrax.config.curation_concerns.map(&:to_s)
+    end
+
+    # @todo, extend to full set in M3
+    def available_text_names
+      [
+        ['Display Label','display_label']
+      ]
     end
 
     def set_profile_version
@@ -41,7 +51,26 @@ module M3
       # end
     end
 
+    def add_date_modified
+      self.date_modified ||= DateTime.now.strftime("%Y-%m-%d")
+    end
+
     private
+
+    def check_for_works
+      self.m3_contexts.each do | m3_context |
+        m3_context.admin_set_ids.each do | admin_set_id |
+          if AdminSet.find(admin_set_id).members.count > 0
+            self.errors.add(:base, 'A Profile with associated works cannot be destroyed.')
+            throw :abort
+          end
+        end
+      end
+    end
+
+    def create_m3_context
+      #M3::Context.create
+    end
 
     def create_dynamic_schema
       #DynamicSchema.create(m3_context_id: self.contexts.last.id, m3_profile_id: self.id)
