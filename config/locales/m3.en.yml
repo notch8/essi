@@ -1,0 +1,7 @@
+en:
+  helpers:
+    action:
+      m3_profile:
+        import_profile: 'Import Profile'
+        create: 'Create Profile'
+        import: 'Import'
