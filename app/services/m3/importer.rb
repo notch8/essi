@@ -17,10 +17,6 @@ module M3
       generate_from_yaml_file(path: profile_config_filename, logger: default_logger)
     end
 
-    def self.load_profile_from_form(logger: default_logger)
-      # TODO: accept form input from controller, pass directly to #generate_from_hash
-    end
-
     # One profile per yaml file upload
     def construct
       M3::FlexibleMetadataConstructor.find_or_create_from(name: name, data: data)

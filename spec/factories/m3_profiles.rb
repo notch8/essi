@@ -5,11 +5,9 @@ FactoryBot.define do
     sequence(:profile_version) { |n| n }
     responsibility { 'http://iu.edu' }
     date_modified { '2019-09-23' }
-    profile         { { "version": profile_version, "responsibility_statement":"Indiana University", "date_modified":"2019-09-9" } }
     classes { [FactoryBot.build(:m3_profile_class)] }
     contexts { [FactoryBot.build(:m3_profile_context)] }
     properties { [FactoryBot.build(:m3_profile_property)] }
-    
   end
 
   factory :m3_profile_class, class: M3::ProfileClass do
@@ -27,6 +25,7 @@ FactoryBot.define do
 
   factory :m3_profile_property, class: M3::ProfileProperty do
     name            { "title" }
+    indexing        { ['stored_searchable'] }
     available_on_classes { [ FactoryBot.build(:m3_profile_class) ] }
     available_on_contexts { [ FactoryBot.build(:m3_profile_context) ] }
     texts {[
