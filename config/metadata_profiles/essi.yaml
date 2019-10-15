@@ -17,7 +17,7 @@ profile:
   version: 0.1
 
 classes:
-  FlexibleWork:
+  Image:
     display_label: "Flexible Work Example"
     contexts:
       - "flexible_context"
@@ -30,12 +30,12 @@ properties:
   title:
     display_label:
       default: "Title"
-      FlexibleWork: "Title for Work Type"
+      Image: "Title for Work Type"
       flexible_context: "Title in Context"
     property_uri: http://purl.org/dc/terms/title
     available_on:
       class:
-        - FlexibleWork
+        - Image
       context:
         - flexible_context
     cardinality:
