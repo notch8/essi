@@ -14,7 +14,7 @@ profile:
   responsibility_statement: Indiana University
   date_modified: "2019-07-28"
   type: concept
-  version: 0.1
+  version: 1.0
 
 classes:
   Image:

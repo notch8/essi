@@ -37,7 +37,7 @@ module M3
     end
 
     def set_profile_version
-      self.profile_version ? self.profile_version += 1 : self.profile_version = 1
+      self.profile_version ? self.profile_version += 1 : self.profile_version = 1.0
 
       # if we already have this version,
       #    compare the data,
