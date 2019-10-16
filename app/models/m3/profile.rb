@@ -19,6 +19,7 @@ module M3
     # callbacks
     before_create :add_date_modified
     #after_create :create_m3_context, :create_dynamic_schema
+    after_create :set_profile
 
     def self.current_version?(profiles)
       newest_record = profiles.order("created_at").last
@@ -38,17 +39,6 @@ module M3
 
     def set_profile_version
       self.profile_version ? self.profile_version += 1 : self.profile_version = 1.0
-
-      # if we already have this version,
-      #    compare the data,
-      #    if it's the same,
-      #      do nothing;
-      #    if it's different
-      #      return an error "This version already exists,
-      #        please increment the version number"
-      # else
-      #  update version attribute by 1
-      # end
     end
 
     private
@@ -77,5 +67,63 @@ module M3
     def create_dynamic_schema
       #DynamicSchema.create(m3_context_id: self.contexts.last.id, m3_profile_id: self.id)
     end
+
+    def set_profile
+      return unless self.profile.nil?
+
+      hash = { "m3_version" => self.m3_version,
+               "profile" => {
+        "responsibility" => self.responsibility,
+        "responsibility_statement" => self.responsibility_statement,
+        "date_modified" => self.date_modified,
+        "type" => self.profile_type,
+        "version" => self.profile_version }
+      }.merge!("classes" => class_hash, "contexts" => context_hash, "properties" => property_hash)
+
+      self.update_attributes(profile: hash)
+    end
+
+    def class_hash
+      class_collection = self.classes.map do |c|
+        {
+          c.name.to_s => { 
+            "display_label" => c.display_label,
+            "contexts" => self.contexts.pluck(:name)
+           }
+        }
+      end
+      Hash[*class_collection]
+    end
+
+    def context_hash
+      context_collection = self.contexts.map do |c|
+        {
+          c.name.to_s => { 
+            "display_label" => c.display_label
+           }
+        }
+      end
+      Hash[*context_collection]
+    end
+
+    def property_hash
+      property_collection = self.properties.map do |p|
+        {"title"=>
+         {"display_label"=>
+          {"default"=>p.name,
+           "Image"=>"Title for Work Type",
+           "flexible_context"=>"Title in Context"},
+           "property_uri"=>p.property_uri,
+           "available_on"=>{"classes"=>self.classes.pluck(:name), "contexts"=>self.contexts.pluck(:name)},
+           "cardinality"=>{"minimum"=>p.cardinality_minimum},
+           "index_documentation"=>
+            "Title should be indexed as searchable and displayable.",
+            "indexing"=>p.indexing
+         }
+        }
+      end
+      Hash[*property_collection]
+    end
+
   end
 end
