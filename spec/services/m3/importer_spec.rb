@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe M3::Importer do
-
   describe 'class attributes' do
     it '#default_logger' do
       M3::Importer.default_logger == Rails.logger
@@ -14,10 +13,21 @@ RSpec.describe M3::Importer do
   end
 
   describe '#load_profile_from_path' do
+    let(:profile) { M3::Importer.load_profile_from_path }
+
     it 'returns an M3::Profile instance' do
-      expect(M3::Importer.load_profile_from_path)
+      expect(profile)
         .to be_an_instance_of(M3::Profile)
     end
-  end
 
+    it 'creates associated dynamic_schema objects' do
+      expect(profile.dynamic_schemas.count)
+        .to eq(1)
+    end
+
+    it 'creates associated m3_context objects' do
+      expect(profile.m3_contexts.count)
+        .to eq(1)
+    end
+  end
 end
