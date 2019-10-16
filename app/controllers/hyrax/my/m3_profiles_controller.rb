@@ -56,7 +56,8 @@ module Hyrax
       def create
         @m3_profile = M3::Profile.new(m3_profile_params)
         @m3_profile.set_profile_version
-
+        @m3_profile.add_profile_data
+        M3::FlexibleMetadataConstructor.create_dynamic_schemas(profile: @m3_profile)
         if @m3_profile.save
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
         else
@@ -91,7 +92,7 @@ module Hyrax
 
       # Only allow a trusted parameter "white list" through.
       def m3_profile_params
-        params.require(:m3_profile).permit(:name, :profile_type, :profile_version, :responsibility, :responsibility_statement, :created_at, :updated_at,
+        params.require(:m3_profile).permit(:name, :profile_type, :profile_version, :responsibility, :responsibility_statement, :date_modified, :created_at, :updated_at,
                                           :classes_attributes => [:name, :display_label], 
                                           :contexts_attributes => [:name, :display_label],
                                           :properties_attributes => [:name, :property_uri, :cardinality_minimum, :cardinality_maximum, indexing: [],
