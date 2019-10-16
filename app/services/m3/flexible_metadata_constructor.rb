@@ -20,9 +20,10 @@ module M3
         )
 
         construct_profile_contexts(profile: profile)
-
         profile.save!
         logger.info(%(Loaded M3::Profile "#{profile.name}" ID=#{profile.id}))
+
+        create_dynamic_schemas(profile: profile)
 
         profile
       else
@@ -34,6 +35,72 @@ module M3
           profile_match
         end
       end
+    end
+
+    def self.create_dynamic_schemas(profile:, logger: default_logger)
+      profile = construct_dynamic_schemas(profile: profile)
+      profile.save!
+      logger.info(%(Created M3::Context and M3::DynamicSchema objects for "#{profile.name}" ID=#{profile.id}))
+    end
+
+    def self.build_profile_data(profile:)
+      {
+        'm3_version' => profile.m3_version,
+        'profile' => {
+          'responsibility' => profile.responsibility,
+          'responsibility_statement' => profile.responsibility_statement,
+          'date_modified' => profile.date_modified,
+          'type' => profile.profile_type,
+          'version' => profile.profile_version
+        }.compact,
+        'classes' =>
+          profile.classes.map do |cl|
+            {
+              cl.name => {
+                'display_label' => cl.display_label,
+                'schema_uri' => cl.schema_uri,
+                'contexts' => cl.contexts.map(&:name)
+              }.compact
+            }
+          end.inject(:merge),
+        'contexts' =>
+          profile.contexts.map do |cxt|
+            {
+              cxt.name => {
+                'display_label' => cxt.display_label
+              }.compact
+            }
+          end.inject(:merge),
+        'properties' =>
+          profile.properties.map do |prop|
+            class_text = prop.texts.map { |text| text if text.name == 'display_label' && text.textable_type == 'M3::ProfileClass' }.compact
+            context_text = prop.texts.map { |text| text if text.name == 'display_label' && text.textable_type == 'M3::ProfileContext' }.compact
+            display_labels = []
+            display_labels << { 'default' => prop.texts.map { |text| text.value if text.name == 'display_label' && text.textable_type.nil? }.compact.first }
+            class_text.each do |clt|
+              display_labels << { clt.textable.name => clt.value }.compact
+            end
+            context_text.each do |cxtt|
+              display_labels << { cxtt.textable.name => cxtt.value }.compact
+            end
+
+            {
+              prop.name => {
+                'display_label' => display_labels.inject(:merge),
+                'property_uri' => prop.property_uri,
+                'available_on' => {
+                  'class' => prop.available_on_classes.map(&:name),
+                  'context' => prop.available_on_contexts.map(&:name)
+                }.compact,
+                'cardinality' => {
+                  'minimum' => prop.cardinality_minimum,
+                  'maximum' => prop.cardinality_maximum
+                }.compact,
+                'indexing' => prop.indexing
+              }.compact
+            }
+          end.inject(:merge)
+      }
     end
 
     private
@@ -102,7 +169,7 @@ module M3
             value: properties_hash.dig(name, 'display_label', profile_context.name),
             textable: profile_context
           )
-          logger.info(%(Constructed M3::ProfileText "#{property_text.value}" for M3::ProfileProperty "#{property.name} on #{profile_context.name}")) 
+          logger.info(%(Constructed M3::ProfileText "#{property_text.value}" for M3::ProfileProperty "#{property.name} on #{profile_context.name}"))
         end
         if properties_hash.dig(name, 'display_label').keys.include? profile_class.name
           property_text = property.texts.build(
@@ -115,8 +182,58 @@ module M3
 
         property
       end
+    end
 
+    def self.construct_dynamic_schemas(profile:, logger: default_logger)
+      profile.classes.each do |cl|
+        cl.contexts.each do |cl_cxt|
+          profile.dynamic_schemas.build(
+            m3_class: cl.name,
+            m3_context: profile.m3_contexts.build(name: cl_cxt.display_label),
+            schema: build_schema(cl, cl_cxt)
+          )
+        end
+      end
 
+      profile
+    end
+
+    def self.build_schema(m3_class, context)
+      {
+        'type' => m3_class.schema_uri || "http://example.com/#{m3_class.name}",
+        'display_label' => m3_class.display_label,
+        'properties' =>
+          context.available_properties.map do |prop|
+            property = prop.m3_profile_property
+            {
+              property.name => {
+                'predicate' => property.property_uri,
+                'display_label' => display_label(property, m3_class, context),
+                'required' => required?(property.cardinality_minimum),
+                'singular' => singular?(property.cardinality_maximum),
+                'indexing' => property.indexing
+              }
+            }
+          end
+      }
+    end
+
+    def self.required?(cardinality_minimum)
+      return false if cardinality_minimum.blank?
+      cardinality_minimum > 0
+    end
+
+    def self.singular?(cardinality_maximum)
+      return false if cardinality_maximum.blank?
+      cardinality_maximum > 1
+    end
+
+    def self.display_label(property, m3_class, context)
+      context_label = context.context_texts.map { |t| t.value if t.name == 'display_label' && t.m3_profile_property_id == property.id }.first
+      return context_label unless context_label.blank?
+      class_label = m3_class.class_texts.map { |t| t.value if t.name == 'display_label' && t.m3_profile_property_id == property.id }.first
+      return class_label unless class_label.blank?
+      property.texts.map { |t| t.value if t.name == 'display_label' && t.textable_type.nil? }.compact.first
     end
 
     class ProfileVersionError < StandardError; end
