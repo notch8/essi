@@ -2,6 +2,7 @@ module Hyrax
   module My
     class M3ProfilesController < Hyrax::MyController
       include Hyrax::ThemedLayoutController
+      require 'yaml'
 
       before_action do
         authorize! :manage, M3::Profile
@@ -56,7 +57,6 @@ module Hyrax
       def create
         @m3_profile = M3::Profile.new(m3_profile_params)
         @m3_profile.set_profile_version
-        @m3_profile.add_profile_data
         M3::FlexibleMetadataConstructor.create_dynamic_schemas(profile: @m3_profile)
         if @m3_profile.save
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
@@ -74,6 +74,13 @@ module Hyrax
         else
           redirect_to my_m3_profiles_path, alert: "#{@m3_profile.errors.messages}"
         end
+      end
+
+      def export
+        @m3_profile = M3::Profile.find(params[:m3_profile_id])
+        filename = "#{@m3_profile.name}-v.#{@m3_profile.profile_version}.yml"
+        File.open(filename, "w") { |file| file.write(@m3_profile.profile.to_yaml) }
+        send_file filename, :type=>"application/yaml", :x_sendfile=>true
       end
 
       # DELETE /m3_profiles/1
