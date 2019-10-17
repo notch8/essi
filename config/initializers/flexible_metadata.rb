@@ -1,5 +1,7 @@
 #  models
-AdminSet.prepend ::M3::PrependAdminSet
+AdminSet.class_eval do
+  include M3::AdminSetBehavior
+end
 
 #  controllers
 Hyrax::Admin::PermissionTemplatesController.prepend ::M3::PrependPermissionTemplatesController
