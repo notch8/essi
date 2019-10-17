@@ -17,7 +17,8 @@ module M3
     validates :name, :profile_version, :responsibility, presence: true
     validates :profile_version, uniqueness: true
     # callbacks
-    before_create :add_date_modified
+    before_create :add_date_modified, :add_m3_version
+    after_create :add_profile_data
 
     attr_accessor :profile_data
 
@@ -53,7 +54,12 @@ module M3
     end
 
     def add_date_modified
-      self.date_modified ||= DateTime.now.strftime('%Y-%m-%d')
+      self.date_modified = DateTime.now.strftime('%Y-%m-%d') if date_modified.blank?
+    end
+
+    # @todo make this configurable
+    def add_m3_version
+      self.m3_version = '1.0.beta2'.freeze
     end
 
     def add_profile_data

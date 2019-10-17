@@ -56,7 +56,7 @@ module M3
         'classes' =>
           profile.classes.map do |cl|
             {
-              cl.name => {
+              cl.name.strip => {
                 'display_label' => cl.display_label,
                 'schema_uri' => cl.schema_uri,
                 'contexts' => cl.contexts.map(&:name)
@@ -66,7 +66,7 @@ module M3
         'contexts' =>
           profile.contexts.map do |cxt|
             {
-              cxt.name => {
+              cxt.name.strip => {
                 'display_label' => cxt.display_label
               }.compact
             }
@@ -85,9 +85,12 @@ module M3
             end
 
             {
-              prop.name => {
+              prop.name.strip => {
                 'display_label' => display_labels.inject(:merge),
-                'property_uri' => prop.property_uri,
+                'property_uri' => build_property_uri(
+                  property_name: prop.name, 
+                  property_uri: prop.property_uri
+                ),
                 'available_on' => {
                   'class' => prop.available_on_classes.map(&:name),
                   'context' => prop.available_on_contexts.map(&:name)
@@ -212,8 +215,8 @@ module M3
                 'required' => required?(property.cardinality_minimum),
                 'singular' => singular?(property.cardinality_maximum),
                 'indexing' => property.indexing
-              }
-            }
+              }.compact
+            }.compact
           end
       }
     end
@@ -234,6 +237,14 @@ module M3
       class_label = m3_class.class_texts.map { |t| t.value if t.name == 'display_label' && t.m3_profile_property_id == property.id }.first
       return class_label unless class_label.blank?
       property.texts.map { |t| t.value if t.name == 'display_label' && t.textable_type.nil? }.compact.first
+    end
+
+    def self.build_property_uri(property_name:, property_uri:)
+      if property_uri.blank?
+        "http://example.com/properties/#{property_name}"
+      else
+        property_uri
+      end
     end
 
     class ProfileVersionError < StandardError; end
