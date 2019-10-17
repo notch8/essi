@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       namespace :my do
         resources :m3_profiles, except: :update do
           collection { post :import }
+          get "export"
         end
       end
     end
