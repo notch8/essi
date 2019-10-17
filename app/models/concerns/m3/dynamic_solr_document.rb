@@ -2,10 +2,11 @@ module M3
   module DynamicSolrDocument
     extend ActiveSupport::Concern
 
+    # @todo finish this
     included do
-      dynamic_schema_service.solr_attributes.each do |prop, value|
-        attribute(prop, solr_class(value), solr_name(prop.to_s))
-      end
+      # dynamic_schema_service.solr_attributes.each do |prop, value|
+      #   attribute(prop, solr_class(value), solr_name(prop.to_s))
+      # end
     end
 
     def solr_class(solr_array)
