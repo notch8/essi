@@ -6,7 +6,7 @@ RSpec.describe M3::DynamicSchemaService do
   let(:service) do
     service_class.new(
       admin_set_id: admin_set_id,
-      curation_concern_class_name: 'FlexibleWork'
+      curation_concern_class_name: 'Image'
     )
   end
   let(:m3_context) { create(:m3_context_assigned) }
@@ -25,7 +25,7 @@ RSpec.describe M3::DynamicSchemaService do
         expect do
           service_class.new(
             admin_set_id: admin_set_id,
-            curation_concern_class_name: 'FlexibleWork'
+            curation_concern_class_name: 'Image'
           ).to raise(M3::NoM3ContextError)
         end
       end
@@ -45,7 +45,7 @@ RSpec.describe M3::DynamicSchemaService do
         expect(service.model_properties[:title]).to be_a(ActiveFedora::Attributes::NodeConfig)
       end
       it 'returns the rdf-type for the model' do
-        expect(service.rdf_type.to_s).to eq('http://example.com/classes/FlexibleWork')
+        expect(service.rdf_type.to_s).to eq('http://example.com/classes/Image')
       end
     end
 

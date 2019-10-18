@@ -11,7 +11,7 @@ FactoryBot.define do
   end
 
   factory :m3_profile_class, class: M3::ProfileClass do
-    name            { "FlexibleWork" }
+    name            { "Image" }
     display_label   { "Flexible Work" }
     contexts { [FactoryBot.build(:m3_profile_context)] }
     class_texts { [FactoryBot.build(:m3_profile_text_for_class)] }
