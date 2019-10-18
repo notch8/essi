@@ -7,7 +7,7 @@ module M3
     class_attribute :default_logger
     self.default_logger = Rails.logger
     class_attribute :default_config_file
-    self.default_config_file = Dir['/app/config/metadata_profiles/*.y*ml'].first # TODO: better solution that .first?
+    self.default_config_file = Dir['/app/config/metadata_profiles/*.ya*ml'].first # TODO: better solution that .first?
 
     def self.load_profile_from_path(path: '', logger: default_logger)
       profile_config_filename = File.exist?(path) ? path : default_config_file
@@ -26,7 +26,9 @@ module M3
 
     def self.generate_from_yaml_file(path:, logger: default_logger)
       name = File.basename(path, '.*')
-      data = YAML.load_file(path)
+      data = YAML.load_file(path) if path =~ /.*\.ya*ml/
+      raise YamlSyntaxError, "Invalid YAML syntax found in #{path}!" if data.nil?
+
       generate_from_hash(name: name, data: data)
     rescue Psych::SyntaxError => e
       logger.error("Invalid YAML syntax found in #{path}!")
