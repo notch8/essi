@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe M3::Profile, type: :model do
-  let(:profile) { FactoryBot.build(:m3_profile) }
+  let(:profile) { FactoryBot.build(:m3_profile, profile_version: 1.0) }
 
   it 'is valid' do
     expect(profile).to be_valid
@@ -24,7 +24,7 @@ RSpec.describe M3::Profile, type: :model do
   describe 'methods' do
     before do
       profile.add_date_modified
-      profile.set_profile_data
+      profile.add_profile_data
     end
 
     it '#available_classes returns an array of Classes' do
@@ -37,10 +37,10 @@ RSpec.describe M3::Profile, type: :model do
                                     'profile' => {
                                       'responsibility' => 'http://iu.edu',
                                       'date_modified' => '2019-09-23',
-                                      'version' => 6.0
+                                      'version' => 1.0
                                     },
                                     'classes' => {
-                                      'FlexibleWork' => {
+                                      'Image' => {
                                         'display_label' => 'Flexible Work',
                                         'contexts' => ['flexible_context']
                                       }
@@ -56,14 +56,15 @@ RSpec.describe M3::Profile, type: :model do
                                           'default' => 'Title'
                                         },
                                         'available_on' => {
-                                          'class' => ['FlexibleWork'],
+                                          'class' => ['Image'],
                                           'context' => ['flexible_context']
                                         },
                                         'cardinality' => {
                                           'minimum' => 0,
                                           'maximum' => 100
                                         },
-                                        'indexing' => ['stored_searchable']
+                                        'indexing' => ['stored_searchable'],
+                                        'property_uri' => 'http://example.com/properties/title'
                                       }
                                     })
     end

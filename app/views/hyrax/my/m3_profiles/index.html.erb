@@ -13,7 +13,7 @@
       <span class="fa fa-upload" aria-hidden="true"></span>
       <%= t(:'helpers.action.m3_profile.import_profile') %>
     </button>
-    <% if @m3_profiles.empty? %>
+    <% if @m3_profiles.blank? %>
       <%= link_to hyrax.new_my_m3_profile_path, class: 'btn btn-primary' do %>
         <span aria-hidden="true"></span> <%= t(:'helpers.action.m3_profile.create') %>
       <% end %>

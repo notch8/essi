@@ -163,7 +163,7 @@ RSpec.configure do |config|
 
   config.after(:suite) do
     # Clean everything
-    DatabaseCleaner.clean
+    DatabaseCleaner.clean!
     ActiveFedora::Cleaner.clean!
   end
 end
