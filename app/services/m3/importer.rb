@@ -26,7 +26,7 @@ module M3
 
     def self.generate_from_yaml_file(path:, logger: default_logger)
       name = File.basename(path, '.*')
-      data = YAML.load_file(path) if path.include?('*.ya*ml')
+      data = YAML.load_file(path) if path =~ /.*\.ya*ml/
       raise YamlSyntaxError, "Invalid YAML syntax found in #{path}!" if data.nil?
 
       generate_from_hash(name: name, data: data)
