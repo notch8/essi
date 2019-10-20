@@ -4,6 +4,59 @@ module M3
 
   class DynamicSchemaService
     attr_accessor :dynamic_schema, :properties, :model, :m3_context
+    
+    # Retrieve the properties for the model / work type
+    # This is a class method, meaning AdminSet is not available
+    #   so we cannot get the contextual dynamic_schema
+    #   instead we grab the default (contextless) dynamic_schema
+    #   which will add all properties available for that class
+    # @return [Hash] property => opts
+    def self.model_properties(curation_concern_class_name:)
+      sch = schema(curation_concern_class_name)['properties']
+      model_props = {}
+      model_props = sch.map do |prop_name, prop_value|
+        { prop_name.to_sym => {
+          predicate: predicate_for(prop_value['predicate']), 
+          multiple: prop_value['singular'] == false }
+        }
+      end.inject(:merge) unless sch.blank?
+
+      model_props[:dynamic_schema] = { 
+        predicate: predicate_for('http://example.com/dynamic_schema'), 
+        multiple: false
+      }
+      model_props
+    end
+
+    # Retrieve the latest default dynamic_schema
+    def self.schema(curation_concern_class_name)
+      @schema ||= M3::DynamicSchema.where(
+        m3_class: curation_concern_class_name
+        name: 'default'
+      ).order('created_at').last.schema
+    rescue
+      @schema ||= {}
+    end
+
+    def self.predicate_for(predicate)
+      ::RDF::URI.intern(predicate)
+    end
+
+    # @return [RDF::URI] the rdf_type URI
+    def self.rdf_type(curation_concern_class_name:)
+      rdf_type_for(
+        schema(curation_concern_class_name)['type'],
+        curation_concern_class_name
+      )
+    end
+
+    def self.rdf_type_for(type, model)
+      if type.blank?
+        ::RDF::URI.intern("http://example.com/#{model}")
+      else
+        ::RDF::URI.intern(type)
+      end
+    end
 
     def initialize(admin_set_id:, curation_concern_class_name:)
       context = AdminSet.find(admin_set_id).metadata_context
@@ -22,25 +75,7 @@ module M3
 
     # @return [Array] property keys
     def properties
-      @properties ||= dynamic_schema[:properties].map(&:keys).flatten
-    end
-
-    # @return [Hash] property => ActiveFedora::Attributes::NodeConfig
-    def model_properties
-      model_properties = {}
-      properties.each do |prop|
-        model_properties[prop] = ActiveFedora::Attributes::NodeConfig.new(
-          prop,
-          predicate_for(prop),
-          opts_for(prop)
-        )
-      end
-      model_properties
-    end
-
-    # @return [RDF::URI] the rdf_type URI
-    def rdf_type
-      rdf_type_for(dynamic_schema[:type])
+      @properties ||= dynamic_schema.schema.deep_symbolize_keys![:properties].keys
     end
 
     # @return [Array] required properties
@@ -54,11 +89,6 @@ module M3
       properties.map do |prop|
         { prop => { label: property_locale(prop, 'label') } }
       end
-    end
-
-    # @return [Array] hashes of property => singular true|false
-    def solr_attributes
-      properties.map { |prop| solr_attribute_for(prop) }
     end
 
     # @return [Hash] property => array of indexing
@@ -89,41 +119,11 @@ module M3
       require 'active_support/core_ext/hash/keys'
       M3::DynamicSchema.where(m3_context: m3_context_id).select do |ds|
         ds.m3_class == curation_concern_class_name
-      end.first.schema.deep_symbolize_keys!
-    end
-
-    def rdf_type_for(type)
-      if type.blank?
-        ::RDF::URI.intern("http://example.com/#{model}")
-      else
-        ::RDF::URI.intern(type)
-      end
-    end
-
-    def property_hash_for(property)
-      dynamic_schema[:properties].map { |prop| prop.dig(property) }.compact.first
-    end
-
-    def predicate_for(property)
-      ::RDF::URI.intern(property_hash_for(property)[:predicate])
-    end
-
-    # @todo extend to add type / class_name
-    def opts_for(property)
-      if property_hash_for(property)[:singular]
-        { multiple: false }
-      else
-        { multiple: true }
-      end
+      end.first
     end
 
     def required_for(property)
       property if property_hash_for(property)[:required]
-    end
-
-    # @todo - extend to add data_type for dates Solr::Date
-    def solr_attribute_for(property)
-      { property => property_hash_for(property)[:singular] }
     end
 
     # Use stored_searchable as the default if the value is empty

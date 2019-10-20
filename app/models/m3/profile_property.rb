@@ -2,6 +2,7 @@ module M3
   class ProfileProperty < ApplicationRecord
     self.table_name = 'm3_profile_properties'
 
+    before_destroy :check_for_works
     has_many :available_properties, class_name: 'M3::ProfileAvailableProperty', foreign_key: 'm3_profile_property_id', dependent: :destroy
     has_many :available_on_classes, through: :available_properties, source: :available_on, source_type: 'M3::ProfileClass'
     has_many :available_on_contexts, through: :available_properties, source: :available_on, source_type: 'M3::ProfileContext'
@@ -29,6 +30,28 @@ module M3
       indexing.each do |i|
         errors.add(:indexing, "#{i} is not a valid indexing term") unless INDEXING.include? i
       end
+    end
+
+    # this is a crap query as it will basically return EVERYTHING
+    def check_for_works
+      works = self.available_on_classes.map do | model |
+        model.name.constantize.where(
+          self.name.to_sym => '*'
+        ).flatten.reject { | res | res.send(self.name).blank? }
+      end.flatten
+
+      puts 'HELLO'
+      puts works.size
+
+      # if there are no works, carry on and destroy
+      return if works.blank?
+      # why isn't my error adding?
+      puts 'I got to here'
+      self.errors.add(
+        :base,
+        "There are #{works.length} works using #{self.name}. This property cannot be deleted."
+      )
+      throw :abort
     end
   end
 end

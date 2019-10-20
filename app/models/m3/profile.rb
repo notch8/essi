@@ -73,7 +73,23 @@ module M3
       )
     end
 
+    def gather_errors
+      self.errors[:base] + properties_errors + contexts_errors + classes_errors
+    end
+
     private
+
+    def properties_errors
+      self.properties.collect { |p| p.errors[:base] unless p.errors[:base].blank? }.compact.flatten
+    end
+
+    def contexts_errors
+      self.classes.collect { |cl| cl.errors[:base] unless cl.errors[:base].blank? }.compact.flatten
+    end
+
+    def classes_errors
+      self.contexts.collect { |cxt| cxt.errors[:base] unless cxt.errors[:base].blank? }.compact.flatten
+    end
 
     def check_for_works
       m3_contexts.each do |m3_context|
@@ -87,5 +103,6 @@ module M3
         end
       end
     end
+
   end
 end

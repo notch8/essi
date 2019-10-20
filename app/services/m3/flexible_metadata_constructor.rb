@@ -38,6 +38,7 @@ module M3
     end
 
     def self.create_dynamic_schemas(profile:, logger: default_logger)
+      profile = construct_default_dynamic_schemas(profile: profile)
       profile = construct_dynamic_schemas(profile: profile)
       profile.save!
       logger.info(%(Created M3::Context and M3::DynamicSchema objects for "#{profile.name}" ID=#{profile.id}))
@@ -187,12 +188,29 @@ module M3
       end
     end
 
+    def self.construct_default_dynamic_schemas(profile:, logger: default_logger)
+      cxt = profile.contexts.build(name: 'default', display_label: 'Default Metadata Context')
+      profile.classes.each do |cl|
+        profile.dynamic_schemas.build(
+            m3_class: cl.name,
+            m3_context: profile.m3_contexts.build(
+              name: 'default', 
+              m3_profile_context: cxt),
+            schema: build_schema(cl, cxt)
+          )
+      end
+
+      profile
+    end
+
     def self.construct_dynamic_schemas(profile:, logger: default_logger)
       profile.classes.each do |cl|
         cl.contexts.each do |cl_cxt|
           profile.dynamic_schemas.build(
             m3_class: cl.name,
-            m3_context: profile.m3_contexts.build(name: cl_cxt.display_label),
+            m3_context: profile.m3_contexts.build(
+              name: cl_cxt.name, 
+              m3_profile_context: cl_cxt),
             schema: build_schema(cl, cl_cxt)
           )
         end
@@ -217,7 +235,7 @@ module M3
                 'indexing' => property.indexing
               }.compact
             }.compact
-          end
+          end.inject(:merge)
       }
     end
 

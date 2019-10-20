@@ -2,9 +2,12 @@ module M3
   class Context < ApplicationRecord
     self.table_name = 'm3_contexts'
     belongs_to :m3_profile, class_name: 'M3::Profile'
+    belongs_to :m3_profile_context, class_name: 'M3::ProfileContext'
     has_many :dynamic_schemas, foreign_key: 'm3_context_id', dependent: :destroy
     serialize :admin_set_ids, Array
     validates :name, presence: true
+
+    delegate :display_label, to: :m3_profile_context
 
     # @api public
     # @param admin_set_id [#to_s] the admin set to which we will scope our query.
@@ -18,6 +21,7 @@ module M3
 
     # @api public
     # @return [Array] all M3::Context
+    # @todo - we only want the latest versions
     def self.available_contexts
       M3::Context.all
     end
