@@ -1,3 +1,4 @@
+
 module M3
   module PrependPermissionTemplatesController
     include M3Helper

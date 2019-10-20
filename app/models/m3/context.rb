@@ -16,14 +16,18 @@ module M3
     #   because the field is an array, using .where(admin_set_ids: ["#{query_term}"])
     #   will only work on exact matches
     def self.find_metadata_context_for(admin_set_id:)
-      M3::Context.select { |c| c.admin_set_ids.include?(admin_set_id) }.first
+      M3::Context.select { |c| c.admin_set_ids.include?(admin_set_id) }.first || M3::Context.where(name: 'default').first
     end
 
     # @api public
+<<<<<<< HEAD
     # @return [Array] all M3::Context
     # @todo - we only want the latest versions
+=======
+    # @return [Array] contexts for latest profile
+>>>>>>> WIP Refactoring and additional code, plus Image configured to use flexible_metadata
     def self.available_contexts
-      M3::Context.all
+      M3::Profile.current_version.m3_contexts
     end
   end
 end

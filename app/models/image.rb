@@ -1,8 +1,11 @@
+
 # Generated via
 #  `rails generate hyrax:work Image`
 class Image < ActiveFedora::Base
   include ESSI::ImageBehavior
   include ::Hyrax::WorkBehavior
+  # @todo - add to m3 generator
+  include M3::DynamicMetadataBehavior
 
   M3::DynamicSchemaService.model_properties(curation_concern_class_name: self.to_s).each_pair do | prop, value |
     property prop, predicate: value[:predicate], multiple: value[:multiple]
@@ -39,10 +42,19 @@ class Image < ActiveFedora::Base
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
 
+<<<<<<< HEAD
  # Include extended metadata common to most Work Types
   # include ESSI::ExtendedMetadata
 
   # This model includes metadata properties specific to the Image Work Type
+=======
+  # Include extended metadata common to most Work Types
+  # Moved to the m3 profile
+  # include ESSI::ExtendedMetadata
+
+  # This model includes metadata properties specific to the Image Work Type
+  # Moved to the m3 profile
+>>>>>>> WIP Refactoring and additional code, plus Image configured to use flexible_metadata
   # include ESSI::ImageMetadata
 
   # This must be included at the end, because it finalizes the metadata

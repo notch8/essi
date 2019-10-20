@@ -2,7 +2,11 @@ module M3
   class DynamicSchema < ApplicationRecord
     belongs_to :m3_context, class_name: 'M3::Context'
     belongs_to :m3_profile, class_name: 'M3::Profile'
+<<<<<<< HEAD
     before_destroy :check_for_works
+=======
+    # before_destroy :check_for_works
+>>>>>>> WIP Refactoring and additional code, plus Image configured to use flexible_metadata
     serialize :schema, JSON
     validates :m3_class, :schema, presence: true
     delegate :profile_version, to: :m3_profile

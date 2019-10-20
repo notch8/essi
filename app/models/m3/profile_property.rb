@@ -10,7 +10,7 @@ module M3
     accepts_nested_attributes_for :texts
 
     serialize :indexing, Array
-    validates :name, :indexing, presence: true
+    validates :name, presence: true
     validate :validate_indexing
 
     # array of valid values for indexing
@@ -27,6 +27,7 @@ module M3
 
     # validate indexing is included in INDEXING
     def validate_indexing
+      self.indexing = ['stored_searchable'] if self.indexing.blank?
       indexing.each do |i|
         errors.add(:indexing, "#{i} is not a valid indexing term") unless INDEXING.include? i
       end
@@ -40,6 +41,7 @@ module M3
         ).flatten.reject { | res | res.send(self.name).blank? }
       end.flatten
 
+<<<<<<< HEAD
       puts 'HELLO'
       puts works.size
 
@@ -47,6 +49,10 @@ module M3
       return if works.blank?
       # why isn't my error adding?
       puts 'I got to here'
+=======
+      # if there are no works, carry on and destroy
+      return if works.blank?
+>>>>>>> WIP Refactoring and additional code, plus Image configured to use flexible_metadata
       self.errors.add(
         :base,
         "There are #{works.length} works using #{self.name}. This property cannot be deleted."

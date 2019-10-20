@@ -1,10 +1,14 @@
 # Generated via
 #  `rails generate hyrax:work Image`
 class ImageIndexer < Hyrax::WorkIndexer
+  class_attribute :model_class
+  self.model_class = ::Image
   # This indexes the default metadata. You can remove it if you want to
   # provide your own metadata and indexing.
   include Hyrax::IndexesBasicMetadata
   include ESSI::ImageIndexerBehavior
+  # @todo - add to m3 generator
+  include M3::DynamicIndexerBehavior
 
   # Fetch remote labels for based_near. You can remove this if you don't want
   # this behavior

@@ -22,8 +22,8 @@ module M3
 
     attr_accessor :profile_data
 
-    def self.current_version?(profiles)
-      profiles.order('created_at').last
+    def self.current_version
+      M3::Profile.order("created_at asc").last
     end
 
     def available_classes

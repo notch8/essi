@@ -9,6 +9,9 @@ module Hyrax
     include ESSI::ImagesControllerBehavior
     include Hyrax::BreadcrumbsForWorks
     include ESSI::BreadcrumbsForWorks
+    # @todo - add to m3 generator
+    # override (from Hyrax 2.5.0) - add the include statement before type
+    include M3::DynamicControllerBehavior
     self.curation_concern_type = ::Image
 
     # Use this line if you want to use a custom presenter
