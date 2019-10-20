@@ -15,6 +15,8 @@ module ESSI
 
     config.autoload_paths += ['app/models/vocab']
 
+    config.active_record.index_nested_attribute_errors =  true
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

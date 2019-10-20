@@ -171,9 +171,12 @@ ActiveRecord::Schema.define(version: 20191009144806) do
   create_table "m3_contexts", force: :cascade do |t|
     t.string "name"
     t.string "admin_set_ids"
+    t.string "m3_context_name"
     t.integer "m3_profile_id"
+    t.integer "m3_profile_context_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["m3_profile_context_id"], name: "index_m3_contexts_on_m3_profile_context_id"
     t.index ["m3_profile_id"], name: "index_m3_contexts_on_m3_profile_id"
   end
 

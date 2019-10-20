@@ -1,82 +1,152 @@
+require 'active_support/core_ext/hash/keys'
 module M3
   # @todo move custom error classes to a single location
   class NoM3ContextError < StandardError; end
-
+  class NoM3AdminSetError < StandardError; end
+  
   class DynamicSchemaService
-    attr_accessor :dynamic_schema, :properties, :model, :m3_context
+    attr_accessor :dynamic_schema, :m3_context, :m3_context_id, :model
 
-    def initialize(admin_set_id:, curation_concern_class_name:)
-      context = AdminSet.find(admin_set_id).metadata_context
-      if context.blank?
-        raise M3::NoM3ContextError(
-          "No Metadata Context for Admin Set #{admin_set_id}"
+    class << self
+      # Retrieve the properties for the model / work type
+      # This is a class method called by the model at class load
+      #   meaning AdminSet is not available and we cannot get the
+      #   contextual dynamic_schema
+      # Instead we use the default (contextless) dynamic_schema
+      #   which will add all properties available for that class
+      # @return [Hash] property => opts
+      def model_properties(work_class_name:)
+        sch = schema(work_class_name: work_class_name)['properties']
+        model_props = {}
+        unless sch.blank?
+          model_props = sch.map do |prop_name, prop_value|
+            { prop_name.to_sym => {
+              predicate: predicate_for(predicate_uri: prop_value['predicate']),
+              multiple: prop_value['singular'] == false
+            } }
+          end.inject(:merge)
+          model_props[:dynamic_schema] = dynamic_schema_property
+        end
+        model_props
+      end
+
+      # Retrieve the properties for the model / work type
+      # This is a class method called by the model at class load
+      #   meaning AdminSet is not available and we cannot get the
+      #   contextual dynamic_schema
+      # Instead we use the default (contextless) dynamic_schema
+      #   which will add all properties available for that class
+      # @return [Array] property#to_sym
+      def default_properties(work_class_name:)
+        props = schema(
+          work_class_name: work_class_name
+        )['properties'].symbolize_keys!.keys
+        props << :dynamic_schema
+        props
+        rescue StandardError => e
+          []
+      end
+
+      # Retrieve the latest default dynamic_schema
+      def schema(work_class_name:)
+        M3::DynamicSchema.where(
+          m3_class: work_class_name,
+          m3_context: M3::Context.where(name: 'default')
+        ).order('created_at').last.schema
+      rescue StandardError
+        {}
+      end
+
+      # Retrieve the predicate for the given predicate uri
+      # @param predicate_uri
+      # @return [RDF::URI] predicate
+      def predicate_for(predicate_uri:)
+        ::RDF::URI.intern(predicate_uri)
+      end
+
+      # @return [RDF::URI] rdf_type
+      def rdf_type(work_class_name:)
+        rdf_type_for(
+          type: schema(work_class_name: work_class_name)['type'],
+          work_class_name: work_class_name
         )
       end
-      @m3_context = context.name
-      @model = curation_concern_class_name
-      @dynamic_schema = dynamic_schema_for(
-        m3_context_id: context.id,
-        curation_concern_class_name: curation_concern_class_name
+
+      # @param type - the rdf type value
+      # @param model - the work type
+      # @return [RDF::URI] rdf_type for given model
+      def rdf_type_for(type:, work_class_name:)
+        if type.blank?
+          ::RDF::URI.intern("http://example.com/#{work_class_name}")
+        else
+          ::RDF::URI.intern(type)
+        end
+      end
+
+      def dynamic_schema_property
+        {
+          predicate: predicate_for(predicate_uri: 'http://example.com/dynamic_schema'),
+          multiple: false
+        }
+      end
+    end
+
+    def initialize(admin_set_id:, work_class_name:, dynamic_schema_id: nil)
+      
+      if admin_set_id.blank?
+        raise M3::NoM3AdminSetError('The Admin Set ID is blank')
+      end
+
+      context_for(admin_set_id: admin_set_id)
+      dynamic_schema_for(
+        m3_context_id: m3_context_id,
+        work_class_name: work_class_name,
+        dynamic_schema_id: dynamic_schema_id
       )
-    end
-
-    # @return [Array] property keys
-    def properties
-      @properties ||= dynamic_schema[:properties].map(&:keys).flatten
-    end
-
-    # @return [Hash] property => ActiveFedora::Attributes::NodeConfig
-    def model_properties
-      model_properties = {}
-      properties.each do |prop|
-        model_properties[prop] = ActiveFedora::Attributes::NodeConfig.new(
-          prop,
-          predicate_for(prop),
-          opts_for(prop)
-        )
-      end
-      model_properties
-    end
-
-    # @return [RDF::URI] the rdf_type URI
-    def rdf_type
-      rdf_type_for(dynamic_schema[:type])
-    end
-
-    # @return [Array] required properties
-    def required_properties
-      properties.map { |prop| required_for(prop) }
-    end
-
-    # @todo renderers and other controls
-    # @return [Array] hashes of property => label
-    def view_properties
-      properties.map do |prop|
-        { prop => { label: property_locale(prop, 'label') } }
-      end
-    end
-
-    # @return [Array] hashes of property => singular true|false
-    def solr_attributes
-      properties.map { |prop| solr_attribute_for(prop) }
+      @model = work_class_name
     end
 
     # @return [Hash] property => array of indexing
     def indexing_properties
       indexers = {}
-      properties.each do |prop|
-        indexers[prop] = indexing_for(prop).map do |indexing_key|
-          "#{prop}#{index_as(indexing_key)}"
-        end
+      properties.each_pair do |prop_name, prop_value|
+        indexers[prop_name] = if prop_value[:indexing].blank?
+          ["#{prop_name}#{default_indexing}"]
+        else
+          prop_value[:indexing].map do |indexing_key|
+            "#{prop_name}#{index_as(indexing_key)}"
+          end 
+        end 
       end
+      indexers[:dynamic_schema] = ['dynamic_schema_tesim']
       indexers
+    end
+
+    # @return [Array] property keys
+    def property_keys
+      @property_keys ||= properties.keys
+    end
+
+    # @return [Array] required properties
+    def required_properties
+      property_keys.map { |prop| required_for(prop) }.compact
+    end
+
+    # @todo renderers and other controls
+    # @return [Array] hashes of property => label
+    def view_properties
+      property_keys.map do |prop|
+        { prop => { label: property_locale(prop, 'label') } }
+      end.inject(:merge)
     end
 
     # @param property - property name
     # @param locale_key - valid keys are: label, help_text
     # @return [String] the value for the given locale
     def property_locale(property, locale_key)
-      return property.to_s.capitalize unless locale_key.match('label' || 'help_text')
+      unless locale_key.match('label' || 'help_text')
+        return property.to_s.capitalize
+      end
 
       label = I18n.t("m3.#{m3_context}.#{model}.#{locale_key}.#{property}")
       label = nil if label.include?('translation missing')
@@ -85,50 +155,34 @@ module M3
 
     private
 
-    def dynamic_schema_for(m3_context_id:, curation_concern_class_name:)
-      require 'active_support/core_ext/hash/keys'
-      M3::DynamicSchema.where(m3_context: m3_context_id).select do |ds|
-        ds.m3_class == curation_concern_class_name
-      end.first.schema.deep_symbolize_keys!
+    def context_for(admin_set_id:)
+      cxt = AdminSet.find(admin_set_id).metadata_context
+      if cxt.blank?
+        raise M3::NoM3ContextError(
+          "No Metadata Context for Admin Set #{admin_set_id}"
+        )
+      end
+      @m3_context = cxt.name
+      @m3_context_id = cxt.id
     end
 
-    def rdf_type_for(type)
-      if type.blank?
-        ::RDF::URI.intern("http://example.com/#{model}")
+    # Retrieve the given DynamicSchema for an existing work
+    def dynamic_schema_for(m3_context_id:, work_class_name:, dynamic_schema_id: nil)
+      if dynamic_schema_id.present?
+        @dynamic_schema ||= M3::DynamicSchema.find(dynamic_schema_id)
       else
-        ::RDF::URI.intern(type)
+        @dynamic_schema ||= M3::DynamicSchema.where(m3_context: m3_context_id).select do |ds|
+          ds.m3_class == work_class_name.to_s
+        end.first
       end
     end
 
-    def property_hash_for(property)
-      dynamic_schema[:properties].map { |prop| prop.dig(property) }.compact.first
-    end
-
-    def predicate_for(property)
-      ::RDF::URI.intern(property_hash_for(property)[:predicate])
-    end
-
-    # @todo extend to add type / class_name
-    def opts_for(property)
-      if property_hash_for(property)[:singular]
-        { multiple: false }
-      else
-        { multiple: true }
-      end
+    def properties
+      @properties ||= dynamic_schema.schema.deep_symbolize_keys![:properties]
     end
 
     def required_for(property)
       property if property_hash_for(property)[:required]
-    end
-
-    # @todo - extend to add data_type for dates Solr::Date
-    def solr_attribute_for(property)
-      { property => property_hash_for(property)[:singular] }
-    end
-
-    # Use stored_searchable as the default if the value is empty
-    def indexing_for(property)
-      property_hash_for(property)[:indexing] || ['stored_searchable']
     end
 
     def locale_label_for(property)
@@ -143,6 +197,14 @@ module M3
 
     def help_text_for(property)
       property_hash_for(property)[:usage_guidelines]
+    end
+
+    def property_hash_for(property)
+      properties[property]
+    end
+
+    def default_indexing
+      index_as('stored_searchable')
     end
 
     # @param indexing_key from the following list:

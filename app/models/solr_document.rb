@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class SolrDocument
   include Blacklight::Solr::Document
   include Blacklight::Gallery::OpenseadragonSolrDocument
@@ -27,6 +26,7 @@ class SolrDocument
   use_extension( Hydra::ContentNegotiation )
 
   attribute :num_pages, Solr::String, solr_name('num_pages')
+  # moved to M3::DynamicSolrDocument for image but required by other models
   attribute :holding_location, Solr::String, solr_name('holding_location')
   attribute :viewing_hint, Solr::String, solr_name('viewing_hint')
   attribute :viewing_direction, Solr::String, solr_name('viewing_direction')

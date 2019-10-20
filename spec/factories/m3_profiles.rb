@@ -1,7 +1,7 @@
 FactoryBot.define do
 
   factory :m3_profile, class: M3::Profile do
-    name            { "Indiana University" }
+    name { "Indiana University" }
     sequence(:profile_version) { |n| n }
     responsibility { 'http://iu.edu' }
     date_modified { '2019-09-23' }
