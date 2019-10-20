@@ -29,7 +29,7 @@ services:
 
   worker:
     image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG}"
-    command: sidekiq 
+    command: bundle exec sidekiq 
     build:
       context: ./
       dockerfile: Dockerfile

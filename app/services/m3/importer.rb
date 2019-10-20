@@ -7,7 +7,7 @@ module M3
     class_attribute :default_logger
     self.default_logger = Rails.logger
     class_attribute :default_config_file
-    self.default_config_file = Dir['/app/config/metadata_profiles/*.ya*ml'].first # TODO: better solution that .first?
+    self.default_config_file = Dir["#{File.join(Rails.root, 'config', 'metadata_profiles', '*.ya*ml')}"].first # TODO: better solution that .first?
 
     def self.load_profile_from_path(path: '', logger: default_logger)
       profile_config_filename = File.exist?(path) ? path : default_config_file

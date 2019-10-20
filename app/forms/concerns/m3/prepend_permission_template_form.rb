@@ -1,6 +1,6 @@
+
 module M3
   module PrependPermissionTemplateForm
-    
     # override (from Hyrax 2.5.0) - new method to delegate to available_contexts
     # delegate :available_contexts, to: :metadata_context_class
     def available_contexts
@@ -20,7 +20,7 @@ module M3
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/CyclomaticComplexity
 
-    # override (from Hyrax 2.5.0) - extend method to add  metadata_context
+    # override (from Hyrax 2.5.0) - extend method to add metadata_context
     # @return [Hash{Symbol => String, Boolean}]
     #   {
     #     :content_tab (for confirmation message),

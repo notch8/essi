@@ -3,7 +3,7 @@
 # The file_system provider can be a path to any directory on the server where your application is running.
 #
 # FIXME symbolize and stringify should not be needed when we upgrade to BE 1.0+
-<%= ESSI.config[:browse_everything].to_yaml %>
+<%= ESSI.config[:browse_everything].deep_symbolize_keys.stringify_keys.to_yaml %>
 
 #file_system:
 #  :home: <%= Rails.root.join("staged_files") %>

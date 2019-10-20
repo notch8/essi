@@ -2,10 +2,15 @@ require 'rails_helper'
 
 RSpec.describe M3::Importer do
   describe '#load_profile_from_path' do
-    let(:profile) { M3::Importer.load_profile_from_path }
+    let(:profile) { M3::Importer.load_profile_from_path(path: File.join(RSpec.configuration.fixture_path, 'files/yaml_example.yaml')) }
 
     it 'returns valid with a valid path' do
-      expect(M3::Importer.load_profile_from_path(path: 'spec/fixtures/files/yaml_example.yaml'))
+      expect(profile)
+        .to be_valid
+    end
+
+    it 'returns valid without a specified path' do
+      expect(M3::Importer.load_profile_from_path)
         .to be_valid
     end
 
@@ -24,14 +29,14 @@ RSpec.describe M3::Importer do
         .to be_an_instance_of(M3::Profile)
     end
 
-    it 'creates associated dynamic_schema objects' do
+    it 'creates associated dynamic_schema objects, including defualt' do
       expect(profile.dynamic_schemas.count)
-        .to eq(1)
+        .to eq(2)
     end
 
-    it 'creates associated m3_context objects' do
+    it 'creates associated m3_context objects, including default' do
       expect(profile.m3_contexts.count)
-        .to eq(1)
+        .to eq(2)
     end
   end
 
