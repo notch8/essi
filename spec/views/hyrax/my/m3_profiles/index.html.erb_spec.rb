@@ -14,7 +14,7 @@ RSpec.describe 'hyrax/my/m3_profiles/index.html.erb', type: :view do
 
     it 'the line item displays the work and its actions' do
       expect(rendered).to have_selector('h1', text: 'M3 Profiles')
-      expect(rendered).to have_link('New')
+      expect(rendered).to have_link('Create Profile')
     end
   end
 end
