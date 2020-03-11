@@ -3,12 +3,15 @@ default: &default
     user: fedoraAdmin
     password: fedoraAdmin
     url: http://fcrepo:8080/fcrepo/rest
-    base_path: /dev
+    base_path: /essi
   solr:
-    url: http://solr:8983/solr/hydra-development
+    url: http://solr:8983/solr/essi
   db:
-    adapter: sqlite3
-    database: db/development.sqlite3
+    host: mysql
+    adapter: mysql2
+    database: essi
+    user: essi
+    password: essi
   redis:
     host: redis
     port: 6379

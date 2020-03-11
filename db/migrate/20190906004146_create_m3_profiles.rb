@@ -1,6 +1,6 @@
 class CreateM3Profiles < ActiveRecord::Migration[5.1]
   def change
-    create_table :m3_profiles do |t|
+    create_table :m3_profiles, id: :integer do |t|
       t.string :name
       t.float :profile_version # version in m3
       t.string :m3_version
