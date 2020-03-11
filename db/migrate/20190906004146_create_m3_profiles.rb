@@ -8,7 +8,7 @@ class CreateM3Profiles < ActiveRecord::Migration[5.1]
       t.string :responsibility_statement
       t.string :date_modified
       t.string :profile_type
-      t.text :profile
+      t.text :profile, limit: 3000000
 
       t.timestamps
     end

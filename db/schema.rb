@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20191009144806) do
     t.string "m3_class"
     t.integer "m3_context_id"
     t.integer "m3_profile_id"
-    t.text "schema"
+    t.text "schema", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["m3_context_id"], name: "index_dynamic_schemas_on_m3_context_id"
@@ -248,7 +248,7 @@ ActiveRecord::Schema.define(version: 20191009144806) do
     t.string "responsibility_statement"
     t.string "date_modified"
     t.string "profile_type"
-    t.text "profile"
+    t.text "profile", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -667,6 +667,9 @@ ActiveRecord::Schema.define(version: 20191009144806) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
+  add_foreign_key "collection_type_participants", "hyrax_collection_types"
+  add_foreign_key "curation_concerns_operations", "users"
+  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "permission_template_accesses", "permission_templates"
