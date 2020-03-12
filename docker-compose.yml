@@ -2,7 +2,7 @@ version: '3.7'
 services:
   web:
     image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG}"
-    command: bash -l -c "bundle exec rake db:migrate && yarn install && bundle exec puma -b tcp://0.0.0.0:3000"
+    command: bash -l -c "bundle exec puma -b tcp://0.0.0.0:3000"
     build:
       context: ./
       dockerfile: Dockerfile
@@ -21,11 +21,22 @@ services:
     volumes:
       - .:/app
     depends_on:
+      - mysql
       - redis
       - solr
       - fcrepo
       - worker
       - chrome
+
+  mysql:
+    image: mysql:5.7
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'mysql:/var/lib/mysql'
+    command: ['mysqld', '--character-set-server=utf8']
 
   worker:
     image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG}"
@@ -84,3 +95,4 @@ volumes:
   mysql:
   redis:
   solr:
+  mysql:

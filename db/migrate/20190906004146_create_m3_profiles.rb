@@ -1,6 +1,6 @@
 class CreateM3Profiles < ActiveRecord::Migration[5.1]
   def change
-    create_table :m3_profiles do |t|
+    create_table :m3_profiles, id: :integer do |t|
       t.string :name
       t.float :profile_version # version in m3
       t.string :m3_version
@@ -8,7 +8,7 @@ class CreateM3Profiles < ActiveRecord::Migration[5.1]
       t.string :responsibility_statement
       t.string :date_modified
       t.string :profile_type
-      t.text :profile
+      t.text :profile, limit: 3000000
 
       t.timestamps
     end
