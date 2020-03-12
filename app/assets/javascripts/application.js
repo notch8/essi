@@ -12,7 +12,7 @@
 //
 //=
 //= require turbolinks
-//
+
 // Required by Blacklight
 //= require jquery
 //= require jquery_ujs
@@ -22,6 +22,8 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require i18n
 //= require i18n/translations
+
+//= require nested_form_fields
 
 //= require blacklight/blacklight
 //= require blacklight_gallery
@@ -35,3 +37,4 @@ Blacklight.onLoad(function() {
   Initializer = require('essi_boot')
   window.essi = new Initializer()
 })
+

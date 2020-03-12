@@ -8,9 +8,14 @@ module M3
     has_many :dynamic_schemas, class_name: 'M3::DynamicSchema', foreign_key: 'm3_profile_id', dependent: :destroy
     # profile elements
     has_many :classes, class_name: 'M3::ProfileClass', foreign_key: 'm3_profile_id', dependent: :destroy
+    accepts_nested_attributes_for :classes, allow_destroy: true
+
     has_many :contexts, class_name: 'M3::ProfileContext', foreign_key: 'm3_profile_id', dependent: :destroy
+    accepts_nested_attributes_for :contexts, allow_destroy: true
+
     has_many :properties, class_name: 'M3::ProfileProperty', foreign_key: 'm3_profile_id', dependent: :destroy
-    accepts_nested_attributes_for :classes, :contexts, :properties
+    accepts_nested_attributes_for :properties, allow_destroy: true
+
     # serlializations
     serialize :profile
     # validations

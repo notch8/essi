@@ -100,10 +100,10 @@ module Hyrax
       # Only allow a trusted parameter "white list" through.
       def m3_profile_params
         params.require(:m3_profile).permit(:name, :profile_type, :profile_version, :responsibility, :responsibility_statement, :date_modified, :created_at, :updated_at,
-                                          :classes_attributes => [:name, :display_label], 
-                                          :contexts_attributes => [:name, :display_label],
-                                          :properties_attributes => [:name, :property_uri, :cardinality_minimum, :cardinality_maximum, indexing: [],
-                                                                     :texts_attributes => [:name, :value]])
+                                          :classes_attributes => [:name, :display_label, :id, :_destroy], 
+                                          :contexts_attributes => [:name, :display_label, :id, :_destroy],
+                                          :properties_attributes => [:id, :_destroy, :name, :property_uri, :cardinality_minimum, :cardinality_maximum, indexing: [],
+                                                                     :texts_attributes => [:name, :value, :id, :_destroy]])
       end
     end
   end
