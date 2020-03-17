@@ -21,7 +21,6 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - mysql
       - redis
       - solr
       - fcrepo
