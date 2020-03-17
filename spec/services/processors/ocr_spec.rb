@@ -7,7 +7,7 @@ RSpec.describe Processors::OCR do
 
   describe "#encode" do
     it "executes the external utility" do
-      expect(described_class).to receive(:execute) { 0 }
+      expect(described_class).to receive(:execute).at_least(1).times { 0 }
       described_class.encode('path', {}, 'output_file')
     end
   end

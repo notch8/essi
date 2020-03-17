@@ -28,39 +28,37 @@ module ESSI
         # local implementation expected, value returned below is just a placeholder
         # @return [String]
         def coordinates
-          # We need our own method logic that expects to parse and translate word boundaries file
-          default_coords = '#xywh=0,0,0,0'
-          coords_data = coordinates_raw
-          return default_coords if query.blank? || coords_data.blank?
-          coords_json = parsed_coordinates(JSON.parse(coords_data))
-          return default_coords unless coords_json['words']
-          matches = coords_json['words'].select do |k, _v|
-            k['word'].downcase =~ /#{query.downcase}/
+          return default_coords if query.blank?
+          coords_json = fetch_and_parse_coords
+          return default_coords unless coords_json && coords_json['coords']
+          query_terms = query.split(' ').map(&:downcase)
+          matches = coords_json['coords'].select do |k, _v|
+            k.downcase =~ /#{query_terms.join('|')}/
           end
           return default_coords if matches.blank?
-          coords_array = matches[hl_index]['coordinates']
+          coords_array = matches.values.flatten(1)[hl_index]
+          return default_coords unless coords_array #FIXME: check default vs default_coords
           "#xywh=#{coords_array.join(',')}"
         end
 
         ##
         # return the JSON word-coordinates file contents
-        # @return [String]
-        def coordinates_raw
-          # TO-DO We need an equivalent thing to return from word boundaries file
-          # NewspaperWorks::Data::WorkDerivatives.new(file_set_id).data('json')
-          # TO-DO solrize this, then get it from solr
-          FileSet.find(file_set_id)&.transcript&.content
+        # @return [JSON]
+        def fetch_and_parse_coords
+          coords = document['word_boundary_tsi']
+          return nil if coords.blank?
+          begin
+            JSON.parse(coords).with_indifferent_access
+          rescue JSON::ParserError
+            nil
+          end
         end
 
-        # converts a word_boundaries Hash into annotation coordinates
-        def parsed_coordinates(word_boundaries)
-          words = []
-          word_boundaries.each do |word, boundaries|
-            boundaries.each do |boundary|
-              words << { word: word, coordinates: [boundary['x0'].to_i, boundary['y0'].to_i, (boundary['x1'].to_i - boundary['x0'].to_i), (boundary['y1'].to_i - boundary['y0'].to_i)] }.with_indifferent_access
-            end
-          end
-          { words: words }.with_indifferent_access
+        ##
+        # a default set of coordinates
+        # @return [String]
+        def default_coords
+          '#xywh=0,0,0,0'
         end
 
         ##

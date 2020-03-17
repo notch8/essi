@@ -45,7 +45,7 @@ configure_blacklight do |config|
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim text_tesim",
+      qf: "title_tesim description_tesim creator_tesim keyword_tesim text_tesim word_boundary",
     }
 
     # solr field configuration for document/show views

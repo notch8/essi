@@ -152,7 +152,14 @@ default: &default
         ORGgen_plt=yes
         ORGtparts=R
         Stiles=\{1024,1024\}
-
+    campus_logos:
+      example_collection_type:
+        title: Example title
+        url: https://example.com
+      example_admin_set:
+        title: Example title
+        url: https://example.com
+        
 development:
   <<: *default
 

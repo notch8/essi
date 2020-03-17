@@ -387,3 +387,18 @@ html {font-size: 16px !important;}   /*override root element font-size, so rem c
 #footer {margin-top: 8em; margin-bottom: 1em;}
 
 .application-margin {margin-top: 4em}
+
+/*Campus Logo*/
+#campus-logo {
+  border-left: solid 2px #dcdcdc;
+  margin-left: 10px;
+  padding-left: 10px;
+  color: #dcdcdc;
+}
+#campus-logo a{
+  text-decoration: none;
+  color: #dcdcdc;
+}
+#campus-logo a:hover{
+  color: #fff;
+}

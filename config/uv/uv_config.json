@@ -1,0 +1,12 @@
+{
+  "options": {
+    "searchWithinEnabled": true
+  },
+  "modules": {
+    "searchFooterPanel": {
+      "options": {
+        "pageModeEnabled": false
+      }
+    }
+  }
+}

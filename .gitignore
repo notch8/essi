@@ -35,6 +35,11 @@ fits.log
 /secrets
 .env.*
 
-# Ignore Universal Viewer && yarn dependencies
-public/uv/*
+# Ignore yarn generated files
 yarn.lock
+public/uv
+
+# Ignore public branding
+public/branding
+
+chart

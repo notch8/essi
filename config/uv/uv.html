@@ -17,7 +17,7 @@
             overflow: hidden;
         }
     </style>
-</head>    
+</head>
 <body>
 
 <div id="uv" class="uv"></div>
@@ -28,7 +28,7 @@
 
         var $UV = $('#uv');
 
-        window.addEventListener('uvLoaded', function(e) { 
+        window.addEventListener('uvLoaded', function(e) {
 
             urlDataProvider = new UV.URLDataProvider(true);
             var formattedLocales;
@@ -42,7 +42,7 @@
                     var nameparts = String(names[i]).split(':');
                     formattedLocales[i] = {name: nameparts[0], label: nameparts[1]};
                 }
-                
+
             } else {
                 formattedLocales = [
                     {
@@ -54,6 +54,7 @@
             uv = createUV('#uv', {
                 root: '.',
                 iiifResourceUri: urlDataProvider.get('manifest'),
+                configUri: 'uv_config.json',
                 collectionIndex: Number(urlDataProvider.get('c', 0)),
                 manifestIndex: Number(urlDataProvider.get('m', 0)),
                 sequenceIndex: Number(urlDataProvider.get('s', 0)),
@@ -76,10 +77,10 @@
         $(window).on('resize' ,function() {
             resize();
         });
-        
+
         resize();
     });
-    
+
 </script>
 
 <script type="text/javascript" src="uv.js"></script>

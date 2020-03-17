@@ -16,7 +16,7 @@ module Hyrax
     end
 
     def universal_viewer_config_url
-      "#{request&.base_url}/uv/uv-config.json"
+      "#{request&.base_url}/uv/uv_config.json"
     end
   end
 end

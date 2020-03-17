@@ -5,7 +5,7 @@ default: &default
   username: <%= ESSI.config[:db][:user] %>
   password: <%= ESSI.config[:db][:password] %>
   encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ESSI.config[:db].fetch(:pool) { 12 } %>
   timeout: 5000
 
 development:

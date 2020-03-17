@@ -62,8 +62,12 @@ jobs:
         command: |
           sudo apt-get update -qq
           sudo apt-get install -y build-essential default-jre-headless libpq-dev nodejs \
-                libreoffice-writer libreoffice-impress imagemagick unzip ghostscript \
-                tesseract-ocr
+                libreoffice-writer libreoffice-impress imagemagick unzip ghostscript
+
+          sudo sh -c 'echo "deb http://http.us.debian.org/debian/ testing non-free contrib main" >> /etc/apt/sources.list'
+          sudo apt-get update -qq
+          sudo apt-get install libtesseract-dev libleptonica-dev liblept5 tesseract-ocr -t testing
+
           sudo mkdir -p -m 777 /opt/fits
           curl -fSL -o /opt/fits/fits-1.4.0.zip https://github.com/harvard-lts/fits/releases/download/1.4.0/fits-1.4.0.zip
           cd /opt/fits && unzip fits-1.4.0.zip && chmod +X fits.sh

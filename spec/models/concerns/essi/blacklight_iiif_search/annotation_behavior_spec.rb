@@ -4,14 +4,15 @@ RSpec.describe BlacklightIiifSearch::AnnotationBehavior do
   let(:file_set_id) { '987654' }
   let(:page_document) do
     SolrDocument.new('id' => file_set_id,
-                     'work_id_ssi' => parent_id)
+                     'work_id_ssi' => parent_id,
+                     'word_boundary_tsi' => boundaries)
   end
   let(:controller) { CatalogController.new }
   let(:boundaries) do
-    "{\"software\":[{\"x0\":2641,\"y0\":4102,\"x1\":3153,\"y1\":4146}]}"
+    "{\"width\":null,\"height\":null,\"coords\":{\"software\":[[2641,4102,512,44]]}}" 
   end
-  let(:coordinates) do
-    "{\"words\":[{\"word\":\"software\",\"coordinates\":[2641,4102,512,44]}]}"
+  let(:parsed_boundaries) do
+    JSON.parse(boundaries)
   end
   let(:parent_document) do
     SolrDocument.new('id' => parent_id,
@@ -34,7 +35,7 @@ RSpec.describe BlacklightIiifSearch::AnnotationBehavior do
   end
 
   describe '#canvas_uri_for_annotation' do
-    before { allow(iiif_search_annotation).to receive(:coordinates_raw).and_return(boundaries) }
+    before { allow(iiif_search_annotation).to receive(:fetch_and_parse_coords).and_return(parsed_boundaries) }
 
     subject { iiif_search_annotation.canvas_uri_for_annotation }
     it 'returns a properly formatted URL' do
@@ -49,9 +50,9 @@ RSpec.describe BlacklightIiifSearch::AnnotationBehavior do
         end
       end
 
-      describe '#parsed_coordinates' do
+      describe '#fetch_and_parse_coords' do
         it 'gets the expected Hash for annotation format' do
-          expect(iiif_search_annotation.send(:parsed_coordinates, JSON.parse(boundaries))).to eq JSON.parse(coordinates)
+          expect(iiif_search_annotation.send(:fetch_and_parse_coords)).to eq parsed_boundaries
         end
       end
     end

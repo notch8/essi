@@ -2,6 +2,8 @@
 
 <%= render 'shared/citations' %>
 
+<%= render 'shared/collection_banner' if @presenter.collection %>
+
 <div class="row work-type">
   <div class="col-sm-12">
     <%= render 'work_type', presenter: @presenter %>
@@ -53,7 +55,7 @@
       </div>
     </div>
 
-    <%= render 'workflow_actions_widget', presenter: @presenter %>     
+    <%= render 'workflow_actions_widget', presenter: @presenter %>
 
     <%# TODO: we may consider adding these partials in the future %>
     <%# = render 'sharing_with', presenter: @presenter %>
@@ -61,4 +63,3 @@
 
   </div>
 </div>
-

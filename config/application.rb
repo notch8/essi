@@ -13,7 +13,8 @@ module ESSI
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
-    config.autoload_paths += ['app/models/vocab']
+    config.autoload_paths += ['app/models/vocab', Rails.root.join('lib')]
+    config.eager_load_paths += ['app/models/vocab', Rails.root.join('lib')]
 
     config.active_record.index_nested_attribute_errors =  true
 

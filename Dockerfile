@@ -5,12 +5,13 @@ RUN apt-get update -qq && \
     apt-get -y install apt-transport-https && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    echo "deb http://http.us.debian.org/debian/ testing non-free contrib main" | tee -a /etc/apt/sources.list && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get update -qq && \
     apt-get install -y build-essential default-jre-headless libpq-dev nodejs \
-      libreoffice-writer libreoffice-impress imagemagick unzip ghostscript \
-      tesseract-ocr \
-      yarn && \
+      libreoffice-writer libreoffice-impress imagemagick unzip ghostscript && \
+    apt-get install -y libtesseract-dev libleptonica-dev liblept5 tesseract-ocr -t testing \
+    yarn && \
     rm -rf /var/lib/apt/lists/*
 RUN yarn && \
     yarn config set no-progress && \
