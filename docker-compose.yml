@@ -25,18 +25,39 @@ services:
       - redis
       - solr
       - fcrepo
+      - db
+      - minio
       - worker
       - chrome
 
-  mysql:
-    image: mysql:5.7
-    env_file:
-      - .env
+  debug:
+    image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG}"
+    command: tail -f /dev/null
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: essi-dev
+    environment:
+      VIRTUAL_HOST: essi.docker
+      VIRTUAL_PORT: 3000
+      IN_DOCKER: 'true'
     ports:
-      - '3306:3306'
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env.development
+      - .env
     volumes:
-      - 'mysql:/var/lib/mysql'
-    command: ['mysqld', '--character-set-server=utf8']
+      - .:/app
+    depends_on:
+      - redis
+      - solr
+      - fcrepo
+      - db
+      - minio
+      - worker
+      - chrome
 
   worker:
     image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG}"
@@ -58,9 +79,55 @@ services:
       - redis
       - solr
       - fcrepo
+      - db
+      - minio
+
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306'
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: essi
+      MYSQL_DATABASE: essi_dev
+      MYSQL_USER: essi
+      MYSQL_PASSWORD: essi
+
+  minio:
+    image: minio/minio:RELEASE.2020-02-27T00-23-05Z
+    ports:
+      - '9000'
+    environment:
+      MINIO_ACCESS_KEY: essi-minio
+      MINIO_SECRET_KEY: Essi12345
+    volumes:
+      - minio:/data
+      - './staged_files:/nasvol'
+    command: gateway nas /data
+    depends_on:
+      - minio_mount
+
+  minio_mount:
+    image: alpine:3.11
+    volumes:
+      - minio:/data
+    command: ln -s /nasvol /data/essi-dropbox
+
+#  cantaloupe:
+#    image: uclalibrary/cantaloupe-ucla:4.1.4
+#    ports:
+#      - '8182'
+#    environment:
+#      CANTALOUPE_ENDPOINT_ADMIN_ENABLED: true
+#      CANTALOUPE_DELEGATE_SCRIPT_ENABLED: true
+#      CANTALOUPE_DELEGATE_SCRIPT_PATHNAME: /usr/local/cantaloupe/delegates.rb
+#      CANTALOUPE_DELEGATE_SCRIPT_CACHE_ENABLED: false
+#      CANTALOUPE_SOURCE_DELEGATE: false
+#      DELEGATE_URL: https://raw.githubusercontent.com/UCLALibrary/cantaloupe-delegate/master/lib/delegates.rb
 
   redis:
-    image: redis:3
+    image: redis:5
     ports:
       - '6379'
     volumes:
@@ -81,11 +148,11 @@ services:
       - /opt/config
 
   fcrepo:
-    image: botimer/fcrepo:4.5.1
+    image: samvera/fcrepo4:4.7.5
     volumes:
       - 'fcrepo:/opt/data'
     ports:
-      - "8984:8080"
+      - "8080"
 
   chrome:
     image: selenium/standalone-chrome:3.141
@@ -95,4 +162,4 @@ volumes:
   mysql:
   redis:
   solr:
-  mysql:
+  minio:

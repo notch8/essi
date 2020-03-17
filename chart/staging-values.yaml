@@ -1,0 +1,100 @@
+solr:
+  image:
+   repository: solr
+   tag: 7.4
+  replicaCount: 1
+  volumeClaimTemplates:
+    storageSize: 5Gi
+
+# JA - don't know if we have to use zk?
+# JA - check how we deal with copying solr config (eg. for OD)
+# zookeeper:
+#   replicaCount: 1
+#   persistence:
+#     enabled: true
+#     accessMode: ReadWriteOnce
+#     size: 1Gi
+
+mysql:
+  enabled: true
+  # use fcrepo here; the web app can create it's own db with db:create
+  mysqlDatabase: fcrepo
+  mysqlPassword: 708c28ce69af924
+  persistence:
+    enabled: true
+    size: 5Gi
+
+redis:
+  enabled: true
+  usePassword: false
+  # Only used when internal redis is disabled
+  # host: redis
+  # Just omit the password field if your redis cluster doesn't use password
+  # password: redis
+  # port: 6379
+  master:
+    persistence:
+      enabled: true
+      size: 1Gi
+
+fcrepo:
+  image:
+    repository: ualbertalib/docker-fcrepo4
+    tag: 4.7
+  storage:
+    size: 5Gi
+
+web:
+  replicas: 2
+
+sidekiq:
+  replicas: 1
+  timeout: 3600
+
+rails:
+  image:
+    repository: registry.gitlab.com/notch8/essi
+    tag: latest
+  imagePullSecrets:
+    - name: gitlab
+  shared:
+    storage:
+      size: 5Gi
+      className: aws-efs
+
+ingress:
+  # tlsSecretName:
+  host: staging-essi-web.34.219.196.215.xip.io
+  annotations: {
+    kubernetes.io/ingress.class: "nginx",
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+  }
+
+nameOverride:
+  essi
+
+env:
+  configmap: 
+    NAME: essi
+    SOLR_CORE: essi
+    RAILS_LOG_TO_STDOUT: true
+    # JA - I don't know if we need these?
+    MYSQL_DATABASE: essi
+    MYSQL_HOST: mysql
+    MYSQL_USER: essi
+    # JA - end
+    MYSQL_ALLOW_EMPTY_PASSWORD: true
+    FC_DATABASE_NAME: fcrepo
+    IN_DOCKER: "true"
+    LD_LIBRARY_PATH: /opt/fits-latest/tools/mediainfo/linux
+    PASSENGER_APP_ENV: staging
+    RAILS_CACHE_STORE_URL: memcache
+    RAILS_ENV: staging
+    RAILS_LOG_TO_STDOUT: true
+    RAILS_SERVE_STATIC_FILES: true
+
+  secret:
+    SECRET_KEY_BASE: 628b30efcdf28acbbd30a80e53e2b743d44f74bf393462badc49e0f5909ed109812ff12905e3a98bf4f81d3618fac5c061ad4e1ca5c91f9c1dce8226ca3cff25
+    # SENTRY_DSN: https://3f87b92f7ef44c19b5c394b8ac24bea3:48931d66c9da42149c187b4fd090b878@sentry.notch8.com/32
+    MYSQL_PASSWORD: 708c28ce69af924
+
