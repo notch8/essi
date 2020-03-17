@@ -2,18 +2,18 @@ default: &default
   fedora:
     user: fedoraAdmin
     password: fedoraAdmin
-    url: http://fcrepo:8080/rest
+    url: <%= ENV.fetch('FEDORA_URL', 'http://fcrepo:8080/rest') %>
     base_path: /dev
   solr:
-    url: http://solr:8983/solr/essi
+    url: <%= ENV.fetch('SOLR_URL', 'http://solr:8983/solr/essi') %>
   db:
     adapter: mysql2
-    host: db
+    host: <%= ENV.fetch('DATABASE_HOST', 'db') %>
     database: essi_dev
     user: essi
-    password: essi
+    password: <%= ENV.fetch('MYSQL_PASSWORD', 'essi') %>
   redis:
-    host: redis
+    host: <%= ENV.fetch('REDIS_HOST', 'redis') %>
     port: 6379
   sidekiq:
     queue_names:
@@ -172,6 +172,9 @@ default: &default
         url: https://example.com
         
 development:
+  <<: *default
+
+staging:
   <<: *default
 
 test:

@@ -9,3 +9,12 @@
 require 'rake'
 Rake::Task['hyrax:default_collection_types:create'].invoke
 Rake::Task['hyrax:default_admin_set:create'].invoke
+
+collection_types = Hyrax::CollectionType.all
+collection_types.each do |c|
+  next unless c.title =~ /^translation missing/
+  oldtitle = c.title
+  c.title = I18n.t(c.title.gsub("translation missing: en.", ''))
+  c.save
+  puts "#{oldtitle} changed to #{c.title}"
+end
