@@ -14,7 +14,7 @@ module M3
 
     # Retrieve the dynamic schema
     def base_dynamic_schema(admin_set_id)
-      self.dynamic_schema || dynamic_schema_service(admin_set_id).dynamic_schema.id
+      self.respond_to?(:dynamic_schema) ? (self.dynamic_schema || dynamic_schema_service(admin_set_id).dynamic_schema.id) : dynamic_schema_service(admin_set_id).dynamic_schema.id
     end
 
     # Setup dynamic schema service
