@@ -38,3 +38,10 @@ fits.log
 # Ignore Universal Viewer && yarn dependencies
 public/uv/*
 yarn.lock
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

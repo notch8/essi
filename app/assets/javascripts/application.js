@@ -23,9 +23,8 @@
 //= require i18n
 //= require i18n/translations
 
-//= require nested_form_fields
+//= require react
 
-//= require blacklight/blacklight
 //= require blacklight_gallery
 //= require cable
 //= require nestedSortable/jquery.mjs.nestedSortable

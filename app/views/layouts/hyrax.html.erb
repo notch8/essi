@@ -3,9 +3,10 @@
 <head>
   <%= render partial: 'layouts/head_tag_content' %>
   <%= content_for(:head) %>
+  <%= javascript_pack_tag 'application' %>
 </head>
 
-<body>
+<body class="hyrax.html.erb">
 <%= render 'shared/header' %>
 <div class="skip-to-content">
   <%= link_to "Skip to Content", "#skip-to-content", data: { turbolinks: false } %>
