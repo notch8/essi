@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import Form from './form'
 
 const schema = {
-  title: "Class Definitions",
+  title: "Context Definitions",
   type: "object",
-  required: ["name", "displayLabel"],
+  required: ["name"],
   properties: {
     name: {type: "string", title: "Name", default: "A new name"},
     displayLabel: {type: "string", title: "Display Label", default: "A new label"},
@@ -13,7 +13,7 @@ const schema = {
 
 const log = (type) => console.log.bind(console, type);
 
-export default class ClassForm extends Component {
+export default class ContextForm extends Component {
 
   render() {
     return (

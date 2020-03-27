@@ -2,23 +2,24 @@ import React, { Component } from 'react'
 import Form from './form'
 
 const schema = {
-  title: "Class Definitions",
+  title: "Class",
   type: "object",
-  required: ["name", "displayLabel"],
+  required: ["title"],
   properties: {
-    name: {type: "string", title: "Name", default: "A new name"},
-    displayLabel: {type: "string", title: "Display Label", default: "A new label"},
+    title: {type: "string", title: "Title", default: "A new task"},
+    done: {type: "boolean", title: "Done?", default: false}
   }
 };
 
 const log = (type) => console.log.bind(console, type);
 
-export default class ClassForm extends Component {
+export default class TextForm extends Component {
 
   render() {
     return (
       <Form schema={schema}
       onChange={log("changed")}
+      onSubmit={log("submitted")}
       onError={log("errors")} />
     );
   }
