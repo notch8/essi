@@ -7,10 +7,10 @@ const schema = {
   required: ["name", "indexing"],
   properties: {
     name: {type: "string", title: "Name", default: "A new name"},
-    property_uri: {type: "string", title: "Property URI", default: "A new name"},
+    property_uri: {type: "string", format:"uri", title: "Property URI", default: "A new name"},
     cardinality_minimum: {type: "integer", title: "Cardinality Minimum", default: "0"},
     cardinality_maxiumum: {type: "integer", title: "Cardinality Maximum", default: "100"},
-    indexing: {type: "select", title: "Indexing", default: "A new label"},
+    indexing: {type: "string", title: "Indexing", enum:[1, 2], enumNames: ["displayable", "facetable"], default: "A new label"},
   }
 };
 

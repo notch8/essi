@@ -6,6 +6,6 @@
 
 // const Form = withTheme(Bootstrap4Theme)
 
-import Form from 'react-jsonschema-form-bs4'
+import Form from "@rjsf/core";
 
 export default Form
