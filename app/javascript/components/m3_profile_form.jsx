@@ -199,6 +199,9 @@ const schema = {
       },
       "additionalProperties": {
         "type": "object",
+        "items": {
+          "type": "string"
+        },
         "required": ["name", "display_label"],  
         "properties": {
           "name": {
@@ -213,6 +216,39 @@ const schema = {
             "description": "URI for the property, from a local or shared ontology.",
             "examples": [
               "http://purl.org/dc/elements/1.1/creator"
+            ]
+          },
+          "available_on": {
+            "type": "object",
+            "title": "Available On:",
+            "items": {
+              "type": "string"
+            },
+            "description": "The classes (objects and/or work types) or contexts this property is available on (defined in 'classes' or 'contexts' section.)",
+            "properties": {
+              "class": {
+                "comment": "Listed values must match a class defined in the classes block.",
+                "type": "array",
+                "title": "Classes",
+                "items": {"type": "string"}
+              },
+              "context": {
+                "comment": "Listed values must match a context defined in the contexts block.",
+                "type": "array",
+                "title": "Contexts",
+                "items": {"type": "string"}
+              }
+            },
+            "examples": [
+              {
+                "class": [
+                  "Collection",
+                  "MyCustomWorkType"
+                ],
+                "context": [
+                  "chem"
+                ]
+              }
             ]
           },
           "cardinality": {
