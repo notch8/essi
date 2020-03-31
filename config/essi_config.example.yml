@@ -27,6 +27,8 @@ default: &default
       options:
     active_job:
       queue_adapter: async
+  # cantaloupe:
+  #   iiif_server_url: http://localhost:8182/iiif/2/
   derivatives:
     path: <%= Rails.root.join("tmp/derivatives") %>
   iucat_libraries:
@@ -61,7 +63,7 @@ default: &default
   authorized_ldap_groups:
     - ESSI-USERS
   essi:
-    iiif_host: localhost:3000
+    iiif_host: localhost:3000  # riiif only
     notifier_email: example@test.test
     store_original_files: true
     master_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/master

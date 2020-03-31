@@ -32,6 +32,8 @@ default: &default
       queue_adapter: sidekiq
   derivatives:
     path: <%= Rails.root.join("tmp/derivatives") %>
+  cantaloupe:
+    iiif_server_url: http://localhost:8182/iiif/2/
   iucat_libraries:
     url: http://iucat-feature-tadas.uits.iu.edu/api/library
   aws:
@@ -74,7 +76,7 @@ default: &default
       :region: iu-local
       :response_type: :signed_url
   essi:
-    iiif_host: essi.docker
+    iiif_host: essi.docker  # riiif only
     notifier_email: example@test.test
     store_original_files: true
     master_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/master

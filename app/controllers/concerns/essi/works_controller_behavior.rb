@@ -1,5 +1,13 @@
 module ESSI
   module WorksControllerBehavior
+
+    def additional_response_formats(wants)
+      wants.uv do
+        presenter && parent_presenter
+        render 'viewer_only.html.erb', layout: 'boilerplate', content_type: 'text/html'
+      end
+    end
+
     # Overrides stock Hyrax method to accept retrieving a cached JSON manifest_builder
     def manifest
       headers['Access-Control-Allow-Origin'] = '*'

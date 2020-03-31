@@ -562,7 +562,7 @@ GEM
     noid-rails (3.0.1)
       actionpack (>= 5.0.0, < 6)
       noid (~> 0.9)
-    nokogiri (1.10.7)
+    nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     nokogumbo (1.5.0)
       nokogiri
@@ -593,7 +593,7 @@ GEM
     powerpack (0.1.2)
     public_suffix (3.1.1)
     pul_uv_rails (2.0.1)
-    puma (3.12.2)
+    puma (3.12.4)
     qa (2.2.0)
       activerecord-import
       deprecation
@@ -929,7 +929,7 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-iu-cas
-  puma (~> 3.12)
+  puma
   rails (~> 5.1.6)
   rails-controller-testing
   riiif (~> 2.0)
