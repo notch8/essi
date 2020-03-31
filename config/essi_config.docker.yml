@@ -33,7 +33,7 @@ default: &default
   derivatives:
     path: <%= Rails.root.join("tmp/derivatives") %>
   cantaloupe:
-    iiif_server_url: http://localhost:8182/iiif/2/
+    iiif_server_url: <%= ENV.fetch('IIIF_SERVER_URL', 'http://localhost:8182/iiif/2/')'
   iucat_libraries:
     url: http://iucat-feature-tadas.uits.iu.edu/api/library
   aws:
