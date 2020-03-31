@@ -10,6 +10,7 @@ data:
   DATABASE_HOST: {{ template "app.mysql.name" . }}
   REDIS_HOST: {{ template "app.redis.name" . }}
   FEDORA_URL: http://{{ template "app.fcrepo.name" . }}:8080/fcrepo/rest
+  IIIF_SERVER_URL: http://{{ template "app.cantaloupe.name" . }}:8182/iiif/2/
 {{- range $key, $value := .Values.env.configmap }}
   {{ $key }}: {{ $value | quote }}
 {{- end }}

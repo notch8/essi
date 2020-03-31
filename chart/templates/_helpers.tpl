@@ -68,3 +68,9 @@ Shorthand for component names
 {{- define "app.fcrepo-env.name" -}}
 {{- include "app.fullname" . -}}-fcrepo-env
 {{- end -}}
+{{- define "app.cantaloupe.name" -}}
+{{- include "app.fullname" . -}}-cantaloupe
+{{- end -}}
+{{- define "app.cantaloupe-env.name" -}}
+{{- include "app.fullname" . -}}-cantaloupe-env
+{{- end -}}
