@@ -6,7 +6,6 @@ export function saveData(options) {
     method: method,
     body: JSON.stringify(data),
     headers: {
-      // 'X-CSRF-Token': getCookie('X-CSRF-Token'),
       'X-CSRF-Token': document.querySelector('[name=csrf-token]').content,
       'Content-Type': 'application/json'
     }

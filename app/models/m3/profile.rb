@@ -19,8 +19,8 @@ module M3
     # serlializations
     serialize :profile
     # validations
-    validates :name, :profile_version, :responsibility, presence: true
-    validates :profile_version, uniqueness: true
+    validates :profile, presence: true
+    #validates :profile_version, uniqueness: true
     # callbacks
     before_create :add_date_modified, :add_m3_version
     after_create :add_profile_data

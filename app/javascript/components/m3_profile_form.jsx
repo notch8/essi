@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import Form from './form'
-import { saveData } from '../shared/save_data'
+import Form from './form';
+import { saveData } from '../shared/save_data';
+import { dat } from './data/m3_profile_schema.json';
 //import ClassForm from './class_form'
 //import ContextForm from './context_form'
 //import PropertyForm from './property_form'
 
+console.log(dat);
 const schema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://example.com/m3_json_schema.json",
@@ -68,7 +70,7 @@ const schema = {
             "2019-07-03"
           ]
         },
-        "type": {
+        "profile_type": {
           "$id": "#/properties/profile/type",
           "title": "Type",
           "description": "type of thing does the profile describe",
@@ -77,7 +79,7 @@ const schema = {
             "metadata models"
           ]
         },
-        "version": {
+        "profile_version": {
           "$id": "#/properties/profile/version",
           "title": "Version",
           "description": "version of the profile",
@@ -314,26 +316,29 @@ const schema = {
 
 class M3ProfileForm extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
-      msg: ""
-      //formData: formData || {}
+      m3_profile: props.m3_proile,
+      schema: schema,
+      msg: "",
       //schema: props.m3_profile.schema || schema
     };
+    this.renderMessage = this.renderMessage.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  //log = (type) => console.log.bind(console, type);
-  //renderMessage = () => {
-  //  if (msg.msg) {
-  //    return (
-  //      <div className={'alert alert-' + msg.type} >
-  //      {msg.msg}
-  //      </div>
-  //    )
-  //  } else {
-  //    return null
-  //  }
-  //}
+  renderMessage = () => {
+    if (this.msg.msg) {
+      return (
+        <div className={'alert alert-' + this.msg.type} >
+        {this.msg.msg}
+        </div>
+      )
+    } else {
+      return null
+    }
+  }
 
   onFormSubmit = ({formData}) => {
     console.log("SUBMITTED");
@@ -357,15 +362,15 @@ class M3ProfileForm extends Component {
     })
   }
 
-  onSubmit = ({formData}, e) => console.log("Data submitted: ",  formData);
+  //onSubmit = ({formData}, e) => console.log("Data submitted: ",  formData);
 
   render() {
     return (
       <div>
-        <Form schema={schema}
+        <Form schema={ this.state.schema }
           //onChange={log("changed")}
           //formData={this.state.formData}
-          onSubmit={this.onFormSubmit}
+          onSubmit={ this.onFormSubmit }
           //onSubmit={this.onSubmit}
           //onError={log("errors")} 
         />
