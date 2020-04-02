@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Form from './form'
+import { saveData } from '../shared/save_data'
 //import ClassForm from './class_form'
 //import ContextForm from './context_form'
 //import PropertyForm from './property_form'
@@ -310,12 +311,53 @@ const schema = {
     }
   }
 }
-export default class M3ProfileForm extends Component {
+
+class M3ProfileForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      //formData: formData || {}
+      //schema: props.m3_profile.schema || schema
+    };
+  }
+
+  //log = (type) => console.log.bind(console, type);
+
+  onFormSubmit = ({formData}) => {
+    console.log("SUBMITTED");
+    saveData({
+      path: "http://localhost:4000/dashboard/my/m3_profiles/",
+      method: "POST",
+      data: { data: formData },
+      success: (res) => {
+        if (res.success) {
+          setMsg({ msg: res.message, type: 'success' })
+        } else {
+          setMsg({ msg: `${res.message} -- ${res.errors.join(', ')}`, type: 'danger' })
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      },
+      fail: (res) => {
+        var message = res.message ? res.message : 'There was an error saving your information'
+        setMsg({ msg: message, type: 'danger' })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    })
+  }
+
+  onSubmit = ({formData}, e) => console.log("Data submitted: ",  formData);
 
   render() {
     return (
       <Form schema={schema}
+        //onChange={log("changed")}
+        //formData={this.state.formData}
+        onSubmit={this.onFormSubmit}
+        //onSubmit={this.onSubmit}
+        //onError={log("errors")} 
       />
     )
   }
 }
+
+export default M3ProfileForm
