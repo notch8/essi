@@ -316,12 +316,24 @@ class M3ProfileForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      msg: ""
       //formData: formData || {}
       //schema: props.m3_profile.schema || schema
     };
   }
 
   //log = (type) => console.log.bind(console, type);
+  //renderMessage = () => {
+  //  if (msg.msg) {
+  //    return (
+  //      <div className={'alert alert-' + msg.type} >
+  //      {msg.msg}
+  //      </div>
+  //    )
+  //  } else {
+  //    return null
+  //  }
+  //}
 
   onFormSubmit = ({formData}) => {
     console.log("SUBMITTED");
@@ -331,15 +343,15 @@ class M3ProfileForm extends Component {
       data: { data: formData },
       success: (res) => {
         if (res.success) {
-          setMsg({ msg: res.message, type: 'success' })
+          this.setState({ msg: res.message, type: 'success' })
         } else {
-          setMsg({ msg: `${res.message} -- ${res.errors.join(', ')}`, type: 'danger' })
+          this.setState({ msg: `${res.message} -- ${res.errors.join(', ')}`, type: 'danger' })
         }
         window.scrollTo({ top: 0, behavior: 'smooth' })
       },
       fail: (res) => {
         var message = res.message ? res.message : 'There was an error saving your information'
-        setMsg({ msg: message, type: 'danger' })
+        this.setState({ msg: message, type: 'danger' })
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     })
@@ -349,13 +361,15 @@ class M3ProfileForm extends Component {
 
   render() {
     return (
-      <Form schema={schema}
-        //onChange={log("changed")}
-        //formData={this.state.formData}
-        onSubmit={this.onFormSubmit}
-        //onSubmit={this.onSubmit}
-        //onError={log("errors")} 
-      />
+      <div>
+        <Form schema={schema}
+          //onChange={log("changed")}
+          //formData={this.state.formData}
+          onSubmit={this.onFormSubmit}
+          //onSubmit={this.onSubmit}
+          //onError={log("errors")} 
+        />
+      </div>
     )
   }
 }
