@@ -340,7 +340,7 @@ class M3ProfileForm extends Component {
     saveData({
       path: "http://localhost:4000/dashboard/my/m3_profiles/",
       method: "POST",
-      data: { data: formData },
+      data: formData,
       success: (res) => {
         if (res.success) {
           this.setState({ msg: res.message, type: 'success' })
