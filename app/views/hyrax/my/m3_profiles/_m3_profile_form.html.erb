@@ -11,5 +11,5 @@
     </div>
   <% end %>
 
-  <%= react_component("m3_profile_form", props: { m3_profile: @m3_profile }) %>
+  <%= react_component("m3_profile_form", { schema: @m3_profile.profile || @default_schema, m3_profile: @m3_profile }) %>
 </div>
