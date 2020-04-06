@@ -1,7 +1,9 @@
 export function saveData(options) {
-  var path = options.path
-  var method = options.method ? options.method : 'get'
-  var data = Object.assign({}, options.data, {})
+  let path = options.path
+  let method = options.method ? options.method : 'get'
+  let data = {data: options.data, schema: options.schema }
+  data = Object.assign({}, data, {})
+  debugger;
   fetch(path, {
     method: method,
     body: JSON.stringify(data),

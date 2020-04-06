@@ -18,6 +18,7 @@ module M3
 
     # serlializations
     serialize :profile
+    serialize :json_schema
     # validations
     validates :profile, presence: true
     #validates :profile_version, uniqueness: true

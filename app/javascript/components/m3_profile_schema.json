@@ -81,40 +81,6 @@
         }
       }
     },
-    "mappings": {
-      "$id": "#/properties/mappings",
-      "type": "object",
-      "title": "Mapping Definitions",
-      "description": "Definition of the mappings to different services or target schemas referenced in the profile.",
-      "additionalProperties": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "propertyNames": {
-        "pattern": "^[a-z_]*$"
-      },
-      "examples": [
-        {
-          "dpla": {
-            "name": "Digital Public Library of America"
-          }
-        },
-        {
-          "datacite": {
-            "name": "DataCite"
-          }
-        },
-        {
-          "dc": {
-            "name": "Dublin Core"
-          }
-        }
-      ]
-    },
     "classes": {
       "$id": "#/properties/classes",
       "type": "object",

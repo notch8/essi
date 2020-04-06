@@ -29,7 +29,7 @@ module Hyrax
 
       # GET /m3_profiles/new
       def new
-        if M3::Profile.count > 0
+        if M3::Profile.any?
           redirect_to my_m3_profiles_path, alert: 'Edit an Existing Profile or Upload a New One'
         end
 
@@ -59,7 +59,7 @@ module Hyrax
 
       # POST /m3_profiles
       def create
-        @m3_profile = M3::Profile.new(profile: m3_profile_params)
+        @m3_profile = M3::Profile.new(profile: m3_profile_params[:data], json_schema: m3_profile_params[:schema])
         @m3_profile.set_profile_version
         M3::FlexibleMetadataConstructor.create_dynamic_schemas(profile: @m3_profile)
         if @m3_profile.save
@@ -103,12 +103,7 @@ module Hyrax
 
       # Only allow a trusted parameter "white list" through.
       def m3_profile_params
-        params.require(:m3_profile).permit(:m3_version,
-                                           :profile => [:name, :profile_type, :profile_version, :responsibility, :responsibility_statement, :date_modified, :created_at, :updated_at],
-                                           :classes  => [:name, :display_label, :id], 
-                                           :contexts => [:name, :display_label, :id],
-                                           :properties  => [:id, :_destroy, :name, :property_uri, :cardinality_minimum, :cardinality_maximum, indexing: [],
-                                                            :texts_attributes => [:name, :value, :id, :_destroy]])
+        params.require(:m3_profile).permit!
       end
     end
   end
