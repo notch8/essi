@@ -3,7 +3,7 @@ export function saveData(options) {
   let method = options.method ? options.method : 'get'
   let data = {data: options.data, schema: options.schema }
   data = Object.assign({}, data, {})
-  debugger;
+  //debugger;
   fetch(path, {
     method: method,
     body: JSON.stringify(data),

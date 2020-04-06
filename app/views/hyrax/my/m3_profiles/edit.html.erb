@@ -11,12 +11,12 @@
         </li>
       </ul>
       <%= simple_form_for @m3_profile, url: hyrax.my_m3_profiles_path, method: :post do |form| %>
-        <%= render 'form', m3_profile: @m3_profile, form: form %>
+        <%= render 'm3_profile_form', m3_profile: @m3_profile, form: form %>
         <div class="panel-footer">
           <div class='pull-right'>
-            <%= form.button :submit, 'Save Changes', class: 'btn btn-primary' %>
-           <% cancel_path = form.object.persisted? ? hyrax.my_m3_profile_path(form.object) : hyrax.my_m3_profiles_path %>
-            | <%= link_to t('.cancel'), cancel_path, class: 'btn btn-default ' %>
+            <%#= form.button :submit, 'Save Changes', class: 'btn btn-primary' %>
+           <%# cancel_path = form.object.persisted? ? hyrax.my_m3_profile_path(form.object) : hyrax.my_m3_profiles_path %>
+            | <%#= link_to t('.cancel'), cancel_path, class: 'btn btn-default ' %>
           </div>
         </div>
       <% end %>

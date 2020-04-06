@@ -11,7 +11,6 @@ class M3ProfileForm extends Component {
       msg: "",
       //schema: props.m3_profile.schema || schema
     };
-    debugger;
     this.renderMessage = this.renderMessage.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
