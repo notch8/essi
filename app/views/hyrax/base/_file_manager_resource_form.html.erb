@@ -7,7 +7,7 @@
       <%= render 'bulk_labeling_form' %>
       <%= render 'file_manager_bulk_form' %>
 
-      <%# essi customization for viewing direction, hint %>
+      <%# essi customization for viewing direction, viewing hint, ocr state %>
       <% if @form.model.respond_to?(:viewing_direction) %>
         <% directions = ['left-to-right', 'right-to-left', 'top-to-bottom', 'bottom-to-top'] %>
         <% selected_direction = @form.model.viewing_direction || directions.first %>
@@ -42,19 +42,21 @@
         </div>
       <% end %>
 
-      <% searchable_opts = ['searchable', 'disabled'] %>
-      <% selected_opt = @form.model.ocr_searchable? ? searchable_opts[0] : searchable_opts[1]%>
-      <%= f.input :ocr_state, as: :hidden, input_html: { data: {member_link: 'ocr_state_option'}, value: selected_opt } %>
-      <div class="form-group <%= f.object.model_name.singular %>_search_opts list-group-item">
-        <legend class="legend-save-work">Search within:</legend>
-        <% searchable_opts.each do |val| %>
-          <div class="radio">
-            <%= content_tag :label do %>
-              <%= tag :input, name: "ocr_state_option", id: "#{f.object.model_name.singular}_ocr_state_#{val}", type: :radio, value: val, checked: (val == selected_opt), class: 'resource-radio-button' %>
-              <%= val %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <% if @form.model.respond_to?(:ocr_searchable?) %>
+        <% searchable_opts = ['searchable', 'disabled'] %>
+        <% selected_opt = @form.model.ocr_searchable? ? searchable_opts[0] : searchable_opts[1]%>
+        <%= f.input :ocr_state, as: :hidden, input_html: { data: {member_link: 'ocr_state_option'}, value: selected_opt } %>
+        <div class="form-group <%= f.object.model_name.singular %>_search_opts list-group-item">
+          <legend class="legend-save-work">Search within:</legend>
+          <% searchable_opts.each do |val| %>
+            <div class="radio">
+              <%= content_tag :label do %>
+                <%= tag :input, name: "ocr_state_option", id: "#{f.object.model_name.singular}_ocr_state_#{val}", type: :radio, value: val, checked: (val == selected_opt), class: 'resource-radio-button' %>
+                <%= val %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>

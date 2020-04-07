@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "app.cantaloupe-env.name" . }}
+data:
+  FEDORA_BASE: http://{{ template "app.fcrepo.name" . }}:8080
+{{- range $key, $value := .Values.env.cantaloupe.configmap }}
+  {{ $key }}: {{ $value | quote }}
+{{- end }}
