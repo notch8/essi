@@ -42,7 +42,7 @@ module Hyrax
         @m3_profile.contexts.build
         @m3_profile.properties.build.texts.build
 
-        new_json_schema = File.open "app/javascript/components/m3_profile_schema.json"
+        new_json_schema = File.open "app/javascript/components/default_schema.json"
         @default_schema = JSON.load new_json_schema
         new_json_schema.close
       end

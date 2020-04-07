@@ -6,13 +6,14 @@ class M3ProfileForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      m3_profile: props.m3_proile,
+      m3_profile: props.m3_profile,
+      formData: props.m3_profile.profile,
       schema: props.schema,
       msg: "",
-      //schema: props.m3_profile.schema || schema
     };
     this.renderMessage = this.renderMessage.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    //debugger;
   }
 
   renderMessage = () => {
@@ -29,24 +30,36 @@ class M3ProfileForm extends Component {
 
   onFormSubmit = ({formData}) => {
     console.log("SUBMITTED");
+    debugger;
     saveData({
-      path: "http://localhost:4000/dashboard/my/m3_profiles/",
+      path: "/dashboard/my/m3_profiles/",
       method: "POST",
       data: formData,
-      schema: this.state.schema
+      schema: this.state.schema,
+      //success: (res) => {
+      //  if (res.success) {
+      //    setMsg({ msg: res.message, type: 'success' })
+      //  } else {
+      //    setMsg({ msg: `${res.message} -- ${res.errors.join(', ')}`, type: 'danger' })
+      //  }
+      //  window.scrollTo({ top: 0, behavior: 'smooth' })
+      //},
+      //fail: (res) => {
+      //  var message = res.message ? res.message : 'There was an error saving your information'
+      //  setMsg({ msg: message, type: 'danger' })
+      //  window.scrollTo({ top: 0, behavior: 'smooth' })
+      //}
     })
   }
-
-  //onSubmit = ({formData}, e) => console.log("Data submitted: ",  formData);
 
   render() {
     return (
       <div>
-        <Form schema={ this.state.schema }
+        <Form key={ this.state.m3_profile.id }
+          schema={ this.state.schema }
           //onChange={log("changed")}
-          //formData={this.state.formData}
+          formData={this.state.formData}
           onSubmit={ this.onFormSubmit }
-          //onSubmit={this.onSubmit}
           //onError={log("errors")} 
         />
       </div>
