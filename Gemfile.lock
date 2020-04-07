@@ -890,9 +890,6 @@ GEM
     xml-simple (1.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zk (1.9.6)
-      zookeeper (~> 1.4.0)
-    zookeeper (1.4.11)
 
 PLATFORMS
   ruby
@@ -953,7 +950,6 @@ DEPENDENCIES
   vcr
   web-console (>= 3.3.0)
   webmock
-  zk
 
 BUNDLED WITH
    2.1.4
