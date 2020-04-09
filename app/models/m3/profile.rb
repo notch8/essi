@@ -24,7 +24,7 @@ module M3
     #validates :profile_version, uniqueness: true
     # callbacks
     before_create :add_date_modified, :add_m3_version
-    after_create :add_profile_data
+    #after_create :add_profile_data
 
     attr_accessor :profile_data
 
