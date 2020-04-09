@@ -12,7 +12,7 @@ export function saveData(options) {
       'Content-Type': 'application/json'
     }
   })
-    .then((res) => res.json())
+    .then((res) => res)
     .then(options.success)
     .catch(options.fail)
 }

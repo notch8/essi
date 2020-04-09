@@ -42,6 +42,7 @@ module Hyrax
         @m3_profile.contexts.build
         @m3_profile.properties.build.texts.build
 
+        #use default json schema
         new_json_schema = File.open "app/javascript/components/default_schema.json"
         @default_schema = JSON.load new_json_schema
         new_json_schema.close
@@ -60,7 +61,7 @@ module Hyrax
       # POST /m3_profiles
       def create
         @m3_profile = M3::Profile.new(profile: m3_profile_params[:data], json_schema: m3_profile_params[:schema])
-        @m3_profile.set_profile_version
+        #@m3_profile.set_profile_version
         M3::FlexibleMetadataConstructor.create_dynamic_schemas(profile: @m3_profile)
         if @m3_profile.save
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'

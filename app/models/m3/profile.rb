@@ -46,17 +46,20 @@ module M3
 
     # @todo - don't save unchanged profiles as new records
     def set_profile_version
-      profile_version ? self.profile_version += 1 : self.profile_version = 1
-      # if we already have this version,
-      #    compare the data,
-      #    if it's the same,
-      #      do nothing;
-      #    if it's different
-      #      return an error "This version already exists,
-      #        please increment the version number"
-      # else
-      #  update version attribute by 1
-      # end
+    #  version = self.profile_version || self.profile.dig(:profile, :profile_version)
+    #  self.profile_version = version.round if version.present?
+    #  version.present? ? self.profile_version += 1 : self.profile_version = 1
+    #  #self.profile_version.present? ? self.profile_version += 1 : self.profile_version = 1
+    #  # if we already have this version,
+    #  #    compare the data,
+    #  #    if it's the same,
+    #  #      do nothing;
+    #  #    if it's different
+    #  #      return an error "This version already exists,
+    #  #        please increment the version number"
+    #  # else
+    #  #  update version attribute by 1
+    #  # end
     end
 
     def add_date_modified
