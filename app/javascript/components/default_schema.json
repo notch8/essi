@@ -15,6 +15,8 @@
     "m3_version": {
       "$id": "#/properties/m3_version",
       "type": "string",
+      "readOnly": true,
+      "default": "1.0.beta2",
       "title": "Schema Version",
       "description": "Version number for the M3 specification. Change this to make a new release. Instances will be validated to check they have this version in place.",
       "pattern": "1.0.beta2"
@@ -79,6 +81,8 @@
           "$id": "#/properties/profile/version",
           "title": "Version",
           "description": "version of the profile",
+          "readOnly": true,
+          "default": 0.0,
           "type": "number",
           "examples": [
             0.8
