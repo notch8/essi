@@ -29,6 +29,7 @@
 //= require nestedSortable/jquery.mjs.nestedSortable
 //= require openseadragon
 //= require hyrax
+//= require flexible_metadata/application
 //= require_tree .
 
 Blacklight.onLoad(function() {
