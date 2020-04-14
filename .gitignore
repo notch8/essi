@@ -44,3 +44,6 @@ public/branding
 
 # Ignore Browse Everything dropbox directory
 staged_files
+
+# Ignore any locally mounted engines
+vendor/engines/
