@@ -47,6 +47,8 @@ WORKDIR /app
 RUN bundle config --global frozen 1
 
 COPY Gemfile Gemfile.lock ./
+# For local development only
+COPY vendor/engines/flexible_metadata  ./vendor/engines/
 RUN gem update bundler
 RUN bundle install -j 2 --retry=3 --deployment --without development
 
