@@ -32,6 +32,16 @@ module M3
       M3::Profile.order("created_at asc").last
     end
 
+    def schema_version
+      return self.profile[:m3_version]
+    end
+
+    def profile_type
+      if self.profile.present?
+        return self.profile[:profile][:type].split.map(&:capitalize).join(' ')
+      end
+    end
+
     def available_classes
       # must be associated with a work
       Hyrax.config.curation_concerns.map(&:to_s)

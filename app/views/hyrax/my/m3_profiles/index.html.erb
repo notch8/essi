@@ -28,8 +28,8 @@
         <table class="table table-striped datatable">
           <thead>
             <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Version</th>
+              <th scope="col">Schema Version</th>
+              <th scope="col">Profile Version</th>
               <th scope="col">Profile Type</th>
               <th scope="col">Created At</th>
               <th scope="col">Updated At</th>
@@ -39,7 +39,7 @@
             <% @m3_profiles.order("updated_at DESC").each do |m3_profile| %>
               <tr>
                 <!-- TODO: fix show pgs --> 
-                <td><%= m3_profile.name %></td>
+                <td><%= m3_profile.schema_version %></td>
                 <td><%= m3_profile.profile_version.to_f %></td>
                 <td><%= m3_profile.profile_type %></td>
                 <td><%= m3_profile.created_at.strftime("%b %d, %Y") %></td>

@@ -12,7 +12,7 @@
           </li>
         </ul>
         <%= simple_form_for @m3_profile, url: hyrax.my_m3_profiles_path, method: :post do |form| %>
-          <%= render 'm3_profile_form', m3_profile: @m3_profile, form: form %>
+          <%= render 'form', m3_profile: @m3_profile, form: form %>
           <div class="panel-footer">
             <div class='pull-right'>
               <%#= form.button :submit, 'Save', class: 'btn btn-primary' %>
