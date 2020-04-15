@@ -59,11 +59,11 @@ module M3
       if M3::Profile.any?
         version = M3::Profile.last.profile_version + 1.0
         self.profile_version = version
-        self.profile[:profile][:profile_version] = version
+        self.profile[:profile][:version] = version
       else
         version = 1.0
         self.profile_version = version
-        self.profile[:profile][:profile_version] = version
+        self.profile[:profile][:version] = version
       end
       # if we already have this version,
       #    compare the data,

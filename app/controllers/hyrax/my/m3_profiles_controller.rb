@@ -82,7 +82,7 @@ module Hyrax
 
       def export
         @m3_profile = M3::Profile.find(params[:m3_profile_id])
-        filename = "#{@m3_profile.name}-v.#{@m3_profile.profile_version}.yml"
+        filename = "#{@m3_profile.name}-v.#{@m3_profile.success}.yml"
         File.open(filename, "w") { |file| file.write(@m3_profile.profile.to_yaml) }
         send_file filename, :type=>"application/yaml", :x_sendfile=>true
       end
@@ -92,7 +92,7 @@ module Hyrax
         @m3_profile.destroy
         message = 'M3Profile was successfully destroyed.'
         message = @m3_profile.errors[:base] if @m3_profile.errors[:base]
-        redirect_to my_m3_profiles_url, notice: message
+        redirect_to my_m3_profiles_url, alert: message
       end
 
       private

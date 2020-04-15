@@ -9,22 +9,8 @@ class M3ProfileForm extends Component {
       m3_profile: props.m3_profile,
       formData: props.m3_profile.profile,
       schema: props.schema,
-      msg: "",
     }
-    this.renderMessage = this.renderMessage.bind(this)
     this.onFormSubmit = this.onFormSubmit.bind(this)
-  }
-
-  renderMessage = () => {
-    if (this.state.msg.msg) {
-      return (
-        <div className={'alert alert-' + this.state.msg.type} >
-        {this.state.msg.msg}
-        </div>
-      )
-    } else {
-      return null
-    }
   }
 
   onFormSubmit = ({formData}) => {
@@ -37,28 +23,34 @@ class M3ProfileForm extends Component {
       schema: this.state.schema,
       success: (res) => {
         if (res.success) {
-          this.state.msg = { msg: res.message, type: 'success' }
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+          window.flash_messages.addMessage({ id: 'id', text: res.message, type: 'success' });
+          window.location.href = index_path
+
         } else {
-          this.state.msg = { msg: `${res.message}`, type: 'danger' }
+          window.flash_messages.addMessage({ id: 'id', text: res.message, type: 'danger' });
         }
-        window.location.href = index_path
       },
       fail: (res) => {
         let message = res.message ? res.message : 'There was an error saving your information'
-        this.state.msg = { msg: message, type: 'danger' }
         window.scrollTo({ top: 0, behavior: 'smooth' })
+        window.flash_messages.addMessage({ id: 'id', text: message, type: 'danger' });
       }
     })
+  }
+
+  onFormError = (data) => {
+    console.log('Error', data)
   }
 
   render() {
     return (
       <div>
-        { this.renderMessage() }
         <Form key={ this.state.m3_profile.id }
           schema={ this.state.schema }
           formData={this.state.formData}
           onSubmit={ this.onFormSubmit }
+          onFormError={this.onFormError}
         />
       </div>
     )
