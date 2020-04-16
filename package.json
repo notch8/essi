@@ -12,6 +12,7 @@
     "react-dom": "^16.13.1",
     "react-jsonschema-form": "^1.8.1",
     "react-jsonschema-form-bs4": "^1.7.1",
+    "react-spinners": "^0.8.1",
     "react-transition-group": "^4.3.0",
     "react_ujs": "^2.6.1",
     "universalviewer": "^3.0.16"
