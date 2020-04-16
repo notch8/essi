@@ -14,6 +14,7 @@ function processForm(schema, uiSchema, formData) {
   let newSchema = JSON.parse(JSON.stringify(schema))
   let newFormData = JSON.parse(JSON.stringify(formData))
   newSchema.properties.properties.additionalProperties.properties.available_on.properties.class.items.enum = Object.getOwnPropertyNames(formData.classes)
+  newSchema.properties.properties.additionalProperties.properties.available_on.properties.context.items.enum = Object.getOwnPropertyNames(formData.contexts)
 
     return {
         schema: newSchema,
