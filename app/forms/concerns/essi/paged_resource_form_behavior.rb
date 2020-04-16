@@ -4,7 +4,7 @@ module ESSI
     # Add behaviors that make this work type unique
 
     included do
-      self.terms += [:holding_location, :publication_place, :viewing_direction, :viewing_hint, :ocr_state]
+      self.terms += [:holding_location, :publication_place, :viewing_direction, :viewing_hint]
     end
   end
 end

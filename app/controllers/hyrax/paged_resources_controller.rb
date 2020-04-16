@@ -10,26 +10,11 @@ module Hyrax
     include ESSI::RemoteMetadataLookupBehavior
     include Hyrax::BreadcrumbsForWorks
     include ESSI::BreadcrumbsForWorks
+    include ESSI::OCRSearch
     include ESSI::StructureBehavior
     self.curation_concern_type = ::PagedResource
 
     # Use this line if you want to use a custom presenter
     self.show_presenter = Hyrax::PagedResourcePresenter
-
-    def show
-      super
-      set_catalog_search_term_for_uv_search
-    end
-
-    def set_catalog_search_term_for_uv_search
-      return unless request&.referer&.present? && request&.referer&.include?('catalog')
-      url_args = request&.referer&.split('&')
-      search_term = []
-      url_args&.each do |arg|
-        next unless arg.match?('q=')
-        search_term << CGI::parse(arg)['q']
-      end
-      params[:highlight] = search_term&.flatten&.first
-    end
   end
 end
