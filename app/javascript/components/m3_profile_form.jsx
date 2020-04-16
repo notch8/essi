@@ -54,6 +54,7 @@ class M3ProfileForm extends Component {
           formData={this.state.formData}
           onSubmit={ this.onFormSubmit }
           onFormError={this.onFormError}
+          showErrorList={ false }
         />
       </div>
     )
