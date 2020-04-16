@@ -6,8 +6,6 @@ import {
 import update from 'immutability-helper';
 import Alert from "./alert"
 
-// jshint esversion: 6
-
 class FlashMessages extends React.Component {
   constructor(props) {
     super(props);

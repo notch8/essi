@@ -5,8 +5,6 @@ import {
 } from 'react-transition-group';
 
 
-// jshint esversion: 6
-
 class Alert extends React.Component {
   componentDidMount() {
     this.timer = setTimeout(

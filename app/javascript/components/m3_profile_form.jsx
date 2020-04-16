@@ -15,27 +15,30 @@ class M3ProfileForm extends Component {
 
   onFormSubmit = ({formData}) => {
     console.log("SUBMITTED")
+    $(":submit").attr("disabled", true)
     const index_path = "/dashboard/my/m3_profiles/"
+
     saveData({
       path: index_path,
       method: "POST",
       data: formData,
       schema: this.state.schema,
       success: (res) => {
-        if (res.success) {
+        let statusCode = res.status
+        if (statusCode == 200) {
+          window.flash_messages.addMessage({ id: 'id', text: 'A new profile version has been saved!', type: 'success' });
           window.scrollTo({ top: 0, behavior: 'smooth' })
-          window.flash_messages.addMessage({ id: 'id', text: res.message, type: 'success' });
           window.location.href = index_path
-
         } else {
-          window.flash_messages.addMessage({ id: 'id', text: res.message, type: 'danger' });
+          window.flash_messages.addMessage({ id: 'id', text: 'There was an error saving your information', type: 'danger' });
+          window.scrollTo({ top: 0, behavior: 'smooth' })
         }
       },
-      fail: (res) => {
-        let message = res.message ? res.message : 'There was an error saving your information'
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-        window.flash_messages.addMessage({ id: 'id', text: message, type: 'danger' });
-      }
+      //fail: (res) => {
+      //  let message = res.message ? res.message : 'There was an error saving your information'
+      //  window.flash_messages.addMessage({ id: 'id', text: message, type: 'danger' });
+      //  window.scrollTo({ top: 0, behavior: 'smooth' })
+      //}
     })
   }
 
