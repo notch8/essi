@@ -3,6 +3,7 @@
 module Hyrax
   module Actors
     class ScientificActor < Hyrax::Actors::BaseActor
+      include ESSI::ApplyOCR
     end
   end
 end

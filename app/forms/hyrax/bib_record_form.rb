@@ -8,6 +8,7 @@ module Hyrax
     self.required_fields -= [:title, :creator, :keyword]
     self.primary_fields = [:title, :creator, :rights_statement]
     include ESSI::BibRecordFormBehavior
+    include ESSI::OCRTerms
     include ESSI::RemoteMetadataFormElements
   end
 end

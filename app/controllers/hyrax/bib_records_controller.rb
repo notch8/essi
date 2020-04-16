@@ -10,6 +10,7 @@ module Hyrax
     include ESSI::RemoteMetadataLookupBehavior
     include Hyrax::BreadcrumbsForWorks
     include ESSI::BreadcrumbsForWorks
+    include ESSI::OCRSearch
     include ESSI::StructureBehavior
     self.curation_concern_type = ::BibRecord
 
