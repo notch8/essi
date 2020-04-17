@@ -99,7 +99,7 @@ module Hyrax
 
       def set_default_schema
         #use default json schema
-        new_json_schema = File.open "app/javascript/components/default_schema.json"
+        new_json_schema = File.open "config/metadata_profiles/default_schema.json"
         @default_schema = JSON.load new_json_schema
         new_json_schema.close
       end
