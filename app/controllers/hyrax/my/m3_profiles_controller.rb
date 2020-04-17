@@ -8,6 +8,7 @@ module Hyrax
         authorize! :manage, M3::Profile
       end
       before_action :set_m3_profile, only: [:show, :destroy]
+      before_action :set_default_schema, only: [:new, :edit]
       with_themed_layout 'dashboard'
 
       #GET /m3_profiles
@@ -41,11 +42,6 @@ module Hyrax
         @m3_profile.classes.build
         @m3_profile.contexts.build
         @m3_profile.properties.build.texts.build
-
-        #use default json schema
-        new_json_schema = File.open "app/javascript/components/default_schema.json"
-        @default_schema = JSON.load new_json_schema
-        new_json_schema.close
       end
 
       # GET /m3_profiles/1/edit
@@ -99,6 +95,13 @@ module Hyrax
       # Use callbacks to share common setup or constraints between actions.
       def set_m3_profile
         @m3_profile = M3::Profile.find(params[:id])
+      end
+
+      def set_default_schema
+        #use default json schema
+        new_json_schema = File.open "app/javascript/components/default_schema.json"
+        @default_schema = JSON.load new_json_schema
+        new_json_schema.close
       end
 
       # Only allow a trusted parameter "white list" through.

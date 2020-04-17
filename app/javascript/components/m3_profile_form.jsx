@@ -1,14 +1,8 @@
 import React, { Component } from "react"
 import Form from './form'
 import { saveData } from '../shared/save_data'
-//import { css } from "@emotion/core";
-//import ClipLoader from "react-spinners/ClipLoader";
-
-//const override = css`
-//  display: block;
-//  margin: 0 auto;
-//  border-color: red;
-//`;
+import { css } from "@emotion/core";
+import RotateLoader from "react-spinners/RotateLoader";
 
 function processForm(schema, uiSchema, formData) {
   let newSchema = JSON.parse(JSON.stringify(schema))
@@ -22,6 +16,27 @@ function processForm(schema, uiSchema, formData) {
         formData: newFormData
     };
 }
+
+function safeStartTurbolinksProgress() {
+  if(!Turbolinks.supported) { return; }
+  Turbolinks.controller.adapter.progressBar.setValue(0);
+  Turbolinks.controller.adapter.progressBar.show();
+}
+
+function safeStopTurbolinksProgress() {
+  if(!Turbolinks.supported) { return; }
+  Turbolinks.controller.adapter.progressBar.hide();
+  Turbolinks.controller.adapter.progressBar.setValue(100);
+}
+
+const override = css`
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  margin-top: -50px;
+  margin-left: -100px;
+`;
 
 class M3ProfileForm extends Component {
   constructor(props) {
@@ -37,6 +52,7 @@ class M3ProfileForm extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.loadSpinner = this.loadSpinner.bind(this)
   }
 
   handleChange = (data) => {
@@ -52,7 +68,10 @@ class M3ProfileForm extends Component {
   onFormSubmit = ({formData}) => {
     console.log("SUBMITTED")
     $(":submit").attr("disabled", true)
+    $("#root").attr("disabled", true)
+
     this.setState({ isLoading: true })
+    safeStartTurbolinksProgress()
     
     const index_path = "/dashboard/my/m3_profiles/"
 
@@ -65,22 +84,37 @@ class M3ProfileForm extends Component {
         let statusCode = res.status
         if (statusCode == 200) {
           window.flash_messages.addMessage({ id: 'id', text: 'A new profile version has been saved!', type: 'success' });
-          this.setState({ isLoading: false })
           window.scrollTo({ top: 0, behavior: 'smooth' })
           window.location.href = index_path
         } else {
           window.flash_messages.addMessage({ id: 'id', text: 'There was an error saving your information', type: 'danger' });
-          this.setState({ isLoading: false })
           window.scrollTo({ top: 0, behavior: 'smooth' })
+          safeStopTurbolinksProgress()
+          this.setState({ isLoading: false })
         }
       },
-      //fail: (res) => {
-      //  let message = res.message ? res.message : 'There was an error saving your information'
-      //  window.flash_messages.addMessage({ id: 'id', text: message, type: 'danger' });
-      //  window.scrollTo({ top: 0, behavior: 'smooth' })
-      //}
+      fail: (res) => {
+        let message = res.message ? res.message : 'There was an error saving your information'
+        window.flash_messages.addMessage({ id: 'id', text: message, type: 'danger' });
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        safeStopTurbolinksProgress()
+        this.setState({ isLoading: false })
+      }
     })
+  }
 
+  loadSpinner = () => {
+    return(
+      <div className="sweet-loading">
+        <RotateLoader
+          css={override}
+          size={35}
+          margin={20}
+          color={"#4A90E2"}
+          loading={this.state.isLoading}
+        />
+      </div>
+    );
   }
 
   onFormError = (data) => {
@@ -89,14 +123,6 @@ class M3ProfileForm extends Component {
 
   render() {
     return (
-      //<div className="sweet-loading">
-      //  <ClipLoader
-      //    css={override}
-      //    size={150}
-      //    color={"#123abc"}
-      //    loading={true}
-      //  />
-      //</div>
       <div>
         <Form key={ this.state.m3_profile.id }
           schema={ this.state.schema }
@@ -107,7 +133,7 @@ class M3ProfileForm extends Component {
           onFormError={this.onFormError}
           showErrorList={ false }
         />
-        {this.state.isLoading ? "Loading..." : "OK"}
+        {this.loadSpinner()}
       </div>
     )
   }
