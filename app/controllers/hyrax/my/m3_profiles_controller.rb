@@ -56,7 +56,7 @@ module Hyrax
 
       # POST /m3_profiles
       def create
-        @m3_profile = M3::Profile.new(profile: m3_profile_params[:data], json_schema: m3_profile_params[:schema])
+        @m3_profile = M3::Profile.new(profile: m3_profile_params[:data])
         M3::FlexibleMetadataConstructor.create_dynamic_schemas(profile: @m3_profile)
         if @m3_profile.save
           redirect_to my_m3_profiles_path, notice: 'M3Profile was successfully created.'
