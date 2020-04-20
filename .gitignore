@@ -47,3 +47,14 @@ staged_files
 
 # Ignore any locally mounted engines
 vendor/engines/
+/public/packs
+/public/packs-test
+yarn-debug.log*
+.yarn-integrity
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
