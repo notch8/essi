@@ -1,7 +1,5 @@
-GIT
-  remote: https://github.com/notch8/flexible_metadata.git
-  revision: 46307a4a8d934c997074d8deee7ab6da1f03f86d
-  branch: ESSI-768-react
+PATH
+  remote: vendor/engines/flexible_metadata
   specs:
     flexible_metadata (0.1.0)
       json_schemer

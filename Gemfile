@@ -95,7 +95,9 @@ gem 'i18n-js'
 gem 'bagit'
 gem 'validatable'
 
-gem 'flexible_metadata', github: 'notch8/flexible_metadata', branch: 'ESSI-768-react'
+# gem 'flexible_metadata', github: 'notch8/flexible_metadata', branch: 'ESSI-768-react'
+# DEVELOPMENT ONLY - SWITCH BACK TO github
+gem 'flexible_metadata', path: 'vendor/engines/flexible_metadata'
 
 gem 'webpacker'
 gem 'react-rails'
