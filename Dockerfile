@@ -28,6 +28,8 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
+# DEV ONLY - REMOVE LATER
+COPY vendor/engines/flexible_metadata vendor/engines/flexible_metadata
 RUN gem update bundler
 RUN bundle install -j 2 --retry=3
 
@@ -47,6 +49,8 @@ WORKDIR /app
 RUN bundle config --global frozen 1
 
 COPY Gemfile Gemfile.lock ./
+# DEV ONLY - REMOVE LATER
+COPY vendor/engines/flexible_metadata vendor/engines/flexible_metadata
 RUN gem update bundler
 RUN bundle install -j 2 --retry=3 --deployment --without development
 
