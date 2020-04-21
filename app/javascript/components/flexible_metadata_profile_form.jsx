@@ -92,7 +92,7 @@ class FlexibleMetadataProfileForm extends Component {
           window.scrollTo({ top: 0, behavior: 'smooth' })
           window.location.href = index_path
         } else {
-          window.flash_messages.addMessage({ id: 'id', text: 'There was an error saving your information', type: 'danger' });
+          window.flash_messages.addMessage({ id: 'id', text: 'There was an error saving your information', type: 'error' });
           window.scrollTo({ top: 0, behavior: 'smooth' })
           //safeStopTurbolinksProgress()
           //this.setState({ isLoading: false })
@@ -100,7 +100,7 @@ class FlexibleMetadataProfileForm extends Component {
       },
       fail: (res) => {
         let message = res.message ? res.message : 'There was an error saving your information'
-        window.flash_messages.addMessage({ id: 'id', text: message, type: 'danger' });
+        window.flash_messages.addMessage({ id: 'id', text: message, type: 'error' });
         window.scrollTo({ top: 0, behavior: 'smooth' })
         //safeStopTurbolinksProgress()
         //this.setState({ isLoading: false })
