@@ -101,3 +101,5 @@ gem 'flexible_metadata', path: 'vendor/engines/flexible_metadata'
 
 gem 'webpacker'
 gem 'react-rails'
+
+gem 'pry'
