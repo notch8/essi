@@ -11,6 +11,8 @@ module Hyrax
     include ESSI::BreadcrumbsForWorks
     include ESSI::OCRSearch
     include ESSI::StructureBehavior
+
+    include FlexibleMetadata::DynamicControllerBehavior
     self.curation_concern_type = ::Image
 
     # Use this line if you want to use a custom presenter

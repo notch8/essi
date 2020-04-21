@@ -1,0 +1,1933 @@
+---
+#-------------------
+# M3 Metadata Model
+#-------------------
+
+# ESSI Sample Profile (see https://github.com/samvera-labs/houndstooth/tree/context)
+
+m3_version: "1.0.beta2"
+
+# Administrative information about the profile/model
+
+profile:
+  responsibility: https://indiana.edu/
+  responsibility_statement: Indiana University
+  date_modified: "2019-07-28"
+  type: concept
+  version: 0.2
+
+classes:
+  Image:
+    display_label: "Image"
+    contexts:
+      - "flexible_context"
+
+contexts:
+  flexible_context:
+    display_label: "Flexible Metadata Example"
+
+properties:
+  title:
+    display_label:
+      default: "Title"
+      Image: "Title for Image"
+      flexible_context: "Title for Image in Context"
+    property_uri: http://purl.org/dc/terms/title
+    available_on:
+      class:
+        - Image
+      context:
+        - flexible_context
+    cardinality:
+      minimum: 1
+    indexing:
+      - "stored_searchable"
+      - "facetable"
+  holding_location:
+    display_label:
+      default: "Holding Location"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/ontologies/bibframe/heldBy
+    cardinality:
+      maximum: 1
+    indexing:
+      - "stored_searchable"
+      - "facetable"
+  series:
+    display_label:
+      default: "Series"
+    available_on:
+      class:
+        - Image
+      context:
+        - flexible_context
+    property_uri: http://id.loc.gov/ontologies/bibframe/seriesStatement 
+    indexing:
+      - "stored_searchable"
+      - "facetable"
+  physical_description:
+    display_label:
+      default: "Physical Description"
+    available_on:
+      class:
+        - Image
+    property_uri: http://www.loc.gov/mods/rdf/v1#physicalExtent
+    cardinality:
+      maximum: 1
+  abridger:
+    display_label:
+      default: "Abridger"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/abr
+  actor:
+    display_label:
+      default: "Actor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/act
+  adapter:
+    display_label:
+      default: "Adapter"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/adp
+  addressee:
+    display_label:
+      default: "Adressee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rcp
+  analyst:
+    display_label:
+      default: "Analyst"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/anl
+  animator:
+    display_label:
+      default: "Animator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/anm
+  annotator:
+    display_label:
+      default: "Annotator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ann
+  appellant:
+    display_label:
+      default: "Appellant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/apl
+  appellee:
+    display_label:
+      default: "Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ape
+  applicant:
+    display_label:
+      default: "Applicant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/app
+  architect:
+    display_label:
+      default: "Architect"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/arc
+  arranger:
+    display_label:
+      default: "Arranger"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/arr
+  art_copyist:
+    display_label:
+      default: "Art Copyist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/acp
+  art_director:
+    display_label:
+      default: "Art Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/adi
+  artist:
+    display_label:
+      default: "Artist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/art
+  artistic_director:
+    display_label:
+      default: "Artistic Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ard
+  assignee:
+    display_label:
+      default: "Assignee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/asg
+  associated_name:
+    display_label:
+      default: "Associated Name"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/asn
+  attributed_name:
+    display_label:
+      default: "Attributed Name"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/att
+  auctioneer:
+    display_label:
+      default: "Auctioneer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/auc
+  author:
+    display_label:
+      default: "Author"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/aut
+  author_in_quotations_or_text_abstracts:
+    display_label:
+      default: "Author in Quotations or Text Abstracts"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/aqt
+  author_of_afterword_colophon_etc:
+    display_label:
+      default: "Author of Afterword, Colophon, etc."
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/aft
+  author_of_dialog:
+    display_label:
+      default: "Author of Dialog"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/aud
+  author_of_introduction_etc:
+    display_label:
+      default: "Author of Instruction, etc."
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/aui
+  autographer:
+    display_label:
+      default: "Autographer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ato
+  bibliographic_antecedent:
+    display_label:
+      default: "Bibliographic Antecendent"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ant
+  binder:
+    display_label:
+      default: "Binder"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/bnd
+  binding_designer:
+    display_label:
+      default: "Binding Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/bdd
+  blurb_writer:
+    display_label:
+      default: "Blurb Writer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/blw
+  book_designer:
+    display_label:
+      default: "Book Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/bkd
+  book_producer:
+    display_label:
+      default: "Book Producer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/bkp
+  bookjacket_designer:
+    display_label:
+      default: "Bookjacket Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/bjd
+  bookplate_designer:
+    display_label:
+      default: "Bookplate Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/bpd
+  bookseller:
+    display_label:
+      default: "Bookseller"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/bsl
+  braille_embosser:
+    display_label:
+      default: "Braille Embosser"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/brl
+  broadcaster:
+    display_label:
+      default: "Broadcaster"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/brd
+  calligrapher:
+    display_label:
+      default: "Calligrapher"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cll
+  cartographer:
+    display_label:
+      default: "Cartographer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ctg
+  caster:
+    display_label:
+      default: "Caster"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cas
+  censor:
+    display_label:
+      default: "Censor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cns
+  choreographer:
+    display_label:
+      default: "Choreographer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/chr
+  cinematographer:
+    display_label:
+      default: "Cinematographer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cng
+  client:
+    display_label:
+      default: "Client"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cli
+  collection_registrar:
+    display_label:
+      default: "Collection Registrar"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cor
+  collector:
+    display_label:
+      default: "Collector"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/col
+  collotyper:
+    display_label:
+      default: "Collotyper"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/clt
+  colorist:
+    display_label:
+      default: "Colorist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/clr
+  commentator:
+    display_label:
+      default: "Commentator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cmm
+  commentator_for_written_text:
+    display_label:
+      default: "Commentator for Written Text"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cwt
+  compiler:
+    display_label:
+      default: "Compiler"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/com
+  complainant:
+    display_label:
+      default: "Complainant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cpl
+  complainant_appellant:
+    display_label:
+      default: "Complainant Appellant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cpt
+  complainant_appellee:
+    display_label:
+      default: "Complainant Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cpe
+  composer:
+    display_label:
+      default: "Composer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cmp
+  compositor:
+    display_label:
+      default: "Compositor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cmt
+  conceptor:
+    display_label:
+      default: "Conceptor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ccp
+  conductor:
+    display_label:
+      default: "Conductor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cnd
+  conservator:
+    display_label:
+      default: "Conservator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/con
+  consultant:
+    display_label:
+      default: "Consultant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/csl
+  consultant_to_a_project:
+    display_label:
+      default: "Consultant to a Project"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/csp
+  contestant:
+    display_label:
+      default: "Contestant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cos
+  contestant_appellant:
+    display_label:
+      default: "Contestant Appellant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cot
+  contestant_appellee:
+    display_label:
+      default: "Contestant Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/coe
+  contestee:
+    display_label:
+      default: "Contestee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cts
+  contestee_appellant:
+    display_label:
+      default: "Contestee Appellant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ctt
+  contestee_appellee:
+    display_label:
+      default: "Contestee Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cte
+  contractor:
+    display_label:
+      default: "Contractor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ctr
+  copyright_claimant:
+    display_label:
+      default: "Copyright Claimant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cpc
+  copyright_holder:
+    display_label:
+      default: "Copyright Holder"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cph
+  corrector:
+    display_label:
+      default: "Corrector"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/crr
+  correspondent:
+    display_label:
+      default: "Correspondent"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/crp
+  costume_designer:
+    display_label:
+      default: "Costume Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cst
+  court_governed:
+    display_label:
+      default: "Court Governed"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cou
+  court_reporter:
+    display_label:
+      default: "Court Reporter"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/crt
+  cover_designer:
+    display_label:
+      default: "Cover Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cov
+  curator:
+    display_label:
+      default: "Curator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/cur
+  dancer:
+    display_label:
+      default: "Dancer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dnc
+  data_contributor:
+    display_label:
+      default: "Data Contributor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dtc
+  data_manager:
+    display_label:
+      default: "Data Manager"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dtm
+  dedicatee:
+    display_label:
+      default: "Dedicatee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dte
+  dedicator:
+    display_label:
+      default: "Dedicator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dto
+  defendant:
+    display_label:
+      default: "Defendant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dfd
+  defendant_appellant:
+    display_label:
+      default: "Defendant Appellant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dft
+  defendant_appellee:
+    display_label:
+      default: "Defendant Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dfe
+  degree_granting_institution:
+    display_label:
+      default: "Degree Granting Institution"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dgg
+  degree_supervisor:
+    display_label:
+      default: "Degree Supervisor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dgs
+  delineator:
+    display_label:
+      default: "Delineator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dln
+  depicted:
+    display_label:
+      default: "Depicted"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dpc
+  designer:
+    display_label:
+      default: "Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dsr
+  director:
+    display_label:
+      default: "Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/drt
+  dissertant:
+    display_label:
+      default: "Dissertant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dis
+  distribution_place:
+    display_label:
+      default: "Distribution Place"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dbp
+  distributor:
+    display_label:
+      default: "Distributor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dst
+  owning_institution:
+    display_label:
+      default: "Owning Institution"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dnr
+  draftsman:
+    display_label:
+      default: "Draftsman"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/drm
+  dubious_author:
+    display_label:
+      default: "Dubious Author"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/dub
+  editor:
+    display_label:
+      default: "Editor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/edt
+  editor_of_compilation:
+    display_label:
+      default: "Editor of Compilation"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/edc
+  editor_of_moving_image_work:
+    display_label:
+      default: "Editor of Moving Image Work"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/edm
+  electrician:
+    display_label:
+      default: "Electrician"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/elg
+  electrotyper:
+    display_label:
+      default: "Electrotyper"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/elt
+  enacting_jurisdiction:
+    display_label:
+      default: "Enacting Jurisdiction"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/enj
+  engineer:
+    display_label:
+      default: "Engineer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/eng
+  engraver:
+    display_label:
+      default: "Engraver"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/egr
+  etcher:
+    display_label:
+      default: "Etcher"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/etr
+  event_place:
+    display_label:
+      default: "Event Place"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/evp
+  expert:
+    display_label:
+      default: "Expert"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/exp
+  facsimilist:
+    display_label:
+      default: "Facsimilist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fac
+  field_director:
+    display_label:
+      default: "Field Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fld
+  film_distributor:
+    display_label:
+      default: "Film Distributor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fds
+  film_director:
+    display_label:
+      default: "Film Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fmd
+  film_editor:
+    display_label:
+      default: "Film Editor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/flm
+  film_producer:
+    display_label:
+      default: "Film Producer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fmp
+  filmmaker:
+    display_label:
+      default: "Filmmaker"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fmk
+  first_party:
+    display_label:
+      default: "First Party"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fpy
+  forger:
+    display_label:
+      default: "Forger"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/frg
+  former_owner:
+    display_label:
+      default: "Former Owner"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fmo
+  funding:
+    display_label:
+      default: "Funding"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/fnd
+  geographic_information_specialist:
+    display_label:
+      default: "Geographic Information Specialist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/gis
+  honoree:
+    display_label:
+      default: "Honoree"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/hnr
+  host:
+    display_label:
+      default: "Host"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/hst
+  host_institution:
+    display_label:
+      default: "Host Institution"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/his
+  illuminator:
+    display_label:
+      default: "Illuminator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ilu
+  illustrator:
+    display_label:
+      default: "Illustrator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ill
+  inscriber:
+    display_label:
+      default: "Inscriber"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ins
+  instrumentalist:
+    display_label:
+      default: "Instrumentalist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/itr
+  interviewee:
+    display_label:
+      default: "Interviewee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ive
+  interviewer:
+    display_label:
+      default: "Interviewer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ivr
+  author:
+    display_label:
+      default: "Author"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/inv
+  issuing_body:
+    display_label:
+      default: "Issuing Body"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/isb
+  judge:
+    display_label:
+      default: "Judge"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/jud
+  jurisdiction_governed:
+    display_label:
+      default: "Jurisdiction Governed"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/jug
+  laboratory:
+    display_label:
+      default: "Laboratory"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lbr
+  laboratory_director:
+    display_label:
+      default: "Laboratory Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ldr
+  landscape_architect:
+    display_label:
+      default: "Landscape Architect"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lsa
+  lead:
+    display_label:
+      default: "Lead"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/led
+  lender:
+    display_label:
+      default: "Lender"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/len
+  libelant:
+    display_label:
+      default: "Libelant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lil
+  libelant_appellant:
+    display_label:
+      default: "Libelant Appellant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lit
+  libelant_appellee:
+    display_label:
+      default: "Libelant Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lie
+  libelee:
+    display_label:
+      default: "Libelee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lel
+  libelee_appellant:
+    display_label:
+      default: "Libelee Appellant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/let
+  libelee_appellee:
+    display_label:
+      default: "Libelee Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lee
+  librettist:
+    display_label:
+      default: "Librettist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lbt
+  licensee:
+    display_label:
+      default: "Licensee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lse
+  licensor:
+    display_label:
+      default: "Licensor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lso
+  lighting_designer:
+    display_label:
+      default: "Lighting Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lgd
+  lithographer:
+    display_label:
+      default: "Lithographer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ltg
+  lyricist:
+    display_label:
+      default: "Lyricist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/lyr
+  manufacture_place:
+    display_label:
+      default: "Manufacture Place"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mfp
+  manufacturer:
+    display_label:
+      default: "Manufacturer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mfr
+  marbler:
+    display_label:
+      default: "Marbler"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mrb
+  markup_editor:
+    display_label:
+      default: "Markup Editor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mrk
+  medium:
+    display_label:
+      default: "Medium"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/med
+  metadata_contact:
+    display_label:
+      default: "Metadata Contact"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mdc
+  metal_engraver:
+    display_label:
+      default: "Metal Engraver"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mte
+  minute_taker:
+    display_label:
+      default: "Minute Taker"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mtk
+  moderator:
+    display_label:
+      default: "Moderator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mod
+  monitor:
+    display_label:
+      default: "Monitor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mon
+  music_copyist:
+    display_label:
+      default: "Music Copyist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mcp
+  musical_director:
+    display_label:
+      default: "Musical Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/msd
+  musician:
+    display_label:
+      default: "Musician"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/mus
+  narrator:
+    display_label:
+      default: "Narrator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/nrt
+  onscreen_presenter:
+    display_label:
+      default: "Onscreen Presenter"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/osp
+  opponent:
+    display_label:
+      default: "Opponent"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/opn
+  organizer:
+    display_label:
+      default: "Organizer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/orm
+  originator:
+    display_label:
+      default: "Originator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/org
+  other:
+    display_label:
+      default: "Other"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/oth
+  owner:
+    display_label:
+      default: "Owner"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/own
+  panelist:
+    display_label:
+      default: "Panelist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pan
+  papermaker:
+    display_label:
+      default: "Papermaker"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ppm
+  patent_applicant:
+    display_label:
+      default: "Patent Applicant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pta
+  patent_holder:
+    display_label:
+      default: "Patent Holder"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pth
+  patron:
+    display_label:
+      default: "Patron"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pat
+  performer:
+    display_label:
+      default: "Performer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prf
+  permitting_agency:
+    display_label:
+      default: "Permitting Agency"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pma
+  photographer:
+    display_label:
+      default: "Photographer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pht
+  plaintiff:
+    display_label:
+      default: "Plaintiff"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ptf
+  plaintiff_appellant:
+    display_label:
+      default: "Plantiff Appellant"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ptt
+  plaintiff_appellee:
+    display_label:
+      default: "Plantiff Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pte
+  platemaker:
+    display_label:
+      default: "Platemaker"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/plt
+  praeses:
+    display_label:
+      default: "Praeses"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pra
+  presenter:
+    display_label:
+      default: "Presenter"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pre
+  printer:
+    display_label:
+      default: "Printer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prt
+  printer_of_plates:
+    display_label:
+      default: "Printer of Plates"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pop
+  printmaker:
+    display_label:
+      default: "Printmaker"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prm
+  process_contact:
+    display_label:
+      default: "Process Contact"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prc
+  producer:
+    display_label:
+      default: "Producer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pro
+  production_company:
+    display_label:
+      default: "Production Company"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prn
+  production_designer:
+    display_label:
+      default: "Production Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prs
+  production_manager:
+    display_label:
+      default: "Production Manager"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pmn
+  production_personnel:
+    display_label:
+      default: "Production Personnel"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prd
+  production_place:
+    display_label:
+      default: "Production Place"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prp
+  programmer:
+    display_label:
+      default: "Programmer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prg
+  project_director:
+    display_label:
+      default: "Project Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pdr
+  proofreader:
+    display_label:
+      default: "Proofreader"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pfr
+  provider:
+    display_label:
+      default: "Provider"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/prv
+  publication_place:
+    display_label:
+      default: "Publication Place"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pup
+  publishing_director:
+    display_label:
+      default: "Publishing Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/pbd
+  puppeteer:
+    display_label:
+      default: "Puppeteer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ppt
+  radio_director:
+    display_label:
+      default: "Radio Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rdd
+  radio_producer:
+    display_label:
+      default: "Radio Producer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rpc
+  recording_engineer:
+    display_label:
+      default: "Recording Engineer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rce
+  recordist:
+    display_label:
+      default: "Recordist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rcd
+  redaktor:
+    display_label:
+      default: "Redaktor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/red
+  renderer:
+    display_label:
+      default: "Renderer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ren
+  reporter:
+    display_label:
+      default: "Reporter"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rpt
+  marc_repository:
+    display_label:
+      default: "Marc Repository"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rps
+  research_team_head:
+    display_label:
+      default: "Research Team Head"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rth
+  research_team_member:
+    display_label:
+      default: "Research Team Member"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rtm
+  researcher:
+    display_label:
+      default: "Researcher"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/res
+  respondent:
+    display_label:
+      default: "Respondent"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rsp
+  respondent_appellant:
+    display_label:
+      default: "Respondent Appellent"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rst
+  respondent_appellee:
+    display_label:
+      default: "Respondent Appellee"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rse
+  responsible_party:
+    display_label:
+      default: "Responsible Party"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rpy
+  restager:
+    display_label:
+      default: "Restager"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rsg
+  restorationist:
+    display_label:
+      default: "Restorationist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rsr
+  reviewer:
+    display_label:
+      default: "Reviewer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rev
+  rubricator:
+    display_label:
+      default: "Rubricator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/rbr
+  scenarist:
+    display_label:
+      default: "Scenarist"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sce
+  scientific_advisor:
+    display_label:
+      default: "Scientific Advisor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sad
+  screenwriter:
+    display_label:
+      default: "Screenwriter"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/aus
+  scribe:
+    display_label:
+      default: "Scribe"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/scr
+  sculptor:
+    display_label:
+      default: "Sculptor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/scl
+  second_party:
+    display_label:
+      default: "Second Party"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/spy
+  secretary:
+    display_label:
+      default: "Secretary"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sec
+  seller:
+    display_label:
+      default: "Seller"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sll
+  set_designer:
+    display_label:
+      default: "Set Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/std
+  setting:
+    display_label:
+      default: "Setting"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/stg
+  signer:
+    display_label:
+      default: "Signer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sgn
+  singer:
+    display_label:
+      default: "Singer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sng
+  sound_designer:
+    display_label:
+      default: "Sound Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sds
+  speaker:
+    display_label:
+      default: "Speaker"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/spk
+  sponsor:
+    display_label:
+      default: "Sponsor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/spn
+  stage_director:
+    display_label:
+      default: "Stage Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sgd
+  stage_manager:
+    display_label:
+      default: "Stage Manager"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/stm
+  standards_body:
+    display_label:
+      default: "Standards Body"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/stn
+  stereotyper:
+    display_label:
+      default: "Stereotyper"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/str
+  storyteller:
+    display_label:
+      default: "Storyteller"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/stl
+  supporting_host:
+    display_label:
+      default: "Supporting Host"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/sht
+  surveyor:
+    display_label:
+      default: "Surveyor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/srv
+  teacher:
+    display_label:
+      default: "Teacher"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/tch
+  technical_director:
+    display_label:
+      default: "Technical Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/tcd
+  television_director:
+    display_label:
+      default: "Television Director"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/tld
+  television_producer:
+    display_label:
+      default: "Television Producer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/tlp
+  thesis_advisor:
+    display_label:
+      default: "Thesis Advisor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/ths
+  transcriber:
+    display_label:
+      default: "Transcriber"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/trc
+  translator:
+    display_label:
+      default: "Translator"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/trl
+  type_designer:
+    display_label:
+      default: "Type Designer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/tyd
+  typographer:
+    display_label:
+      default: "Typographer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/tyg
+  university_place:
+    display_label:
+      default: "University Place"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/uvp
+  videographer:
+    display_label:
+      default: "Videographer"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/vdg
+  voice_actor:
+    display_label:
+      default: "Voice Actor"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/vac
+  witness:
+    display_label:
+      default: "Witness"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wit
+  wood_engraver:
+    display_label:
+      default: "Wood Engraver"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wde
+  woodcutter:
+    display_label:
+      default: "Woodcutter"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wdc
+  writer_of_accompanying_material:
+    display_label:
+      default: "Writer of Accompanying Material"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wam
+  writer_of_added_commentary:
+    display_label:
+      default: "Writer of Added Commentary"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wac
+  writer_of_added_text:
+    display_label:
+      default: "Writer of Added Text"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wat
+  writer_of_added_lyrics:
+    display_label:
+      default: "Writer of Added Lyrics"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wal
+  writer_of_supplementary_textual_content:
+    display_label:
+      default: "Writer of Supplementary Textual Content"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wst
+  writer_of_introduction:
+    display_label:
+      default: "Writer of Introductions"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/win
+  writer_of_preface:
+    display_label:
+      default: "Writer of Preface"
+    available_on:
+      class:
+        - Image
+    property_uri: http://id.loc.gov/vocabulary/relators/wpr
+  digital_specifications:
+    display_label:
+        default: "Digital Specifications"
+    available_on:
+      class:
+        - Image
+    property_uri: http://purl.org/dc/elements/1.1/format

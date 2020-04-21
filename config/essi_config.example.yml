@@ -26,7 +26,7 @@ default: &default
       store: memory_store
       options:
     active_job:
-      queue_adapter: async
+      queue_adapter: sidekiq
   # cantaloupe:
   #   iiif_server_url: http://localhost:8182/iiif/2/
   derivatives:
