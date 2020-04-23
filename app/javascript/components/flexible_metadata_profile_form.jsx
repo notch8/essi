@@ -10,6 +10,7 @@ function processForm(schema, uiSchema, formData) {
 
   if ( formData.classes !== undefined ) {
     newSchema.properties.properties.additionalProperties.properties.available_on.properties.class.items.enum = Object.getOwnPropertyNames(formData.classes)
+    newSchema.properties.classes.additionalProperties.properties.contexts.items.enum = Object.getOwnPropertyNames(formData.contexts)
   }
   if ( formData.contexts !== undefined ) {
     newSchema.properties.properties.additionalProperties.properties.available_on.properties.context.items.enum = Object.getOwnPropertyNames(formData.contexts)
@@ -94,16 +95,16 @@ class FlexibleMetadataProfileForm extends Component {
         } else {
           window.flash_messages.addMessage({ id: 'id', text: 'There was an error saving your information', type: 'error' });
           window.scrollTo({ top: 0, behavior: 'smooth' })
-          //safeStopTurbolinksProgress()
-          //this.setState({ isLoading: false })
+          safeStopTurbolinksProgress()
+          this.setState({ isLoading: false })
         }
       },
       fail: (res) => {
         let message = res.message ? res.message : 'There was an error saving your information'
         window.flash_messages.addMessage({ id: 'id', text: message, type: 'error' });
         window.scrollTo({ top: 0, behavior: 'smooth' })
-        //safeStopTurbolinksProgress()
-        //this.setState({ isLoading: false })
+        safeStopTurbolinksProgress()
+        this.setState({ isLoading: false })
       }
     })
   }
