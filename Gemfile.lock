@@ -598,6 +598,9 @@ GEM
     posix-spawn (0.3.13)
     power_converter (0.1.2)
     powerpack (0.1.2)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     public_suffix (4.0.4)
     pul_uv_rails (2.0.1)
     puma (3.12.4)
@@ -944,6 +947,7 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-iu-cas
+  pry
   puma
   rails (~> 5.1.6)
   rails-controller-testing
