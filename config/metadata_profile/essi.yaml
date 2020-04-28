@@ -21,6 +21,12 @@ classes:
     display_label: "Image"
     contexts:
       - "flexible_context"
+  PagedResource:
+    display_label: "Paged Resource"
+  Scientific:
+    display_label: "Scientific"
+  BibRecord:
+    display_label: "Bib Record"
 
 contexts:
   flexible_context:
@@ -36,6 +42,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
       context:
         - flexible_context
     cardinality:
@@ -49,6 +58,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/ontologies/bibframe/heldBy
     cardinality:
       maximum: 1
@@ -61,6 +73,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
       context:
         - flexible_context
     property_uri: http://id.loc.gov/ontologies/bibframe/seriesStatement 
@@ -73,6 +88,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://www.loc.gov/mods/rdf/v1#physicalExtent
     cardinality:
       maximum: 1
@@ -82,6 +100,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/abr
   actor:
     display_label:
@@ -89,6 +110,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/act
   adapter:
     display_label:
@@ -96,6 +120,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/adp
   addressee:
     display_label:
@@ -103,6 +130,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rcp
   analyst:
     display_label:
@@ -110,6 +140,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/anl
   animator:
     display_label:
@@ -117,6 +150,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/anm
   annotator:
     display_label:
@@ -124,6 +160,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ann
   appellant:
     display_label:
@@ -131,6 +170,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/apl
   appellee:
     display_label:
@@ -138,6 +180,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ape
   applicant:
     display_label:
@@ -145,6 +190,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/app
   architect:
     display_label:
@@ -152,6 +200,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/arc
   arranger:
     display_label:
@@ -159,6 +210,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/arr
   art_copyist:
     display_label:
@@ -166,6 +220,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/acp
   art_director:
     display_label:
@@ -173,6 +230,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/adi
   artist:
     display_label:
@@ -180,6 +240,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/art
   artistic_director:
     display_label:
@@ -187,6 +250,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ard
   assignee:
     display_label:
@@ -194,6 +260,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/asg
   associated_name:
     display_label:
@@ -201,6 +270,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/asn
   attributed_name:
     display_label:
@@ -208,6 +280,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/att
   auctioneer:
     display_label:
@@ -215,6 +290,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/auc
   author:
     display_label:
@@ -222,6 +300,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/aut
   author_in_quotations_or_text_abstracts:
     display_label:
@@ -229,6 +310,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/aqt
   author_of_afterword_colophon_etc:
     display_label:
@@ -236,6 +320,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/aft
   author_of_dialog:
     display_label:
@@ -243,6 +330,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/aud
   author_of_introduction_etc:
     display_label:
@@ -250,6 +340,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/aui
   autographer:
     display_label:
@@ -257,6 +350,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ato
   bibliographic_antecedent:
     display_label:
@@ -264,6 +360,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ant
   binder:
     display_label:
@@ -271,6 +370,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/bnd
   binding_designer:
     display_label:
@@ -278,6 +380,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/bdd
   blurb_writer:
     display_label:
@@ -285,6 +390,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/blw
   book_designer:
     display_label:
@@ -292,6 +400,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/bkd
   book_producer:
     display_label:
@@ -299,6 +410,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/bkp
   bookjacket_designer:
     display_label:
@@ -306,6 +420,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/bjd
   bookplate_designer:
     display_label:
@@ -313,6 +430,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/bpd
   bookseller:
     display_label:
@@ -320,6 +440,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/bsl
   braille_embosser:
     display_label:
@@ -327,6 +450,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/brl
   broadcaster:
     display_label:
@@ -334,6 +460,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/brd
   calligrapher:
     display_label:
@@ -341,6 +470,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cll
   cartographer:
     display_label:
@@ -348,6 +480,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ctg
   caster:
     display_label:
@@ -355,6 +490,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cas
   censor:
     display_label:
@@ -362,6 +500,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cns
   choreographer:
     display_label:
@@ -369,6 +510,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/chr
   cinematographer:
     display_label:
@@ -376,6 +520,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cng
   client:
     display_label:
@@ -383,6 +530,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cli
   collection_registrar:
     display_label:
@@ -390,6 +540,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cor
   collector:
     display_label:
@@ -397,6 +550,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/col
   collotyper:
     display_label:
@@ -404,6 +560,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/clt
   colorist:
     display_label:
@@ -411,6 +570,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/clr
   commentator:
     display_label:
@@ -418,6 +580,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cmm
   commentator_for_written_text:
     display_label:
@@ -425,6 +590,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cwt
   compiler:
     display_label:
@@ -432,6 +600,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/com
   complainant:
     display_label:
@@ -439,6 +610,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cpl
   complainant_appellant:
     display_label:
@@ -446,6 +620,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cpt
   complainant_appellee:
     display_label:
@@ -453,6 +630,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cpe
   composer:
     display_label:
@@ -460,6 +640,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cmp
   compositor:
     display_label:
@@ -467,6 +650,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cmt
   conceptor:
     display_label:
@@ -474,6 +660,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ccp
   conductor:
     display_label:
@@ -481,6 +670,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cnd
   conservator:
     display_label:
@@ -488,6 +680,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/con
   consultant:
     display_label:
@@ -495,6 +690,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/csl
   consultant_to_a_project:
     display_label:
@@ -502,6 +700,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/csp
   contestant:
     display_label:
@@ -509,6 +710,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cos
   contestant_appellant:
     display_label:
@@ -516,6 +720,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cot
   contestant_appellee:
     display_label:
@@ -523,6 +730,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/coe
   contestee:
     display_label:
@@ -530,6 +740,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cts
   contestee_appellant:
     display_label:
@@ -537,6 +750,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ctt
   contestee_appellee:
     display_label:
@@ -544,6 +760,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cte
   contractor:
     display_label:
@@ -551,6 +770,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ctr
   copyright_claimant:
     display_label:
@@ -558,6 +780,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cpc
   copyright_holder:
     display_label:
@@ -565,6 +790,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cph
   corrector:
     display_label:
@@ -572,6 +800,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/crr
   correspondent:
     display_label:
@@ -579,6 +810,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/crp
   costume_designer:
     display_label:
@@ -586,6 +820,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cst
   court_governed:
     display_label:
@@ -593,6 +830,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cou
   court_reporter:
     display_label:
@@ -600,6 +840,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/crt
   cover_designer:
     display_label:
@@ -607,6 +850,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cov
   curator:
     display_label:
@@ -614,6 +860,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/cur
   dancer:
     display_label:
@@ -621,6 +870,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dnc
   data_contributor:
     display_label:
@@ -628,6 +880,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dtc
   data_manager:
     display_label:
@@ -635,6 +890,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dtm
   dedicatee:
     display_label:
@@ -642,6 +900,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dte
   dedicator:
     display_label:
@@ -649,6 +910,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dto
   defendant:
     display_label:
@@ -656,6 +920,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dfd
   defendant_appellant:
     display_label:
@@ -663,6 +930,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dft
   defendant_appellee:
     display_label:
@@ -670,6 +940,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dfe
   degree_granting_institution:
     display_label:
@@ -677,6 +950,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dgg
   degree_supervisor:
     display_label:
@@ -684,6 +960,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dgs
   delineator:
     display_label:
@@ -691,6 +970,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dln
   depicted:
     display_label:
@@ -698,6 +980,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dpc
   designer:
     display_label:
@@ -705,6 +990,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dsr
   director:
     display_label:
@@ -712,6 +1000,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/drt
   dissertant:
     display_label:
@@ -719,6 +1010,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dis
   distribution_place:
     display_label:
@@ -726,6 +1020,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dbp
   distributor:
     display_label:
@@ -733,6 +1030,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dst
   owning_institution:
     display_label:
@@ -740,6 +1040,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dnr
   draftsman:
     display_label:
@@ -747,6 +1050,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/drm
   dubious_author:
     display_label:
@@ -754,6 +1060,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/dub
   editor:
     display_label:
@@ -761,6 +1070,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/edt
   editor_of_compilation:
     display_label:
@@ -768,6 +1080,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/edc
   editor_of_moving_image_work:
     display_label:
@@ -775,6 +1090,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/edm
   electrician:
     display_label:
@@ -782,6 +1100,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/elg
   electrotyper:
     display_label:
@@ -789,6 +1110,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/elt
   enacting_jurisdiction:
     display_label:
@@ -796,6 +1120,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/enj
   engineer:
     display_label:
@@ -803,6 +1130,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/eng
   engraver:
     display_label:
@@ -810,6 +1140,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/egr
   etcher:
     display_label:
@@ -817,6 +1150,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/etr
   event_place:
     display_label:
@@ -824,6 +1160,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/evp
   expert:
     display_label:
@@ -831,6 +1170,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/exp
   facsimilist:
     display_label:
@@ -838,6 +1180,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fac
   field_director:
     display_label:
@@ -845,6 +1190,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fld
   film_distributor:
     display_label:
@@ -852,6 +1200,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fds
   film_director:
     display_label:
@@ -859,6 +1210,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fmd
   film_editor:
     display_label:
@@ -866,6 +1220,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/flm
   film_producer:
     display_label:
@@ -873,6 +1230,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fmp
   filmmaker:
     display_label:
@@ -880,6 +1240,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fmk
   first_party:
     display_label:
@@ -887,6 +1250,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fpy
   forger:
     display_label:
@@ -894,6 +1260,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/frg
   former_owner:
     display_label:
@@ -901,6 +1270,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fmo
   funding:
     display_label:
@@ -908,6 +1280,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/fnd
   geographic_information_specialist:
     display_label:
@@ -915,6 +1290,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/gis
   honoree:
     display_label:
@@ -922,6 +1300,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/hnr
   host:
     display_label:
@@ -929,6 +1310,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/hst
   host_institution:
     display_label:
@@ -936,6 +1320,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/his
   illuminator:
     display_label:
@@ -943,6 +1330,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ilu
   illustrator:
     display_label:
@@ -950,6 +1340,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ill
   inscriber:
     display_label:
@@ -957,6 +1350,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ins
   instrumentalist:
     display_label:
@@ -964,6 +1360,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/itr
   interviewee:
     display_label:
@@ -971,6 +1370,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ive
   interviewer:
     display_label:
@@ -978,6 +1380,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ivr
   author:
     display_label:
@@ -985,6 +1390,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/inv
   issuing_body:
     display_label:
@@ -992,6 +1400,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/isb
   judge:
     display_label:
@@ -999,6 +1410,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/jud
   jurisdiction_governed:
     display_label:
@@ -1006,6 +1420,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/jug
   laboratory:
     display_label:
@@ -1013,6 +1430,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lbr
   laboratory_director:
     display_label:
@@ -1020,6 +1440,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ldr
   landscape_architect:
     display_label:
@@ -1027,6 +1450,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lsa
   lead:
     display_label:
@@ -1034,6 +1460,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/led
   lender:
     display_label:
@@ -1041,6 +1470,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/len
   libelant:
     display_label:
@@ -1048,6 +1480,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lil
   libelant_appellant:
     display_label:
@@ -1055,6 +1490,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lit
   libelant_appellee:
     display_label:
@@ -1062,6 +1500,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lie
   libelee:
     display_label:
@@ -1069,6 +1510,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lel
   libelee_appellant:
     display_label:
@@ -1076,6 +1520,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/let
   libelee_appellee:
     display_label:
@@ -1083,6 +1530,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lee
   librettist:
     display_label:
@@ -1090,6 +1540,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lbt
   licensee:
     display_label:
@@ -1097,6 +1550,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lse
   licensor:
     display_label:
@@ -1104,6 +1560,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lso
   lighting_designer:
     display_label:
@@ -1111,6 +1570,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lgd
   lithographer:
     display_label:
@@ -1118,6 +1580,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ltg
   lyricist:
     display_label:
@@ -1125,6 +1590,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/lyr
   manufacture_place:
     display_label:
@@ -1132,6 +1600,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mfp
   manufacturer:
     display_label:
@@ -1139,6 +1610,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mfr
   marbler:
     display_label:
@@ -1146,6 +1620,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mrb
   markup_editor:
     display_label:
@@ -1153,6 +1630,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mrk
   medium:
     display_label:
@@ -1160,6 +1640,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/med
   metadata_contact:
     display_label:
@@ -1167,6 +1650,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mdc
   metal_engraver:
     display_label:
@@ -1174,6 +1660,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mte
   minute_taker:
     display_label:
@@ -1181,6 +1670,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mtk
   moderator:
     display_label:
@@ -1188,6 +1680,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mod
   monitor:
     display_label:
@@ -1195,6 +1690,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mon
   music_copyist:
     display_label:
@@ -1202,6 +1700,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mcp
   musical_director:
     display_label:
@@ -1209,6 +1710,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/msd
   musician:
     display_label:
@@ -1216,6 +1720,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/mus
   narrator:
     display_label:
@@ -1223,6 +1730,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/nrt
   onscreen_presenter:
     display_label:
@@ -1230,6 +1740,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/osp
   opponent:
     display_label:
@@ -1237,6 +1750,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/opn
   organizer:
     display_label:
@@ -1244,6 +1760,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/orm
   originator:
     display_label:
@@ -1251,6 +1770,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/org
   other:
     display_label:
@@ -1258,6 +1780,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/oth
   owner:
     display_label:
@@ -1265,6 +1790,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/own
   panelist:
     display_label:
@@ -1272,6 +1800,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pan
   papermaker:
     display_label:
@@ -1279,6 +1810,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ppm
   patent_applicant:
     display_label:
@@ -1286,6 +1820,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pta
   patent_holder:
     display_label:
@@ -1293,6 +1830,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pth
   patron:
     display_label:
@@ -1300,6 +1840,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pat
   performer:
     display_label:
@@ -1307,6 +1850,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prf
   permitting_agency:
     display_label:
@@ -1314,6 +1860,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pma
   photographer:
     display_label:
@@ -1321,6 +1870,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pht
   plaintiff:
     display_label:
@@ -1328,6 +1880,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ptf
   plaintiff_appellant:
     display_label:
@@ -1335,6 +1890,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ptt
   plaintiff_appellee:
     display_label:
@@ -1342,6 +1900,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pte
   platemaker:
     display_label:
@@ -1349,6 +1910,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/plt
   praeses:
     display_label:
@@ -1356,6 +1920,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pra
   presenter:
     display_label:
@@ -1363,6 +1930,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pre
   printer:
     display_label:
@@ -1370,6 +1940,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prt
   printer_of_plates:
     display_label:
@@ -1377,6 +1950,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pop
   printmaker:
     display_label:
@@ -1384,6 +1960,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prm
   process_contact:
     display_label:
@@ -1391,6 +1970,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prc
   producer:
     display_label:
@@ -1398,6 +1980,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pro
   production_company:
     display_label:
@@ -1405,6 +1990,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prn
   production_designer:
     display_label:
@@ -1412,6 +2000,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prs
   production_manager:
     display_label:
@@ -1419,6 +2010,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pmn
   production_personnel:
     display_label:
@@ -1426,6 +2020,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prd
   production_place:
     display_label:
@@ -1433,6 +2030,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prp
   programmer:
     display_label:
@@ -1440,6 +2040,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prg
   project_director:
     display_label:
@@ -1447,6 +2050,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pdr
   proofreader:
     display_label:
@@ -1454,6 +2060,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pfr
   provider:
     display_label:
@@ -1461,6 +2070,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/prv
   publication_place:
     display_label:
@@ -1468,6 +2080,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pup
   publishing_director:
     display_label:
@@ -1475,6 +2090,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/pbd
   puppeteer:
     display_label:
@@ -1482,6 +2100,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ppt
   radio_director:
     display_label:
@@ -1489,6 +2110,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rdd
   radio_producer:
     display_label:
@@ -1496,6 +2120,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rpc
   recording_engineer:
     display_label:
@@ -1503,6 +2130,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rce
   recordist:
     display_label:
@@ -1510,6 +2140,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rcd
   redaktor:
     display_label:
@@ -1517,6 +2150,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/red
   renderer:
     display_label:
@@ -1524,6 +2160,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ren
   reporter:
     display_label:
@@ -1531,6 +2170,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rpt
   marc_repository:
     display_label:
@@ -1538,6 +2180,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rps
   research_team_head:
     display_label:
@@ -1545,6 +2190,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rth
   research_team_member:
     display_label:
@@ -1552,6 +2200,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rtm
   researcher:
     display_label:
@@ -1559,6 +2210,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/res
   respondent:
     display_label:
@@ -1566,6 +2220,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rsp
   respondent_appellant:
     display_label:
@@ -1573,6 +2230,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rst
   respondent_appellee:
     display_label:
@@ -1580,6 +2240,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rse
   responsible_party:
     display_label:
@@ -1587,6 +2250,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rpy
   restager:
     display_label:
@@ -1594,6 +2260,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rsg
   restorationist:
     display_label:
@@ -1601,6 +2270,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rsr
   reviewer:
     display_label:
@@ -1608,6 +2280,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rev
   rubricator:
     display_label:
@@ -1615,6 +2290,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/rbr
   scenarist:
     display_label:
@@ -1622,6 +2300,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sce
   scientific_advisor:
     display_label:
@@ -1629,6 +2310,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sad
   screenwriter:
     display_label:
@@ -1636,6 +2320,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/aus
   scribe:
     display_label:
@@ -1643,6 +2330,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/scr
   sculptor:
     display_label:
@@ -1650,6 +2340,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/scl
   second_party:
     display_label:
@@ -1657,6 +2350,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/spy
   secretary:
     display_label:
@@ -1664,6 +2360,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sec
   seller:
     display_label:
@@ -1671,6 +2370,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sll
   set_designer:
     display_label:
@@ -1678,6 +2380,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/std
   setting:
     display_label:
@@ -1685,6 +2390,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/stg
   signer:
     display_label:
@@ -1692,6 +2400,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sgn
   singer:
     display_label:
@@ -1699,6 +2410,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sng
   sound_designer:
     display_label:
@@ -1706,6 +2420,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sds
   speaker:
     display_label:
@@ -1713,6 +2430,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/spk
   sponsor:
     display_label:
@@ -1720,6 +2440,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/spn
   stage_director:
     display_label:
@@ -1727,6 +2450,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sgd
   stage_manager:
     display_label:
@@ -1734,6 +2460,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/stm
   standards_body:
     display_label:
@@ -1741,6 +2470,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/stn
   stereotyper:
     display_label:
@@ -1748,6 +2480,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/str
   storyteller:
     display_label:
@@ -1755,6 +2490,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/stl
   supporting_host:
     display_label:
@@ -1762,6 +2500,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/sht
   surveyor:
     display_label:
@@ -1769,6 +2510,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/srv
   teacher:
     display_label:
@@ -1776,6 +2520,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/tch
   technical_director:
     display_label:
@@ -1783,6 +2530,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/tcd
   television_director:
     display_label:
@@ -1790,6 +2540,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/tld
   television_producer:
     display_label:
@@ -1797,6 +2550,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/tlp
   thesis_advisor:
     display_label:
@@ -1804,6 +2560,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/ths
   transcriber:
     display_label:
@@ -1811,6 +2570,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/trc
   translator:
     display_label:
@@ -1818,6 +2580,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/trl
   type_designer:
     display_label:
@@ -1825,6 +2590,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/tyd
   typographer:
     display_label:
@@ -1832,6 +2600,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/tyg
   university_place:
     display_label:
@@ -1839,6 +2610,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/uvp
   videographer:
     display_label:
@@ -1846,6 +2620,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/vdg
   voice_actor:
     display_label:
@@ -1853,6 +2630,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/vac
   witness:
     display_label:
@@ -1860,6 +2640,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wit
   wood_engraver:
     display_label:
@@ -1867,6 +2650,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wde
   woodcutter:
     display_label:
@@ -1874,6 +2660,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wdc
   writer_of_accompanying_material:
     display_label:
@@ -1881,6 +2670,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wam
   writer_of_added_commentary:
     display_label:
@@ -1888,6 +2680,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wac
   writer_of_added_text:
     display_label:
@@ -1895,6 +2690,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wat
   writer_of_added_lyrics:
     display_label:
@@ -1902,6 +2700,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wal
   writer_of_supplementary_textual_content:
     display_label:
@@ -1909,6 +2710,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wst
   writer_of_introduction:
     display_label:
@@ -1916,6 +2720,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/win
   writer_of_preface:
     display_label:
@@ -1923,6 +2730,9 @@ properties:
     available_on:
       class:
         - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
     property_uri: http://id.loc.gov/vocabulary/relators/wpr
   digital_specifications:
     display_label:
@@ -1931,3 +2741,1294 @@ properties:
       class:
         - Image
     property_uri: http://purl.org/dc/elements/1.1/format
+  num_pages:
+    display_label:
+        default: "Number of Pages"
+    available_on:
+      class:
+        - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
+    property_uri: http://purl.org/ontology/bibo/numPages
+    cardinality:
+      maximum: 1
+    indexing:
+      - "stored_searchable"
+      - "facetable"
+  ocr_state:
+    display_label:
+        default: "OCR State"
+    available_on:
+      class:
+        - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
+    property_uri: http://dlib.indiana.edu/vocabulary/OCRState
+    cardinality:
+      maximum: 1
+  bib_editor:
+    display_label:
+        default: "Bib Editor"
+    available_on:
+      class:
+        - BibRecord
+    property_uri: http://purl.org/ontology/bibo/editor
+  bib_article:
+    display_label:
+        default: "Bib Article"
+    available_on:
+      class:
+        - BibRecord
+    property_uri: http://purl.org/ontology/bibo/Article
+  viewing_hint:
+    display_label:
+        default: "Viewing Hint"
+    available_on:
+      class:
+        - PagedResource
+    property_uri: http://iiif.io/api/presentation/2#viewingHint
+    cardinality:
+      maximum: 1
+  viewing_direction:
+    display_label:
+        default: "Viewing Direction"
+    available_on:
+      class:
+        - BibRecord
+        - PagedResource
+    property_uri: http://iiif.io/api/presentation/2#viewingDirection
+    cardinality:
+      maximum: 1
+  source_metadata_identifier:
+    display_label:
+        default: "Source Metadata Identifier"
+    available_on:
+      class:
+        - BibRecord
+        - PagedResource
+    property_uri: http://library.princeton.edu/terms/metadata_id
+    cardinality:
+      maximum: 1
+  source_metadata:
+    display_label:
+        default: "Source Metadata"
+    available_on:
+      class:
+        - BibRecord
+        - PagedResource
+    property_uri: http://library.princeton.edu/terms/source_metadata
+    cardinality:
+      maximum: 1
+    accepted_name_usage:
+    display_label:
+        default: "Accepted Name Usage"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/acceptedNameUsage
+  accepted_name_usage_id:
+    display_label:
+        default: "Accepted Name Usage ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/acceptedNameUsageID
+  according_to:
+    display_label:
+        default: "According To"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/accordingTo
+  associated_media:
+    display_label:
+        default: "Associated Media"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/associatedMedia
+  associated_occurrences:
+    display_label:
+        default: "Associated Occurences"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/associatedOccurrences
+  associated_organisms:
+    display_label:
+        default: "Associated Organisms"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/associatedOrganisms
+  associated_references:
+    display_label:
+        default: "Associated References"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/associatedReferences
+  associated_sequences:
+    display_label:
+        default: "Associated Sequences"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/associatedSequences
+  associated_taxa:
+    display_label:
+        default: "Associated Taxa"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/associatedTaxa
+  basis_of_record:
+    display_label:
+        default: "Basis Of Record"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/basisOfRecord
+  bed:
+    display_label:
+        default: "Bed"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/bed
+  behavior:
+    display_label:
+        default: "Behavior"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/behavior
+  catalog_number:
+    display_label:
+        default: "Catalog Number"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/catalogNumber
+  dwcclass:
+    display_label:
+        default: "DWC Class"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/class
+  collection_code:
+    display_label:
+        default: "Collection Code"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/collectionCode
+  collection_id:
+    display_label:
+        default: "Collection ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/collectionID
+  continent:
+    display_label:
+        default: "Continent"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/continent
+  coordinate_precision:
+    display_label:
+        default: "Coordinate Precision"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/coordinatePrecision
+  coordinate_uncertainty_in_meters:
+    display_label:
+        default: "Coordinate Uncertainty In Meters"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/coordinateUncertaintyInMeters
+  country:
+    display_label:
+        default: "Country"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/country
+  country_code:
+    display_label:
+        default: "Country Code"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/countryCode
+  county:
+    display_label:
+        default: "County"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/county
+  data_generalizations:
+    display_label:
+        default: "Data Generalizations"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/dataGeneralizations
+  dataset_id:
+    display_label:
+        default: "Dataset ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/datasetID
+  dataset_name:
+    display_label:
+        default: "Dataset Name"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/datasetName
+  date_identified:
+    display_label:
+        default: "Date Identified"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/dateIdentified
+  day:
+    display_label:
+        default: "Day"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/day
+  decimal_latitude:
+    display_label:
+        default: "Decimal Latitude"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/decimalLatitude
+  decimal_longitude:
+    display_label:
+        default: "Decimal Longitude"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/decimalLongitude
+  disposition:
+    display_label:
+        default: "Disposition"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/disposition
+  dynamic_properties:
+    display_label:
+        default: "Dynamic Properties"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/dynamicProperties
+  earliest_age_or_lowest_stage:
+    display_label:
+        default: "Earliest Age Or Lowest Stage"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/earliestAgeOrLowestStage
+  earliest_eon_or_lowest_eonothem:
+    display_label:
+        default: "Earliest Eon Or Lowest Eonothem"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/earliestEonOrLowestEonothem
+  earliest_epoch_or_lowest_series:
+    display_label:
+        default: "Earliest Epoch Or Lowest Series"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/earliestEpochOrLowestSeries
+  earliest_era_or_lowest_erathem:
+    display_label:
+        default: "Earliest Era Or Lowest Erathem"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/earliestEraOrLowestErathem
+  earliest_period_or_lowest_system:
+    display_label:
+        default: "Earliest Period Or Lowest System"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/earliestPeriodOrLowestSystem
+  end_day_of_year:
+    display_label:
+        default: "End Day Of Year"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/endDayOfYear
+  establishment_means:
+    display_label:
+        default: "Establishment Means"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/establishmentMeans
+  event_date:
+    display_label:
+        default: "Event Date"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/eventDate
+  event_id:
+    display_label:
+        default: "Event ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/eventID
+  event_remarks:
+    display_label:
+        default: "Event Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/eventRemarks
+  event_time:
+    display_label:
+        default: "Event Time"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/eventTime
+  family:
+    display_label:
+        default: "Family"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/family
+  field_notes:
+    display_label:
+        default: "Field Notes"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/fieldNotes
+  field_number:
+    display_label:
+        default: "Field Number"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/fieldNumber
+  footprint_srs:
+    display_label:
+        default: "Footprint SRS"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/footprintSRS
+  footprint_spatial_fit:
+    display_label:
+        default: "Footprint Spatial Fit"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/footprintSpatialFit
+  footprint_wkt:
+    display_label:
+        default: "Footprint WKT"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/footprintWKT
+  formation:
+    display_label:
+        default: "Formation"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/formation
+  genus:
+    display_label:
+        default: "Genus"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/genus
+  geodetic_datum:
+    display_label:
+        default: "Geodetic Datum"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/geodeticDatum
+  geological_context_id:
+    display_label:
+        default: "Geological Context ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/geologicalContextID
+  georeference_protocol:
+    display_label:
+        default: "Georeference Protocol"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/georeferenceProtocol
+  georeference_remarks:
+    display_label:
+        default: "Georeference Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/georeferenceRemarks
+  georeference_sources:
+    display_label:
+        default: "Georeference Sources"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/georeferenceSources
+  georeference_verification_status:
+    display_label:
+        default: "Georeference Verification Status"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/georeferenceVerificationStatus
+  georeferenced_by:
+    display_label:
+        default: "Georeferenced By"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/georeferencedBy
+  georeferenced_date:
+    display_label:
+        default: "Georeferenced Date"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/georeferencedDate
+  group:
+    display_label:
+        default: "Group"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/group
+  habitat:
+    display_label:
+        default: "Habitat"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/habitat
+  higher_classification:
+    display_label:
+        default: "Higher Classification"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/higherClassification
+  higher_geography:
+    display_label:
+        default: "Higher Geography"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/higherGeography
+  higher_geography_id:
+    display_label:
+        default: "Higher Geography ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/higherGeographyID
+  highest_biostratigraphic_zone:
+    display_label:
+        default: "Highest Biostratigraphic Zone"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/highestBiostratigraphicZone
+  identification_id:
+    display_label:
+        default: "Identification ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/identificationID
+  identification_qualifier:
+    display_label:
+        default: "Identification Qualifier"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/identificationQualifier
+  identification_references:
+    display_label:
+        default: "Identification References"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/identificationReferences
+  identification_remarks:
+    display_label:
+        default: "Identification Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/identificationRemarks
+  identification_verification_status:
+    display_label:
+        default: "Identification Verification Status"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/identificationVerificationStatus
+  identified_by:
+    display_label:
+        default: "Identified By"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/identifiedBy
+  individual_count:
+    display_label:
+        default: "Individual Count"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/individualCount
+  information_withheld:
+    display_label:
+        default: "Information Withheld"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/informationWithheld
+  infraspecific_epithet:
+    display_label:
+        default: "Infraspecific Epithet"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/infraspecificEpithet
+  institution_code:
+    display_label:
+        default: "Institution Code"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/institutionCode
+  institution_id:
+    display_label:
+        default: "Institution ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/institutionID
+  island:
+    display_label:
+        default: "Island"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/island
+  island_group:
+    display_label:
+        default: "Island Group"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/islandGroup
+  kingdom:
+    display_label:
+        default: "Kingdom"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/kingdom
+  latest_age_or_highest_stage:
+    display_label:
+        default: "Latest Age Or Highest Stage"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/latestAgeOrHighestStage
+  latest_eon_or_highest_eonothem:
+    display_label:
+        default: "Latest Eon Or Highest Eonothem"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/latestEonOrHighestEonothem
+  latest_epoch_or_highest_series:
+    display_label:
+        default: "Latest Epoch Or Highest Series"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/latestEpochOrHighestSeries
+  latest_era_or_highest_erathem:
+    display_label:
+        default: "Latest Era Or Highest Erathem"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/latestEraOrHighestErathem
+  latest_period_or_highest_system:
+    display_label:
+        default: "Latest Period Or Highest System"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/latestPeriodOrHighestSystem
+  life_stage:
+    display_label:
+        default: "Life Stage"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/lifeStage
+  lithostratigraphic_terms:
+    display_label:
+        default: "Lithostratigraphic Terms"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/lithostratigraphicTerms
+  locality:
+    display_label:
+        default: "Locality"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/locality
+  location_according_to:
+    display_label:
+        default: "Location According To"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/locationAccordingTo
+  location_id:
+    display_label:
+        default: "Location ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/locationID
+  location_remarks:
+    display_label:
+        default: "Location Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/locationRemarks
+  lowest_biostratigraphic_zone:
+    display_label:
+        default: "Location Biostratigraphic Zone"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/lowestBiostratigraphicZone
+  material_sample_id:
+    display_label:
+        default: "Material Sample ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/materialSampleID
+  maximum_depth_in_meters:
+    display_label:
+        default: "Maximum Depth In Meters"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/maximumDepthInMeters
+  maximum_distance_above_surface_in_meters:
+    display_label:
+        default: "Maximum Distance Above Surface In Meters"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/maximumDistanceAboveSurfaceInMeters
+  maximum_elevation_in_meters:
+    display_label:
+        default: "Maximum Elevation In Meters"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/maximumElevationInMeters
+  measurement_accuracy:
+    display_label:
+        default: "Measurement Accuracy"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementAccuracy
+  measurement_determined_by:
+    display_label:
+        default: "Measurement Determined By"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementDeterminedBy
+  measurement_determined_date:
+    display_label:
+        default: "Measurement Determined Date"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementDeterminedDate
+  measurement_id:
+    display_label:
+        default: "Measurement ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementID
+  measurement_method:
+    display_label:
+        default: "Measurement Method"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementMethod
+  measurement_remarks:
+    display_label:
+        default: "Measurement Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementRemarks
+  measurement_type:
+    display_label:
+        default: "Measurement Type"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementType
+  measurement_unit:
+    display_label:
+        default: "Measurement Unit"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementUnit
+  measurement_value:
+    display_label:
+        default: "Measurement Value"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/measurementValue
+  member:
+    display_label:
+        default: "Member"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/member
+  minimum_depth_in_meters:
+    display_label:
+        default: "Minimum Depth in Meters"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/minimumDepthInMeters
+  minimum_distance_above_surface_in_meters:
+    display_label:
+        default: "Minimum Distance Above Surface In Meters"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/minimumDistanceAboveSurfaceInMeters
+  minimum_elevation_in_meters:
+    display_label:
+        default: "Minimum Elevation in Meters"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/minimumElevationInMeters
+  month:
+    display_label:
+        default: "Month"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/month
+  municipality:
+    display_label:
+        default: "Municipality"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/municipality
+  name_according_to:
+    display_label:
+        default: "Name According To"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/nameAccordingTo
+  name_according_to_id:
+    display_label:
+        default: "Name According To ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/nameAccordingToID
+  name_published_in:
+    display_label:
+        default: "Name Published In"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/namePublishedIn
+  name_published_in_id:
+    display_label:
+        default: "Name Published In ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/namePublishedInID
+  name_published_in_year:
+    display_label:
+        default: "Name Published In year"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/namePublishedInYear
+  nomenclatural_code:
+    display_label:
+        default: "Nomenclatural Code"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/nomenclaturalCode
+  nomenclatural_status:
+    display_label:
+        default: "Nomenclatural Status"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/nomenclaturalStatus
+  occurrence_id:
+    display_label:
+        default: "Occurrence ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/occurrenceID
+  occurrence_remarks:
+    display_label:
+        default: "Occurrence Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/occurrenceRemarks
+  occurrence_status:
+    display_label:
+        default: "Occurrence Status"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/occurrenceStatus
+  order:
+    display_label:
+        default: "Order"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/order
+  organism_id:
+    display_label:
+        default: "Organism ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/organismID
+  organism_name:
+    display_label:
+        default: "Organism Name"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/organismName
+  organism_remarks:
+    display_label:
+        default: "Organism Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/organismRemarks
+  organism_scope:
+    display_label:
+        default: "Organism Scope"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/organismScope
+  original_name_usage:
+    display_label:
+        default: "Original Name Usage"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/originalNameUsage
+  original_name_usage_id:
+    display_label:
+        default: "Original Name Usage ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/originalNameUsageID
+  other_catalog_numbers:
+    display_label:
+        default: "Other Catalog Numbers"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/otherCatalogNumbers
+  owner_institution_code:
+    display_label:
+        default: "Owner Institutution Code"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/ownerInstitutionCode
+  parent_name_usage:
+    display_label:
+        default: "Parent Name Usage"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/parentNameUsage
+  parent_name_usage_id:
+    display_label:
+        default: "Parent Name Usage ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/parentNameUsageID
+  phylum:
+    display_label:
+        default: "Phylum"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/phylum
+  point_radius_spatial_fit:
+    display_label:
+        default: "Point Radius Spatial Fit"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/pointRadiusSpatialFit
+  preparations:
+    display_label:
+        default: "Preparations"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/preparations
+  previous_identifications:
+    display_label:
+        default: "Previous Identifications"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/previousIdentifications
+  record_number:
+    display_label:
+        default: "Record Number"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/recordNumber
+  recorded_by:
+    display_label:
+        default: "Recorded By"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/recordedBy
+  related_resource_id:
+    display_label:
+        default: "Related Resource ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/relatedResourceID
+  relationship_according_to:
+    display_label:
+        default: "Relationship According To"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/relationshipAccordingTo
+  relationship_established_date:
+    display_label:
+        default: "Relationship Established Date"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/relationshipEstablishedDate
+  relationship_of_resource:
+    display_label:
+        default: "Relationship Of Resource"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/relationshipOfResource
+  relationship_remarks:
+    display_label:
+        default: "Relationship Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/relationshipRemarks
+  reproductive_condition:
+    display_label:
+        default: "Reproductive Condition"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/reproductiveCondition
+  resource_id:
+    display_label:
+        default: "Resource ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/resourceID
+  resource_relationship_id:
+    display_label:
+        default: "Resource Relationship ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/resourceRelationshipID
+  sampling_effort:
+    display_label:
+        default: "Sampling Effort"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/samplingEffort
+  sampling_protocol:
+    display_label:
+        default: "Sampling Protocol"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/samplingProtocol
+  scientific_name:
+    display_label:
+        default: "Scientific Name"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/scientificName
+  scientific_name_authorship:
+    display_label:
+        default: "Scientific Name Authorship"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/scientificNameAuthorship
+  scientific_name_id:
+    display_label:
+        default: "Scientific Name ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/scientificNameID
+  sex:
+    display_label:
+        default: "Sex"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/sex
+  specific_epithet:
+    display_label:
+        default: "Specific Epithet"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/specificEpithet
+  start_day_of_year:
+    display_label:
+        default: "Start Day Of Year"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/startDayOfYear
+  state_province:
+    display_label:
+        default: "State Province"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/stateProvince
+  subgenus:
+    display_label:
+        default: "Subgenus"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/subgenus
+  taxon_concept_id:
+    display_label:
+        default: "Taxon Concept ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/taxonConceptID
+  taxon_id:
+    display_label:
+        default: "Taxon ID"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/taxonID
+  taxon_rank:
+    display_label:
+        default: "Taxon Rank"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/taxonRank
+  taxon_remarks:
+    display_label:
+        default: "Taxon Remarks"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/taxonRemarks
+  taxonomic_status:
+    display_label:
+        default: "Taxonomic Status"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/taxonomicStatus
+  type_status:
+    display_label:
+        default: "Type Status"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/typeStatus
+  verbatim_coordinate_system:
+    display_label:
+        default: "Verbatim Coordinate System"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimCoordinateSystem
+  verbatim_coordinates:
+    display_label:
+        default: "Verbatim Coordinates"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimCoordinates
+  verbatim_depth:
+    display_label:
+        default: "Verbatim Depth"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimDepth
+  verbatim_elevation:
+    display_label:
+        default: "Verbatim Elevation"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimElevation
+  verbatim_event_date:
+    display_label:
+        default: "Verbatim Event Date"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimEventDate
+  verbatim_latitude:
+    display_label:
+        default: "Verbatim Latitude"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimLatitude
+  verbatim_locality:
+    display_label:
+        default: "Verbatim Locality"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimLocality
+  verbatim_longitude:
+    display_label:
+        default: "Verbatim Longitude"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimLongitude
+  verbatim_srs:
+    display_label:
+        default: "Verbatim SRS"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimSRS
+  verbatim_taxon_rank:
+    display_label:
+        default: "Verbatim Taxon Rank"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/verbatimTaxonRank
+  vernacular_name:
+    display_label:
+        default: "Vernacular Name"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/vernacularName
+  water_body:
+    display_label:
+        default: "Water Body"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/waterBody
+  year:
+    display_label:
+        default: "Year"
+    available_on:
+      class:
+        - Scientific
+    property_uri: http://rs.tdwg.org/dwc/terms/year

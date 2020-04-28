@@ -5,10 +5,10 @@ class Image < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include StructuralMetadata
   include ExtraLockable
-  include ESSI::NumPagesMetadata
-  include ESSI::NumPagesBehavior
-  include ESSI::OCRBehavior
-  include ESSI::OCRMetadata
+  # include ESSI::NumPagesMetadata
+  # include ESSI::NumPagesBehavior
+  # include ESSI::OCRBehavior
+  # include ESSI::OCRMetadata
 
   self.indexer = ImageIndexer
   # Change this to restrict which works can be added as a child.
@@ -23,7 +23,6 @@ class Image < ActiveFedora::Base
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
-  # include ::Hyrax::BasicMetadata
   include FlexibleMetadata::DynamicMetadataBehavior
   include ::Hyrax::BasicMetadata
 end
