@@ -6,7 +6,7 @@ module Hyrax
     self.model_class = ::Image
     # self.terms += [:resource_type]
     # self.required_fields -= [:keyword]
-    # self.primary_fields = [:title, :creator, :rights_statement]
+    self.primary_fields = [:title, :creator, :rights_statement]
     include ESSI::ImageFormBehavior
     include ESSI::OCRTerms
     include FlexibleMetadata::DynamicFormBehavior

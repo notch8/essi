@@ -10,5 +10,8 @@ module Hyrax
     def holding_location
       HoldingLocationAttributeRenderer.new(solr_document.holding_location).render_dl_row
     end
+    include FlexibleMetadata::DynamicPresenterBehavior
+    self.model_class = ::PagedResource
+    delegate(*delegated_properties, to: :solr_document)
   end
 end

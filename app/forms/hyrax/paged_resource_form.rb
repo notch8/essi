@@ -10,5 +10,6 @@ module Hyrax
     include ESSI::PagedResourceFormBehavior
     include ESSI::OCRTerms
     include ESSI::RemoteMetadataFormElements
+    include FlexibleMetadata::DynamicFormBehavior
   end
 end
