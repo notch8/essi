@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Form from './form'
+import CollapsibleFieldTemplate from "./collapsible_field_template"
 import { saveData } from '../shared/save_data'
 import { css } from "@emotion/core";
 import RotateLoader from "react-spinners/RotateLoader";
@@ -130,14 +131,15 @@ class FlexibleMetadataProfileForm extends Component {
   render() {
     return (
       <div>
-        <Form key={ this.state.flexible_metadata_profile.id }
-          schema={ this.state.schema }
+        <Form key={this.state.flexible_metadata_profile.id}
+          schema={this.state.schema}
           formData={this.state.formData}
+          FieldTemplate={CollapsibleFieldTemplate}
           uiSchema= {this.state.uiSchema}
           onChange={this.handleChange}
-          onSubmit={ this.onFormSubmit }
+          onSubmit={this.onFormSubmit}
           onFormError={this.onFormError}
-          showErrorList={ false }
+          showErrorList={false}
         />
         {this.loadSpinner()}
       </div>
