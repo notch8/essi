@@ -36,6 +36,17 @@ spec:
         - name: shared
           persistentVolumeClaim:
             claimName: {{ template "app.rails-env.name" . }}-shared
+      # Added this because of listen/inotify errors when trying to access the console
+      initContainers:
+        - name: inotify
+          image: {{ .Values.rails.image.repository }}:{{ .Values.rails.image.tag }}
+          command: ["/bin/bash"]
+          args:
+            - "-l"
+            - "-c"
+            - "sysctl -w fs.inotify.max_user_watches=524288"
+          securityContext:
+            privileged: true
       containers:
         - name: sidekiq
           image: {{ .Values.rails.image.repository }}:{{ .Values.rails.image.tag }}
