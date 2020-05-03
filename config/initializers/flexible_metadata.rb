@@ -11,15 +11,3 @@ FlexibleMetadata.setup do |config|
   #
   config.m3_schema_version_tag = '23ee57fb65521b0e31882e8b1fb690d67438bd9e'
 end
-
-#  models
-AdminSet.class_eval do
-  include FlexibleMetadata::AdminSetBehavior
-end
-
-#  controllers
-Hyrax::Admin::PermissionTemplatesController.prepend ::FlexibleMetadata::PrependPermissionTemplatesController
-
-#  forms
-Hyrax::Forms::AdminSetForm.prepend ::FlexibleMetadata::PrependAdminSetForm
-Hyrax::Forms::PermissionTemplateForm.prepend ::FlexibleMetadata::PrependPermissionTemplateForm
