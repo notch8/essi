@@ -57,8 +57,20 @@ spec:
             - "sysctl -w fs.inotify.max_user_watches=524288"
           securityContext:
             privileged: true
-        # WARNING: this can timeout
+        # These don't need to be run every time, so really need some checks
         - name: setup
+          image: {{ .Values.rails.image.repository }}:{{ .Values.rails.image.tag }}
+          command: ["/bin/bash"]
+          args:
+            - "-l"
+            - "-c"
+            - "(bundle check || bundle install) && bundle exec rails db:create db:migrate && ruby ./chart/bin/solr-setup.rb && exit 0"
+          envFrom:
+            - configMapRef:
+                name: {{ template "app.rails-env.name" . }}
+            - secretRef:
+                name: {{ template "app.rails-env.name" . }}
+        - name: assets
           image: {{ .Values.rails.image.repository }}:{{ .Values.rails.image.tag }}
           volumeMounts:
             - mountPath: /app/public/assets
@@ -68,7 +80,20 @@ spec:
           args:
             - "-l"
             - "-c"
-            - "(bundle check || bundle install) && bundle exec rails db:create db:migrate && ruby ./chart/bin/solr-setup.rb && bundle exec rake assets:precompile && bundle exec rails db:seed && exit 0"
+            - "bundle exec rake assets:precompile && exit 0"
+          envFrom:
+            - configMapRef:
+                name: {{ template "app.rails-env.name" . }}
+            - secretRef:
+                name: {{ template "app.rails-env.name" . }}
+        - name: seed
+          image: {{ .Values.rails.image.repository }}:{{ .Values.rails.image.tag }}
+          command: ["/bin/bash"]
+          args:
+            - "-l"
+            - "-c"
+            # db:migrate again because the flexible_metadata migrations haven't been picked up
+            - "bundle exec rails db:migrate db:seed && exit 0"
           envFrom:
             - configMapRef:
                 name: {{ template "app.rails-env.name" . }}
