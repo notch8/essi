@@ -1,6 +1,5 @@
-GIT
-  remote: https://github.com/notch8/flexible_metadata.git
-  revision: f3e071cebf42623b7af381d9ab94aab2bd1da4ae
+PATH
+  remote: vendor/engines/flexible_metadata
   specs:
     flexible_metadata (0.1.0)
       json_schemer
@@ -977,4 +976,4 @@ DEPENDENCIES
   webpacker
 
 BUNDLED WITH
-   2.1.2
+   2.1.4

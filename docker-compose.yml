@@ -11,6 +11,7 @@ services:
       VIRTUAL_HOST: essi.docker
       VIRTUAL_PORT: 3000
       IN_DOCKER: 'true'
+      RAILS_ENV: production
     ports:
       - "3000:3000"
     stdin_open: true

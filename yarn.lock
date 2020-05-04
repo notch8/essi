@@ -1010,10 +1010,10 @@
     lodash "^4.17.15"
     lodash-es "^4.17.15"
 
-"@rjsf/core@^2.0.0-alpha.6":
-  version "2.0.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/@rjsf/core/-/core-2.0.0-alpha.6.tgz#f140c8b9e935b53df6280658ae787aa0c13c6d11"
-  integrity sha512-wUiRgGtQBraoBMipQwilh5tDht7Z1aEtQRUZLhNNnY0COJNXeWrgMd4PsXGOSwU4DSY7jsuwaKR6rcONB+WI5w==
+"@rjsf/core@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@rjsf/core/-/core-2.0.0.tgz#46c623717e7d83f7c0979ffe00f5cb941b7faaf0"
+  integrity sha512-OotRaoVv1ALY1dw4u0iF75p+6ExVqZQ7OgAtciYPe3SOgy8vCNJuLP9PZpacNVPA0vLTQw/Bx3s3gUkMQI8KXA==
   dependencies:
     "@babel/runtime-corejs2" "^7.8.7"
     "@types/json-schema" "^7.0.4"
