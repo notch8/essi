@@ -70,22 +70,6 @@ spec:
                 name: {{ template "app.rails-env.name" . }}
             - secretRef:
                 name: {{ template "app.rails-env.name" . }}
-        - name: assets
-          image: {{ .Values.rails.image.repository }}:{{ .Values.rails.image.tag }}
-          volumeMounts:
-            - mountPath: /app/public/assets
-              name: shared
-              subPath: assets
-          command: ["/bin/bash"]
-          args:
-            - "-l"
-            - "-c"
-            - "bundle exec rake assets:precompile && exit 0"
-          envFrom:
-            - configMapRef:
-                name: {{ template "app.rails-env.name" . }}
-            - secretRef:
-                name: {{ template "app.rails-env.name" . }}
         - name: seed
           image: {{ .Values.rails.image.repository }}:{{ .Values.rails.image.tag }}
           command: ["/bin/bash"]
@@ -105,10 +89,11 @@ spec:
           imagePullPolicy: {{ .Values.rails.imagePullPolicy }}
           # This should be an entrypoint script
           command: ["/bin/bash"]
+          # assets precompile needs to be run here to put packs into place
           args:
             - "-l"
             - "-c"
-            - "rm -f /app/tmp/shared/pids/puma.pid && mkdir -p /app/tmp/shared/pids && bundle exec puma -p 80 --pidfile /app/tmp/shared/pids/puma.pid"
+            - "rm -f /app/tmp/shared/pids/puma.pid && mkdir -p /app/tmp/shared/pids && bundle exec rake assets:precompile && bundle exec puma -p 80 --pidfile /app/tmp/shared/pids/puma.pid"
           # Use sub-path for individual folders
           volumeMounts:
             - mountPath: /app/tmp/shared
