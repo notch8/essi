@@ -1,6 +1,7 @@
 module ESSI
   module ApplyOCR
     def create(env)
+      add_dynamic_schema(env)
       apply_creation_data_to_curation_concern(env)
       apply_save_data_to_curation_concern(env)
       apply_ocr_option_data_to_curation_concern(env)

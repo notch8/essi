@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'flexible_metadata'
+
 module Extensions
   module FlexibleMetadata
     module PrependPermissionTemplatesController

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'flexible_metadata'
+
 module Extensions
   module FlexibleMetadata
     module PrependPermissionTemplateForm
@@ -9,7 +11,7 @@ module Extensions
 
       # override (from Hyrax 2.5.0) - new method to setup the metadata_context_class
       def metadata_context_class
-        FlexibleMetadata::Context
+        ::FlexibleMetadata::Context
       end
 
       # override (from Hyrax 2.5.0) - new method to setup dropdown for metadata_context
@@ -57,22 +59,22 @@ module Extensions
           super
         end
 
-        # override (from Hyrax 2.5.0) - new method to add the admin_set_id to the FlexibleMetadata::Context
+        # override (from Hyrax 2.5.0) - new method to add the admin_set_id to the ::FlexibleMetadata::Context
         # @return [Nil]
         def update_metadata_context
           if attributes['metadata_context_id'].present?
             remove_metadata_context
-            metadata_context = FlexibleMetadata::Context.find(attributes['metadata_context_id'])
+            metadata_context = ::FlexibleMetadata::Context.find(attributes['metadata_context_id'])
             metadata_context.admin_set_ids += [source_model.id] unless metadata_context.admin_set_ids.include?(source_model.id)
             metadata_context.save
           end
           nil
         end
 
-        # override (from Hyrax 2.5.0) - new method to remove admin_set_id from any other FlexibleMetadata::Context
+        # override (from Hyrax 2.5.0) - new method to remove admin_set_id from any other ::FlexibleMetadata::Context
         # Remove the metadata context if this is an update
         def remove_metadata_context
-          FlexibleMetadata::Context.where.not(admin_set_ids: [nil, []], id: attributes['metadata_context_id']).each do |cxt|
+          ::FlexibleMetadata::Context.where.not(admin_set_ids: [nil, []], id: attributes['metadata_context_id']).each do |cxt|
             cxt.admin_set_ids -= [source_model.id] if cxt.admin_set_ids.include?(source_model.id)
             cxt.save
           end
