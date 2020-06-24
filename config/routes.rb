@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  mount Bulkrax::Engine, at: '/'
   mount FlexibleMetadata::Engine, at: '/'
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # mount spec/javascripts/fixtures directory
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   concern :iiif_search, BlacklightIiifSearch::Routes.new
         mount BrowseEverything::Engine => '/browse'
 
-  mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
+  mount Riiif::Engine => 'iiif/2', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
   mount Hydra::RoleManagement::Engine => '/'
 
@@ -62,6 +63,10 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
+
+  # Purl redirects
+  get '/purl/formats/:id', to: 'purl#formats', as: 'formats_purl'
+  get '/purl/*id', to: 'purl#default', as: 'default_purl'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

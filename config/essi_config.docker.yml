@@ -19,7 +19,8 @@ default: &default
     queue_names:
       - default
       - ingest
-      - essi_production_default
+      - import # Bulkrax
+      - export # Bulkrax
     max_retries: 3
   rails:
     mailer:
@@ -59,6 +60,9 @@ default: &default
     secret_access_key: Essi12345
     region: iu-local
   browse_everything:
+    #TODO: N8 for local development 
+    #file_system:
+    #    :home: <%= Rails.root.join("staged_files") %>
     s3:
       :bucket: essi-dropbox
       :region: iu-local
@@ -70,9 +74,9 @@ default: &default
     master_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/master
     access_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/access
     purl_redirect_url: http://server1.variations2.indiana.edu/cgi-bin/access?%s
-    hocr_language: [eng]
-    create_hocr_files: true
-    index_hocr_files: true
+    ocr_language: [eng]
+    create_ocr_files: true
+    index_ocr_files: true
     create_word_boundaries: true
     allow_pdf_download: false
     manifest_builder:

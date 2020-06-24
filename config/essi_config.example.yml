@@ -16,6 +16,8 @@ default: &default
     queue_names:
       - default
       - ingest
+      - import # Bulkrax
+      - export # Bulkrax
     max_retries: 3
   rails:
     mailer:
@@ -28,7 +30,8 @@ default: &default
     active_job:
       queue_adapter: sidekiq
   # cantaloupe:
-  #   iiif_server_url: http://localhost:8182/iiif/2/
+    iiif_server_url: /iiif/2/
+#    iiif_server_url: http://localhost:8182/iiif/2/
   derivatives:
     path: <%= Rails.root.join("tmp/derivatives") %>
   iucat_libraries:
@@ -71,11 +74,12 @@ default: &default
     purl_redirect_url: http://server1.variations2.indiana.edu/cgi-bin/access?%s
     skip_derivatives: false
     derivatives_folder: false
-    hocr_language: [eng]
-    create_hocr_files: true
-    index_hocr_files: true
+    ocr_language: [eng]
+    create_ocr_files: true
+    index_ocr_files: true
     create_word_boundaries: true
     allow_pdf_download: false
+    link_banners: false
     bagit:
       default_upload_dropbox: <%= Rails.root.join("staged_files/uploaded") %>
       default_bagit_dir: <%= Rails.root.join("staged_files/work_bags") %>

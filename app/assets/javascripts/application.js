@@ -29,6 +29,7 @@
 //= require nestedSortable/jquery.mjs.nestedSortable
 //= require openseadragon
 //= require hyrax
+//= require bulkrax/application
 //= require flexible_metadata/application
 //= require_tree .
 

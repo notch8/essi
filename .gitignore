@@ -36,7 +36,6 @@ fits.log
 .env.*
 
 # Ignore yarn generated files
-yarn.lock
 public/uv
 
 # Ignore public branding
@@ -47,7 +46,7 @@ staged_files
 
 # Ignore any locally mounted engines
 vendor/engines/
-
+/public/assets
 /public/packs
 /public/packs-test
 /node_modules
