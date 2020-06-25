@@ -95,12 +95,10 @@ gem 'i18n-js'
 gem 'bagit'
 gem 'validatable'
 
-gem 'flexible_metadata', github: 'notch8/flexible_metadata'
-# DEVELOPMENT ONLY - SWITCH BACK TO github
-# gem 'flexible_metadata', path: 'vendor/engines/flexible_metadata'
+# gem 'flexible_metadata', github: 'notch8/flexible_metadata'
+gem 'flexible_metadata', path: 'vendor/engines/flexible_metadata'
 
 # Bulk Import / Export
-#TODO: N8 specific - use local for dev; use github for test/staging
 gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git'
 #gem 'bulkrax', path: 'vendor/engines/bulkrax'
 
