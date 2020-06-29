@@ -2,9 +2,9 @@
 
 Bulkrax.setup do |config|
   # Add local parsers
-  # config.parsers += [
-  #   { name: 'MODS - My Local MODS parser', class_name: 'Bulkrax::ModsXmlParser', partial: 'mods_fields' },
-  # ]
+  config.parsers += [
+    { name: 'METS XML', class_name: 'Bulkrax::MetsXmlParser', partial: 'mets_xml_fields' },
+  ]
 
   # Field to use during import to identify if the Work or Collection already exists.
   # Default is 'source'.
