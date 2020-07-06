@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/notch8/flexible_metadata.git
-  revision: 5e2c973ea0fae2531fd07e2fc851d545535bcc16
+  revision: f96a0a66a4e704a7a71a640ba6249b29f5ed6efd
   specs:
     flexible_metadata (0.1.0)
       json_schemer
