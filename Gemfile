@@ -94,7 +94,7 @@ gem 'iiif_manifest'
 gem 'i18n-js'
 gem 'bagit'
 gem 'validatable'
-
+gem 'country_select', '~> 4.0', require: 'country_select_without_sort_alphabetical'
 gem 'flexible_metadata', github: 'notch8/flexible_metadata'
 # gem 'flexible_metadata', path: 'vendor/engines/flexible_metadata'
 
