@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/notch8/flexible_metadata.git
-  revision: 5da640ea5b114dfd52573f8813918ea26fb4947c
+  revision: faa5feec296ad931a602db9554f1c27ccd88c462
   specs:
     flexible_metadata (0.1.0)
       json_schemer
@@ -502,7 +502,7 @@ GEM
       rdf (~> 3.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
-    json_schemer (0.2.11)
+    json_schemer (0.2.12)
       ecma-re-validator (~> 0.2)
       hana (~> 1.3)
       regexp_parser (~> 1.5)
