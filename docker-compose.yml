@@ -19,8 +19,11 @@ x-app:
     - .env.development
     - .env
   volumes:
-    - .:/app
+    - .:/app:cached
     - ./config/essi_config.docker.yml:/run/secrets/essi_config.yml
+    - rails_cache:/app/tmp/cache
+    - node:/app/node_modules
+    - node_flex:/app/vendor/engines/flexible_metadata/node_modules
   depends_on:
     - redis
     - solr
@@ -36,16 +39,16 @@ services:
     volumes:
       - ./essi-nginx.nginx:/etc/nginx/conf.d/essi-nginx.conf
     ports:
-      - "80:8980"
+      - "8980:8980"
     depends_on:
       - app
       - worker
 
   app:
     << : *default-app
-    command: bash -l -c "rake db:migrate db:seed && yarn install && bundle exec puma -b tcp://0.0.0.0:3000"
+    command: bash -l -c "bundle && rake db:migrate && yarn install && bundle exec puma -b tcp://0.0.0.0:3000"
     environment:
-      VIRTUAL_HOST: essi.docker
+      VIRTUAL_HOST: essi.test
       VIRTUAL_PORT: 3000
       IN_DOCKER: 'true'
     ports:
@@ -53,7 +56,7 @@ services:
 
   worker:
     << : *default-app
-    command: sidekiq
+    command: bash -l -c "bundle && bundle exec sidekiq"
 
   db:
     image: mysql:5.7
@@ -154,3 +157,6 @@ volumes:
   redis:
   solr:
   minio:
+  rails_cache:
+  node:
+  node_flex:

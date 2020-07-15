@@ -18,7 +18,7 @@
       "title": "Schema Version",
       "readOnly": true,
       "default": "1.0.beta2",
-      "description": "Version number for the M3 specification. Change this to make a new release. Instances will be validated to check they have this version in place.",
+      "description": "Version number for the M3 specification. Change this to make a new release of the overall schema. An applications metadata profile will be validated against this version. Only editable by changing the m3 json file for the whole application, not through the metadata profile editor.",
       "pattern": "1.0.beta2"
     },
 
