@@ -2,4 +2,5 @@
 :queues:
   - default
   - ingest
+  - essi_production_default
 :max_retries: 3
