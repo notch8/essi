@@ -21,6 +21,7 @@ default: &default
       - ingest
       - import # Bulkrax
       - export # Bulkrax
+      - essi_production_default
     max_retries: 3
   rails:
     mailer:
