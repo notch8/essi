@@ -95,8 +95,8 @@ gem 'i18n-js'
 gem 'bagit'
 gem 'validatable'
 gem 'country_select', '~> 4.0', require: 'country_select_without_sort_alphabetical'
-gem 'flexible_metadata', github: 'notch8/flexible_metadata', branch: 'staging'
-# gem 'flexible_metadata', path: 'vendor/engines/flexible_metadata'
+gem 'allinson_flex', github: 'samvera-labs/allinson_flex'
+# gem 'allinson_flex', path: 'vendor/engines/allinson_flex'
 
 # Bulk Import / Export
 gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git'

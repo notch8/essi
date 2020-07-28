@@ -17,7 +17,7 @@ class BibRecordIndexer < Hyrax::WorkIndexer
   #  end
   # end
 
-  include FlexibleMetadata::DynamicIndexerBehavior
+  include AllinsonFlex::DynamicIndexerBehavior
   self.model_class = ::BibRecord
 
 end

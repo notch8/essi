@@ -23,7 +23,7 @@ x-app:
     - ./config/essi_config.docker.yml:/run/secrets/essi_config.yml
     - rails_cache:/app/tmp/cache
     - node:/app/node_modules
-    - node_flex:/app/vendor/engines/flexible_metadata/node_modules
+    - node_flex:/app/vendor/engines/allinson_flex/node_modules
   depends_on:
     - redis
     - solr

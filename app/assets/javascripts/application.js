@@ -30,7 +30,7 @@
 //= require openseadragon
 //= require hyrax
 //= require bulkrax/application
-//= require flexible_metadata/application
+//= require allinson_flex/application
 //= require_tree .
 
 Blacklight.onLoad(function() {

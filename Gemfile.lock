@@ -1,15 +1,4 @@
 GIT
-  remote: https://github.com/notch8/flexible_metadata.git
-  revision: f99a8a0aba8437f6ea3ac1086f7b943922e910df
-  branch: staging
-  specs:
-    flexible_metadata (0.1.0)
-      json_schemer
-      rails (>= 5.1.6)
-      react-rails
-      webpacker
-
-GIT
   remote: https://github.com/notch8/willow_sword.git
   revision: 0a669d78617c6003e4aa1a46a10447be92be27d5
   specs:
@@ -17,6 +6,16 @@ GIT
       bagit (~> 0.4.1)
       rails (>= 5.1.6)
       rubyzip (>= 1.0.0)
+
+GIT
+  remote: https://github.com/samvera-labs/allinson_flex.git
+  revision: 257851209558b15d367829d303a133c029d06266
+  specs:
+    allinson_flex (0.1.0)
+      json_schemer
+      rails (>= 5.1.6)
+      react-rails
+      webpacker
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
@@ -964,6 +963,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  allinson_flex!
   bagit
   better_errors
   binding_of_caller
@@ -981,7 +981,6 @@ DEPENDENCIES
   devise-i18n
   factory_bot_rails
   fcrepo_wrapper
-  flexible_metadata!
   hydra-role-management
   hyrax (~> 2.6.0)
   i18n-js

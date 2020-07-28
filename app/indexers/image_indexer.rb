@@ -16,7 +16,7 @@ class ImageIndexer < Hyrax::WorkIndexer
   #    solr_doc['my_custom_field_ssim'] = object.my_custom_property
   #  end
   # end
-  include FlexibleMetadata::DynamicIndexerBehavior
+  include AllinsonFlex::DynamicIndexerBehavior
   self.model_class = ::Image
 
 end

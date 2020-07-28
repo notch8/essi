@@ -76,7 +76,7 @@ spec:
           args:
             - "-l"
             - "-c"
-            # db:migrate again because the flexible_metadata migrations haven't been picked up
+            # db:migrate again because the allinson_flex migrations haven't been picked up
             - "bundle exec rails db:migrate db:seed && exit 0"
           envFrom:
             - configMapRef:

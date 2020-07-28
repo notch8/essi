@@ -1,7 +1,7 @@
 class CatalogController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
-  include FlexibleMetadata::DynamicCatalogBehavior
+  include AllinsonFlex::DynamicCatalogBehavior
   # This filter applies the hydra access controls
   before_action :enforce_show_permissions, only: :show
 

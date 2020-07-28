@@ -23,7 +23,7 @@ module ESSI
       Dir.glob(File.join(File.dirname(__FILE__), "../lib/extensions/extensions.rb")) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
-      Dir.glob(File.join(File.dirname(__FILE__), '../lib/extensions/flexible_metadata_extensions.rb')) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__), '../lib/extensions/allinson_flex_extensions.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end

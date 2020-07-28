@@ -5,7 +5,7 @@ module Hyrax
     include ESSI::PresentsNumPages
     include ESSI::PresentsOCR
     include ESSI::PresentsStructure
-    include FlexibleMetadata::DynamicPresenterBehavior
+    include AllinsonFlex::DynamicPresenterBehavior
     self.model_class = ::Scientific
     delegate(*delegated_properties, to: :solr_document)
   end

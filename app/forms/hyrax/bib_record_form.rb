@@ -10,6 +10,6 @@ module Hyrax
     include ESSI::BibRecordFormBehavior
     include ESSI::OCRTerms
     include ESSI::RemoteMetadataFormElements
-    include FlexibleMetadata::DynamicFormBehavior
+    include AllinsonFlex::DynamicFormBehavior
   end
 end

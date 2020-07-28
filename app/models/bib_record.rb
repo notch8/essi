@@ -27,6 +27,6 @@ class BibRecord < ActiveFedora::Base
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
 
-  include FlexibleMetadata::DynamicMetadataBehavior
+  include AllinsonFlex::DynamicMetadataBehavior
   include ::Hyrax::BasicMetadata
 end

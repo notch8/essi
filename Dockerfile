@@ -38,7 +38,7 @@ COPY --chown=essi:essi Gemfile Gemfile.lock ./
 
 # DEV ONLY - REMOVE LATER
 # COPY --chown=essi:essi vendor/engines/bulkrax /app/vendor/engines/bulkrax
-# COPY --chown=essi:essi vendor/engines/flexible_metadata /app/vendor/engines/flexible_metadata
+# COPY --chown=essi:essi vendor/engines/allinson_flex /app/vendor/engines/allinson_flex
 RUN gem update bundler
 RUN bundle install -j 2 --retry=3
 
@@ -60,7 +60,7 @@ RUN bundle config --global frozen 1
 
 COPY --chown=essi:essi Gemfile Gemfile.lock ./
 # DEV ONLY - REMOVE LATER
-# COPY vendor/engines/flexible_metadata vendor/engines/flexible_metadata
+# COPY vendor/engines/allinson_flex vendor/engines/allinson_flex
 RUN gem update bundler && \
     bundle install -j 2 --retry=3 --deployment --without development
 

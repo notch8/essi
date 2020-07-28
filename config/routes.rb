@@ -3,7 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   mount Bulkrax::Engine, at: '/'
-  mount FlexibleMetadata::Engine, at: '/'
+  mount AllinsonFlex::Engine, at: '/'
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # mount spec/javascripts/fixtures directory
   mount JasmineFixtureServer => '/spec/javascripts/fixtures' if defined?(Jasmine::Jquery::Rails::Engine)

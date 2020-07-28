@@ -9,6 +9,6 @@ module Hyrax
     self.primary_fields = [:title, :creator, :rights_statement]
     include ESSI::ImageFormBehavior
     include ESSI::OCRTerms
-    include FlexibleMetadata::DynamicFormBehavior
+    include AllinsonFlex::DynamicFormBehavior
   end
 end
