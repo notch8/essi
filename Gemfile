@@ -42,6 +42,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
+  gem 'capybara-screenshot', '~> 1.0'
   gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'database_cleaner'
@@ -95,6 +96,7 @@ gem 'i18n-js'
 gem 'bagit'
 gem 'validatable'
 gem 'country_select', '~> 4.0', require: 'country_select_without_sort_alphabetical'
+gem 'prawn'
 gem 'allinson_flex', github: 'samvera-labs/allinson_flex'
 # gem 'allinson_flex', path: 'vendor/engines/allinson_flex'
 

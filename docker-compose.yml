@@ -20,10 +20,8 @@ x-app:
     - .env
   volumes:
     - .:/app:cached
-    - ./config/essi_config.docker.yml:/run/secrets/essi_config.yml
     - rails_cache:/app/tmp/cache
-    - node:/app/node_modules
-    - node_flex:/app/vendor/engines/allinson_flex/node_modules
+    - ./config/essi_config.docker.yml:/run/secrets/essi_config.yml
   depends_on:
     - redis
     - solr
@@ -39,24 +37,25 @@ services:
     volumes:
       - ./essi-nginx.nginx:/etc/nginx/conf.d/essi-nginx.conf
     ports:
-      - "8980:8980"
+      - "80:8980"
     depends_on:
-      - app
+      - essi
       - worker
 
-  app:
+  essi:
     << : *default-app
-    command: bash -l -c "bundle && rake db:migrate && yarn install && bundle exec puma -b tcp://0.0.0.0:3000"
+    command: bash -l -c "bundle exec rake db:migrate db:seed yarn:install && bundle exec puma -b tcp://0.0.0.0:3000"
     environment:
-      VIRTUAL_HOST: essi.test
+      VIRTUAL_HOST: essi.docker
       VIRTUAL_PORT: 3000
       IN_DOCKER: 'true'
+      HUB_URL: http://chrome:4444/wd/hub 
     ports:
       - "3000:3000"
 
   worker:
     << : *default-app
-    command: bash -l -c "bundle && bundle exec sidekiq"
+    command: sidekiq
 
   db:
     image: mysql:5.7
@@ -89,6 +88,15 @@ services:
     volumes:
       - minio:/data
     command: sh -c "ln -s /nasvol /data/essi-dropbox || exit 0"
+
+  minio_config:
+    image: minio/mc:RELEASE.2020-03-14T01-23-37Z
+    environment:
+      MC_HOST_essi: http://essi-minio:Essi12345@minio:9000
+    entrypoint: ''
+    command: sh -c "until nc -z minio 9000; do echo 'Waiting for minio...'; sleep 1; done; mc policy set public essi/essi-dropbox"
+    depends_on:
+      - minio
 
   cantaloupe:
     image: iublibtech/cantaloupe
@@ -148,8 +156,13 @@ services:
       - "8080"
 
   chrome:
-    image: selenium/standalone-chrome:3.141
+    image: selenium/standalone-chrome-debug:3.141.59-20200525
+    volumes:
+      - /dev/shm:/dev/shm
     shm_size: 2G
+    ports:
+      - "4444:4444"
+      - "5959:5900"
 
 volumes:
   fcrepo:
@@ -158,5 +171,3 @@ volumes:
   solr:
   minio:
   rails_cache:
-  node:
-  node_flex:
