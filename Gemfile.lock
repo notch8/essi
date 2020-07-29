@@ -647,9 +647,6 @@ GEM
     posix-spawn (0.3.13)
     power_converter (0.1.2)
     powerpack (0.1.2)
-    pry (0.13.1)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -1008,7 +1005,6 @@ DEPENDENCIES
   omniauth
   omniauth-iu-cas
   prawn
-  pry
   puma
   rails (~> 5.1.6)
   rails-controller-testing

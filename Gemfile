@@ -107,5 +107,3 @@ gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git'
 gem 'willow_sword', github: 'notch8/willow_sword'
 gem 'webpacker'
 gem 'react-rails'
-
-gem 'pry'

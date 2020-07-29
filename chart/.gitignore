@@ -1,4 +1,0 @@
-server.pem
-server.key
-*-values.yaml
-chart/*-values.yaml
