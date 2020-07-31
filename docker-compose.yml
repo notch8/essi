@@ -44,7 +44,7 @@ services:
 
   essi:
     << : *default-app
-    command: bash -l -c "bundle exec rake db:migrate db:seed yarn:install && bundle exec puma -b tcp://0.0.0.0:3000"
+    command: bash -l -c "bundle && bundle exec rake db:migrate db:seed yarn:install && bundle exec puma -b tcp://0.0.0.0:3000"
     environment:
       VIRTUAL_HOST: essi.docker
       VIRTUAL_PORT: 3000
@@ -55,7 +55,7 @@ services:
 
   worker:
     << : *default-app
-    command: sidekiq
+    command: bash -l -c "bundle && bundle exec sidekiq"
 
   db:
     image: mysql:5.7
