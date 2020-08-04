@@ -6,7 +6,7 @@ module Hyrax
     self.model_class = ::BibRecord
     self.terms += [:resource_type, :series]
     self.required_fields -= [:title, :creator, :keyword]
-    self.primary_fields = [:title, :creator, :rights_statement]
+    self.primary_fields = [:profile_version, :title, :creator, :rights_statement]
     include ESSI::BibRecordFormBehavior
     include ESSI::OCRTerms
     include ESSI::RemoteMetadataFormElements

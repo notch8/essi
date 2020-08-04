@@ -8,6 +8,16 @@ GIT
       rubyzip (>= 1.0.0)
 
 GIT
+  remote: https://github.com/samvera-labs/allinson_flex.git
+  revision: 70e402d5ffca7f4ce5a87efeccf00fa0cc0fd3d4
+  specs:
+    allinson_flex (0.1.0)
+      json_schemer
+      rails (>= 5.1.6)
+      react-rails
+      webpacker
+
+GIT
   remote: https://github.com/samvera-labs/bulkrax.git
   revision: 996223d4efccf25888e62b5e519d9fbd0184fdc0
   specs:
@@ -22,15 +32,6 @@ GIT
       rails (>= 5.1.6)
       rdf (>= 2.0.2, < 4.0)
       simple_form
-
-PATH
-  remote: vendor/engines/allinson_flex
-  specs:
-    allinson_flex (0.1.0)
-      json_schemer
-      rails (>= 5.1.6)
-      react-rails
-      webpacker
 
 GEM
   remote: https://rubygems.org/
