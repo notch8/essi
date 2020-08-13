@@ -15,6 +15,7 @@
  *= require_self
  *= require hyrax
  *= require allinson_flex/application
+ *= require digital_collections
  */
 
 // Third-party / vendor styles
@@ -31,3 +32,4 @@
 @import 'components/extended_banner';
 
 @import 'brand';
+@import 'brand_tweaks';
