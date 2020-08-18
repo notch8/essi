@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: ae2b68c09a57850a8dc5a066486475d5d7826991
+  revision: 3e7c362cb9bd366feb18b2ccb1a464f5c0fbb8a4
   specs:
     allinson_flex (0.1.0)
       json_schemer
@@ -505,7 +505,7 @@ GEM
       rdf (~> 3.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
-    json_schemer (0.2.12)
+    json_schemer (0.2.13)
       ecma-re-validator (~> 0.2)
       hana (~> 1.3)
       regexp_parser (~> 1.5)
