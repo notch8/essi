@@ -490,7 +490,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (2.2.0)
+    json (2.3.1)
     json-canonicalization (0.2.0)
     json-ld (3.1.0)
       htmlentities (~> 4.3)
@@ -650,9 +650,6 @@ GEM
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
-    pry (0.13.1)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
     public_suffix (4.0.4)
     pul_uv_rails (2.0.1)
     puma (3.12.6)
@@ -1008,7 +1005,6 @@ DEPENDENCIES
   omniauth
   omniauth-iu-cas
   prawn
-  pry
   puma
   rails (~> 5.1.6)
   rails-controller-testing

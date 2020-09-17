@@ -4,6 +4,7 @@ module Hyrax
   class ImagePresenter < Hyrax::WorkShowPresenter
     include ESSI::PresentsNumPages
     include ESSI::PresentsOCR
+    include ESSI::PresentsRelatedUrl
     include ESSI::PresentsStructure
     include AllinsonFlex::DynamicPresenterBehavior
     self.model_class = ::Image

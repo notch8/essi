@@ -2,18 +2,18 @@ default: &default
   fedora:
     user: fedoraAdmin
     password: fedoraAdmin
-    url: <%= ENV.fetch('FEDORA_URL', 'http://fcrepo:8080/rest') %>
+    url: http://fcrepo:8080/rest
     base_path: /dev
   solr:
-    url: <%= ENV.fetch('SOLR_URL', 'http://solr:8983/solr/essi') %>
+    url: http://solr:8983/solr/hydra-development
   db:
     adapter: mysql2
-    host: <%= ENV.fetch('DATABASE_HOST', 'db') %>
+    host: db
     database: essi_dev
     user: essi
-    password: <%= ENV.fetch('MYSQL_PASSWORD', 'essi') %>
+    password: essi
   redis:
-    host: <%= ENV.fetch('REDIS_HOST', 'redis') %>
+    host: redis_jobs
     port: 6379
   sidekiq:
     queue_names:
@@ -21,7 +21,6 @@ default: &default
       - ingest
       - import # Bulkrax
       - export # Bulkrax
-      - essi_production_default
     max_retries: 3
   rails:
     mailer:
@@ -36,7 +35,7 @@ default: &default
   derivatives:
     path: <%= Rails.root.join("tmp/derivatives") %>
   cantaloupe:
-    iiif_server_url: <%= ENV.fetch('IIIF_SERVER_URL', 'http://localhost:8182/iiif/2/') %>
+    iiif_server_url: /iiif/2/
   iucat_libraries:
     url: http://iucat-feature-tadas.uits.iu.edu/api/library
   ldap:
