@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: 8db6e98377b374a96fbd58c8a8c0c4052450fd71
+  revision: 690c1e121cda0ff70cf0ac94574ba0114492a410
   specs:
     allinson_flex (0.1.0)
       json_schemer
