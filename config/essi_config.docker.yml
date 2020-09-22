@@ -2,18 +2,18 @@ default: &default
   fedora:
     user: fedoraAdmin
     password: fedoraAdmin
-    url: http://fcrepo:8080/rest
+    url: <%= ENV.fetch('FEDORA_URL', 'http://fcrepo:8080/rest') %>
     base_path: /dev
   solr:
-    url: http://solr:8983/solr/hydra-development
+    url: <%= ENV.fetch('SOLR_URL', 'http://solr:8983/solr/essi') %>
   db:
     adapter: mysql2
-    host: db
+    host: <%= ENV.fetch('DATABASE_HOST', 'db') %>
     database: essi_dev
     user: essi
-    password: essi
+    password: <%= ENV.fetch('MYSQL_PASSWORD', 'essi') %>
   redis:
-    host: redis_jobs
+    host: <%= ENV.fetch('REDIS_HOST', 'redis') %>
     port: 6379
   sidekiq:
     queue_names:
@@ -35,7 +35,7 @@ default: &default
   derivatives:
     path: <%= Rails.root.join("tmp/derivatives") %>
   cantaloupe:
-    iiif_server_url: /iiif/2/
+    iiif_server_url: <%= ENV.fetch('IIIF_SERVER_URL', 'http://localhost:8182/iiif/2/') %>
   iucat_libraries:
     url: http://iucat-feature-tadas.uits.iu.edu/api/library
   ldap:
@@ -60,7 +60,7 @@ default: &default
     secret_access_key: Essi12345
     region: iu-local
   browse_everything:
-    #TODO: N8 for local development 
+    #TODO: N8 for local development
     #file_system:
     #    :home: <%= Rails.root.join("staged_files") %>
     s3:
@@ -165,7 +165,7 @@ default: &default
       example_admin_set:
         title: Example title
         url: https://example.com
-        
+
 development:
   <<: *default
 
