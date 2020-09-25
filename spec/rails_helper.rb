@@ -78,13 +78,16 @@ RSpec.configure do |config|
   config.include(ControllerLevelHelpers, type: :view)
   config.before(:each, type: :view) { initialize_controller_helpers(view) }
 
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
   # The following methods ensure proper handling of minted IDs via Noid to eliminate LDP conflict errors
   include Noid::Rails::RSpec
-  config.before(:suite) { disable_production_minter! }
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    disable_production_minter!
+    AdminSet.find_or_create_default_admin_set_id
+    @allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'essi.yml'))
+    @allinson_flex_profile.save
+  end
+
   config.after(:suite)  { enable_production_minter! }
 
   config.before do |example|
@@ -137,4 +140,3 @@ VCR.configure do |config|
   driver_hosts = Webdrivers::Common.subclasses.map { |driver| URI(driver.base_url).host }
   config.ignore_hosts(*driver_hosts)
 end
-
