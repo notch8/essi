@@ -9,6 +9,7 @@ module Hyrax
     self.primary_fields = [:profile_version, :title, :creator, :rights_statement]
     include ESSI::BibRecordFormBehavior
     include ESSI::OCRTerms
+    include ESSI::PurlTerms
     include ESSI::RemoteMetadataFormElements
     include AllinsonFlex::DynamicFormBehavior
   end

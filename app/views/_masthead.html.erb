@@ -11,12 +11,14 @@
           <span class="icon-bar"></span>
         </button>
         <%= render '/logo' %>
-        <%= render '/campus' %>
       </div>
-
       <div class="collapse navbar-collapse" id="top-navbar-collapse">
         <%= render '/user_util_links' %>
       </div>
     </div>
   </nav>
+  <%= render '/campus' %>
+  <%= render 'shared/collection_banner'  if @presenter.respond_to?(:collection) && @presenter.collection%>
+  <%= render 'shared/collection_banner_for_collection' if @presenter.try(:collection?) && @presenter.model_name == 'Collection' %>
+
 </header>

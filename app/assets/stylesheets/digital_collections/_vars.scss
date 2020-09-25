@@ -22,6 +22,7 @@ $moderate           : #f5BB17;
 $severe             : #F25B19;
 $extreme            : #BD0000;
 $nav_bg             : #3c3c3c;
+$darkGray           : #252525;
 
 // alert stylesheet
 
@@ -214,6 +215,16 @@ $classes-amount: 5;
   color: #fff;
 }
 
+.bg-darkMajestc, .bg-darkMajestic h1{
+  background-color: $darkMajestic;
+  color: #fff;
+}
+
+.bg-darkGray, .bg-darkGray h1{
+  background-color: $darkGray;
+  color: #fff;
+}
+
 .bg-midnight, .bg-midnight h1{
   background-color: $midnight;
   color: #fff;
@@ -224,9 +235,8 @@ $classes-amount: 5;
 // Notice styles
 
 .bg-black .dropdown-menu a:link,
-.bg-black .dropdown-menu a:visited,
-a:link,
-a:visited {
+.bg-black .dropdown-menu a:visited
+{
   color            : $darkMidnight;
   background       : none;
   background-color : transparent;
