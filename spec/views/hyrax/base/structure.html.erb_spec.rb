@@ -38,6 +38,13 @@ RSpec.describe "hyrax/base/structure.html.erb", type: :view do
   end
 
   before do
+    # cleaning and resintansicating admin set to get past it not being able to find it
+    DatabaseCleaner.clean_with(:truncation)
+    disable_production_minter!
+    AdminSet.find_or_create_default_admin_set_id
+    @allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'essi.yml'))
+    @allinson_flex_profile.save
+
     assign(:logical_order, logical_order)
     assign(:presenter, paged_resource)
     render template: "hyrax/base/structure.html.erb", locals: { curation_concern: curation_concern }

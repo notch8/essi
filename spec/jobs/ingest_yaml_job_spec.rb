@@ -4,7 +4,8 @@ include ActiveJob::TestHelper
 
 describe IngestYAMLJob do
   before(:context) do
-    ActiveFedora::Cleaner.clean!  # Clean just once for the context, not each example.
+    # ActiveFedora::Cleaner.clean!  # Clean just once for the context, not each example.
+
     RSpec::Mocks.with_temporary_scope do
       @paged_resource_yaml = Rails.root.join('spec', 'fixtures', 'paged_resource.yml').to_s
       @user = FactoryBot.create(:user)
@@ -16,6 +17,15 @@ describe IngestYAMLJob do
   end
 
   describe 'for a single PagedResource' do
+    before do
+      DatabaseCleaner.clean_with(:truncation)
+      disable_production_minter!
+      AdminSet.find_or_create_default_admin_set_id
+      Hyrax::Workflow::WorkflowImporter.load_workflows
+      @allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'essi.yml'))
+      @allinson_flex_profile.save
+    end
+
     subject { PagedResource.where(title: 'Untitled Paged Resource').first }
 
     it 'creates only one work' do

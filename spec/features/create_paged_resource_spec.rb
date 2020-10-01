@@ -15,6 +15,12 @@ RSpec.feature 'Create a PagedResource', type: :system, js: true do
     let(:workflow) { Sipity::Workflow.create!(active: true, name: 'test-workflow', permission_template: permission_template) }
 
     before do
+      DatabaseCleaner.clean_with(:truncation)
+      disable_production_minter!
+      AdminSet.find_or_create_default_admin_set_id
+      @allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'essi.yml'))
+      @allinson_flex_profile.save
+
       # Create a single action that can be taken
       Sipity::WorkflowAction.create!(name: 'submit', workflow: workflow)
 
