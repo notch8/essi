@@ -21,6 +21,12 @@ do |resource_symbol, presenter_factory|
       let(:file_set) { FactoryBot.build(:file_set, id: "2") }
 
       before do
+        DatabaseCleaner.clean_with(:truncation)
+        disable_production_minter!
+        AdminSet.find_or_create_default_admin_set_id
+        @allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'essi.yml'))
+        @allinson_flex_profile.save
+
         allow(resource.class).to receive(:find).and_return(resource)
         resource.ordered_members << file_set
         solr.add file_set.to_solr.merge(ordered_by_ssim: [resource.id])

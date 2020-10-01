@@ -19,6 +19,14 @@ RSpec.describe Hyrax::Actors::PagedResourceActor do
   end
 
   describe "#create" do
+    before do
+      DatabaseCleaner.clean_with(:truncation)
+      disable_production_minter!
+      AdminSet.find_or_create_default_admin_set_id
+      @allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'essi.yml'))
+      @allinson_flex_profile.save
+    end
+
     context 'when index_ocr_files is true', :clean do
       it 'OCR should be searchable' do
         allow(ESSI.config).to receive(:dig) \

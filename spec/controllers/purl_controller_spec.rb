@@ -19,6 +19,14 @@ describe PurlController do
   let(:original_file_id) { 'xk81jk36q/files/adac151d-9c08-4892-9bc1-a20b64443bb9' }
   let(:jp2_path) { Hyrax.config.iiif_image_url_builder.call(original_file_id, nil, '!600,600') }
 
+  before do
+    DatabaseCleaner.clean_with(:truncation)
+    disable_production_minter!
+    AdminSet.find_or_create_default_admin_set_id
+    @allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'essi.yml'))
+    @allinson_flex_profile.save
+  end
+
   describe 'default', :clean do
     let(:user) { FactoryBot.create(:admin) }
     before do
