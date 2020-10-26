@@ -1,6 +1,6 @@
 RSpec.shared_examples 'update metadata remotely' do |resource_symbol|
 
-  describe 'when logged in', :clean do
+  describe 'when logged in' do
 
     let(:admin_set_id) { AdminSet.find_or_create_default_admin_set_id }
     let(:permission_template) { Hyrax::PermissionTemplate.find_or_create_by!(source_id: admin_set_id) }

@@ -23,7 +23,7 @@ describe Hyrax::Actors::FileActor do
         .with(:essi, :master_file_service_url) \
         .and_return('http://service')
     end
-    context 'when :store_original_files is false', :clean do
+    context 'when :store_original_files is false' do
       before do
         allow(ESSI.config).to receive(:dig)
           .with(:essi, :store_original_files) \
@@ -42,7 +42,7 @@ describe Hyrax::Actors::FileActor do
       end
     end
   
-    context 'when :store_original_files is true', :clean do
+    context 'when :store_original_files is true' do
       before do
         allow(ESSI.config).to receive(:dig) \
           .with(:essi, :store_original_files) \
