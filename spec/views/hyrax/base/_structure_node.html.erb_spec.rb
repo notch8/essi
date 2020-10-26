@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "hyrax/base/_structure_node.html.erb", :clean do
+RSpec.describe "hyrax/base/_structure_node.html.erb" do
   let(:node) do
     WithProxyForObject::Factory.new([member]).new(params)
   end

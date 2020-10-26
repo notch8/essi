@@ -9,7 +9,7 @@ do |resource_symbol, presenter_factory|
     let(:user) { FactoryBot.create(:user) }
 
     before { sign_in user }
-    describe "#structure", :clean do
+    describe "#structure" do
 
       let(:solr) { ActiveFedora.solr.conn }
       let(:resource) do
@@ -47,7 +47,7 @@ do |resource_symbol, presenter_factory|
       end
     end
 
-    describe "#save_structure", :clean, :perform_enqueued do
+    describe "#save_structure", :perform_enqueued do
 
       let(:resource) { FactoryBot.create(resource_symbol, user: user) }
       let(:file_set) { FactoryBot.create(:file_set, user: user) }
@@ -86,7 +86,7 @@ do |resource_symbol, presenter_factory|
       end
     end
 
-    describe '#manifest', :clean do
+    describe '#manifest' do
       let(:resource) { FactoryBot.create(resource_symbol) }
       let(:fs1) { FactoryBot.create(:file_set, user: user) }
       let(:fs2) { FactoryBot.create(:file_set, user: user) }

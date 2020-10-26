@@ -19,7 +19,7 @@ describe PurlController do
   let(:original_file_id) { 'xk81jk36q/files/adac151d-9c08-4892-9bc1-a20b64443bb9' }
   let(:jp2_path) { Hyrax.config.iiif_image_url_builder.call(original_file_id, nil, '!600,600') }
 
-  describe 'default', :clean do
+  describe 'default' do
     let(:user) { FactoryBot.create(:admin) }
     before do
       sign_in user
@@ -120,7 +120,7 @@ describe PurlController do
     end
   end
 
-  describe 'formats', :clean do
+  describe 'formats' do
     before do
       sign_in user
       allow_any_instance_of(Hyrax::FileSetIndexer).to receive(:original_file_id).and_return(original_file_id)

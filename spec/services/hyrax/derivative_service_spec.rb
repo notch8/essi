@@ -23,7 +23,7 @@ RSpec.describe Hyrax::DerivativeService do
     end
   end
 
-  describe '.create_derivatives', :clean do
+  describe '.create_derivatives' do
     context 'with a non-image' do
       before(:each) do
         allow(file_set).to receive(:mime_type).and_return('text/plain')
