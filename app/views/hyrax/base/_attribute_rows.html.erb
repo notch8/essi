@@ -2,6 +2,5 @@
   <%# @todo internationalisation %>
   <%= presenter.attribute_to_html(prop_key, label: prop_value[:label] ,html_dl: true) %>
 <% end %>
-<% if @presenter.respond_to? :holding_location %>
-  <%= @presenter.holding_location %>
-<% end %>
+<%= @presenter.try(:holding_location) %>
+<%= @presenter.try(:campus) %>

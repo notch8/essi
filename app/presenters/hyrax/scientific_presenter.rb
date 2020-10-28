@@ -2,6 +2,7 @@
 #  `rails generate hyrax:work Scientific`
 module Hyrax
   class ScientificPresenter < Hyrax::WorkShowPresenter
+    include ESSI::PresentsHoldingLocation
     include ESSI::PresentsNumPages
     include ESSI::PresentsOCR
     include ESSI::PresentsRelatedUrl
@@ -9,5 +10,6 @@ module Hyrax
     include AllinsonFlex::DynamicPresenterBehavior
     self.model_class = ::Scientific
     delegate(*delegated_properties, to: :solr_document)
+    # TODO include ESSI::PresentsCampus
   end
 end

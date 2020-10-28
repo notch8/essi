@@ -8,9 +8,11 @@ module Hyrax
     self.required_fields -= [:title, :creator, :keyword]
     self.primary_fields = [:profile_version, :title, :creator, :rights_statement]
     include ESSI::BibRecordFormBehavior
+    include ESSI::HoldingLocationTerms
     include ESSI::OCRTerms
     include ESSI::PurlTerms
     include ESSI::RemoteMetadataFormElements
     include AllinsonFlex::DynamicFormBehavior
+    # TODO is this needed with flexible schema? include ESSI::CampusTerms
   end
 end

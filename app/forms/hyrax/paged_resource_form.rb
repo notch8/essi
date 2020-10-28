@@ -8,9 +8,11 @@ module Hyrax
     self.required_fields -= [:title, :creator, :keyword]
     self.primary_fields = [:profile_version, :title, :creator, :rights_statement]
     include ESSI::PagedResourceFormBehavior
+    include ESSI::HoldingLocationTerms
     include ESSI::OCRTerms
     include ESSI::PurlTerms
     include ESSI::RemoteMetadataFormElements
     include AllinsonFlex::DynamicFormBehavior
+    # TODO include ESSI::CampusTerms
   end
 end
