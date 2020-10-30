@@ -12,7 +12,7 @@ module IuMetadata
       elsif format == :marc
         url, src = retrieve_marc(id)
         data = strip_yaz(src)
-        record = IuMetadata::MarcRecord.new(url, data)
+        record = IuMetadata::MarcRecord.new(url, data, source_metadata_identifier: id)
       else
         raise ArgumentError, 'Invalid format argument'
       end
@@ -22,11 +22,12 @@ module IuMetadata
 
     # Used for validating metadata identifiers in URLs
     def self.bibdata?(source_metadata_id)
-      (source_metadata_id =~ /\A\w+\z/)&.zero? || false
+      (source_metadata_id =~ /\A[a-zA-Z0-9\-\.]+\z/)&.zero? || false
     end
 
     BIBDATA_ERROR_MESSAGE = 'A valid metadata identifier may contain only ' \
-                            'alphanumeric and underscore characters.'.freeze
+                            'alphanumeric, underscore, hyphen, and period ' \
+                            'characters.'.freeze
 
     # Extracts the data payload from a YAZ Proxy response
     private_class_method def self.strip_yaz(src)

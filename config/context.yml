@@ -23,6 +23,8 @@
     "@id": bf:heldBy
   series:
     "@id": bf:seriesStatement
+  campus:
+    "@id": mrel:uvp
   contributor:
     "@id": dc:contributor
   coverage:
@@ -483,6 +485,8 @@
     "@id": mrel:pbd
   puppeteer:
     "@id": mrel:ppt
+  purl:
+    "@id": dcterms:identifier
   radio_director:
     "@id": mrel:rdd
   radio_producer:
@@ -583,8 +587,6 @@
     "@id": mrel:tyd
   typographer:
     "@id": mrel:tyg
-  university_place:
-    "@id": mrel:uvp
   videographer:
     "@id": mrel:vdg
   voice_actor:
@@ -613,6 +615,8 @@
     "@id": pulterms:call_number
   published:
     "@id": pulterms:published
+  related_url:
+    "@id": rdfs:seeAlso
   source_metadata:
     "@id": pulterms:source_metadata
   source_metadata_identifier:

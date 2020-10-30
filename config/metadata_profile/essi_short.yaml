@@ -1,0 +1,96 @@
+---
+#-------------------
+# M3 Metadata Model
+#-------------------
+
+# ESSI Sample Profile (see https://github.com/samvera-labs/houndstooth/tree/context)
+
+m3_version: "1.0.beta2"
+
+# Administrative information about the profile/model
+
+profile:
+  responsibility: https://indiana.edu/
+  responsibility_statement: Indiana University
+  date_modified: "2019-07-28"
+  type: concept
+  version: 0.2
+
+classes:
+  Image:
+    display_label: "Image"
+    contexts:
+      - "flexible_context"
+  PagedResource:
+    display_label: "Paged Resource"
+  Scientific:
+    display_label: "Scientific"
+  BibRecord:
+    display_label: "Bib Record"
+
+contexts:
+  flexible_context:
+    display_label: "Flexible Metadata Example"
+
+properties:
+  title:
+    display_label:
+      default: "Title"
+      Image: "Title for Image"
+      flexible_context: "Title for Image in Context"
+    property_uri: http://purl.org/dc/terms/title
+    available_on:
+      class:
+        - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
+      context:
+        - flexible_context
+    cardinality:
+      minimum: 1
+    indexing:
+      - "stored_searchable"
+      - "facetable"
+  holding_location:
+    display_label:
+      default: "Holding Location"
+    available_on:
+      class:
+        - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
+    property_uri: http://id.loc.gov/ontologies/bibframe/heldBy
+    cardinality:
+      maximum: 1
+    indexing:
+      - "stored_searchable"
+      - "facetable"
+  series:
+    display_label:
+      default: "Series"
+    available_on:
+      class:
+        - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
+      context:
+        - flexible_context
+    property_uri: http://id.loc.gov/ontologies/bibframe/seriesStatement 
+    indexing:
+      - "stored_searchable"
+      - "facetable"
+  physical_description:
+    display_label:
+      default: "Physical Description"
+    available_on:
+      class:
+        - Image
+        - BibRecord
+        - PagedResource
+        - Scientific
+    property_uri: http://www.loc.gov/mods/rdf/v1#physicalExtent
+    cardinality:
+      maximum: 1

@@ -1,6 +1,6 @@
 RSpec.shared_examples 'update metadata remotely' do |resource_symbol|
 
-  describe 'when logged in', :clean do
+  describe 'when logged in' do
 
     let(:admin_set_id) { AdminSet.find_or_create_default_admin_set_id }
     let(:permission_template) { Hyrax::PermissionTemplate.find_or_create_by!(source_id: admin_set_id) }
@@ -19,25 +19,84 @@ RSpec.shared_examples 'update metadata remotely' do |resource_symbol|
           source_metadata_identifier: 'BHR9405'
         }
       }
+      let(:invalid_identifier_attributes) {
+        {
+          description: ['a description'],
+          source_metadata_identifier: 'BHR9405%INVALID$CHARACTERS'
+        }
+      }
+      let(:no_results_identifier_attributes) {
+        {
+            description: ['a description'],
+            source_metadata_identifier: 'VAC1741-00231'
+        }
+      }
 
       context 'without remote refresh flag' do
         it 'updates the record but does not refresh the external metadata' do
-          patch :update,
-               params: { id: resource.id,
-                         resource_symbol => static_attributes }
+          perform_enqueued_jobs do
+            patch :update,
+                 params: { id: resource.id,
+                           resource_symbol => static_attributes }
+          end
           expect(reloaded.title).to eq ['Dummy Title']
           expect(reloaded.description).to eq ['a description']
         end
       end
   
       context 'with remote refresh flag', vcr: { cassette_name: 'bibdata', record: :new_episodes } do
-        it 'updates the record and refreshes the external metadata' do
-          patch :update,
-               params: { id: resource.id,
-                         resource_symbol => static_attributes,
-                         refresh_remote_metadata: true }
-          expect(reloaded.title).to eq ['Fontane di Roma ; poema sinfonico per orchestra']
-          expect(reloaded.description).to eq ['a description']
+        context 'with an invalid identifier' do
+          it 'updates the record' do
+            perform_enqueued_jobs do
+              patch :update,
+                   params: { id: resource.id,
+                             resource_symbol => invalid_identifier_attributes,
+                             refresh_remote_metadata: true }
+            end
+            expect(reloaded.description).to eq ['a description']
+          end
+          it 'flashes an alert about not refreshing the external metadata' do
+            perform_enqueued_jobs do
+              patch :update,
+                 params: { id: resource.id,
+                           resource_symbol => invalid_identifier_attributes,
+                           refresh_remote_metadata: true }
+            end
+            expect(flash[:alert]).to match I18n.t('services.remote_metadata.invalid_identifier')
+            expect(flash[:alert]).to match I18n.t('services.remote_metadata.validation')
+          end
+        end
+        context 'with a valid, non-matching source metadata ID' do
+          it 'updates the record' do
+            perform_enqueued_jobs do
+              patch :update,
+                  params: { id: resource.id,
+                            resource_symbol => no_results_identifier_attributes,
+                            refresh_remote_metadata: true }
+            end
+            expect(reloaded.description).to eq ['a description']
+          end
+          it 'flashes an alert about no results found' do
+            perform_enqueued_jobs do
+              patch :update,
+                  params: { id: resource.id,
+                            resource_symbol => no_results_identifier_attributes,
+                            refresh_remote_metadata: true }
+            end
+            expect(flash[:alert]).to match I18n.t('services.remote_metadata.no_results')
+          end
+        end
+        context 'with a valid, matching source metadata ID' do
+          it 'updates the record and refreshes the external metadata' do
+            perform_enqueued_jobs do
+              patch :update,
+                 params: { id: resource.id,
+                           resource_symbol => static_attributes,
+                           refresh_remote_metadata: true }
+            end
+            expect(reloaded.title).to eq ['Fontane di Roma ; poema sinfonico per orchestra']
+            expect(reloaded.description).to eq ['a description']
+          end
         end
       end
     end

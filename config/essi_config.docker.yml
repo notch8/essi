@@ -13,12 +13,18 @@ default: &default
     user: essi
     password: essi
   redis:
-    host: redis
-    port: 6379
+    rails:
+      url: "redis://redis_cache:6379/1"
+    cable:
+      url: "redis://redis_jobs:6379/1"
+    sidekiq:
+      url: "redis://redis_jobs:6379/0"
   sidekiq:
     queue_names:
       - default
       - ingest
+      - import # Bulkrax
+      - export # Bulkrax
     max_retries: 3
   rails:
     mailer:
@@ -33,7 +39,7 @@ default: &default
   derivatives:
     path: <%= Rails.root.join("tmp/derivatives") %>
   cantaloupe:
-    iiif_server_url: http://localhost:8182/iiif/2/
+    iiif_server_url: /iiif/2/
   iucat_libraries:
     url: http://iucat-feature-tadas.uits.iu.edu/api/library
   ldap:
@@ -58,20 +64,24 @@ default: &default
     secret_access_key: Essi12345
     region: iu-local
   browse_everything:
+    #TODO: N8 for local development 
+    #file_system:
+    #    :home: <%= Rails.root.join("staged_files") %>
     s3:
       :bucket: essi-dropbox
       :region: iu-local
-      :response_type: :signed_url
+      :response_type: :public_url
   essi:
     iiif_host: essi.docker  # riiif only
     notifier_email: example@test.test
     store_original_files: true
+    store_files_as_jp2: true
+    kdu_compress_path: 'opj_compress' # set as kdu_compress or opj_compress, or '' to use ImageMagick
     master_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/master
-    access_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/access
     purl_redirect_url: http://server1.variations2.indiana.edu/cgi-bin/access?%s
-    hocr_language: [eng]
-    create_hocr_files: true
-    index_hocr_files: true
+    ocr_language: [eng]
+    create_ocr_files: true
+    index_ocr_files: true
     create_word_boundaries: true
     allow_pdf_download: false
     manifest_builder:

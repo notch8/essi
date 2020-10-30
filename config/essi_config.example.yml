@@ -10,12 +10,18 @@ default: &default
     adapter: sqlite3
     database: db/development.sqlite3
   redis:
-    host: 127.0.0.1
-    port: 6379
+    rails:
+      url: "redis://127.0.0.1:6379/3"
+    cable:
+      url: "redis://127.0.0.1:6379/2"
+    sidekiq:
+      url: "redis://127.0.0.1:6379/1"
   sidekiq:
     queue_names:
       - default
       - ingest
+      - import # Bulkrax
+      - export # Bulkrax
     max_retries: 3
   rails:
     mailer:
@@ -27,8 +33,9 @@ default: &default
       options:
     active_job:
       queue_adapter: async
-  # cantaloupe:
-  #   iiif_server_url: http://localhost:8182/iiif/2/
+  cantaloupe:
+    iiif_server_url: /iiif/2/
+#    iiif_server_url: http://localhost:8182/iiif/2/
   derivatives:
     path: <%= Rails.root.join("tmp/derivatives") %>
   iucat_libraries:
@@ -44,7 +51,7 @@ default: &default
     s3:
       :bucket: essi-dropbox
       :region: iu-local
-      :response_type: :signed_url
+      :response_type: :public_url
     file_system:
       :home: <%= Rails.root.join("staged_files") %>
   ldap:
@@ -66,16 +73,18 @@ default: &default
     iiif_host: localhost:3000  # riiif only
     notifier_email: example@test.test
     store_original_files: true
+    store_files_as_jp2: true
+    kdu_compress_path: 'opj_compress' # set as kdu_compress or opj_compress, or '' to use ImageMagick
     master_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/master
-    access_file_service_url: http://purl.dlib.indiana.edu/iudl/variations/access
     purl_redirect_url: http://server1.variations2.indiana.edu/cgi-bin/access?%s
     skip_derivatives: false
     derivatives_folder: false
-    hocr_language: [eng]
-    create_hocr_files: true
-    index_hocr_files: true
+    ocr_language: [eng]
+    create_ocr_files: true
+    index_ocr_files: true
     create_word_boundaries: true
     allow_pdf_download: false
+    link_banners: false
     bagit:
       default_upload_dropbox: <%= Rails.root.join("staged_files/uploaded") %>
       default_bagit_dir: <%= Rails.root.join("staged_files/work_bags") %>
@@ -181,9 +190,12 @@ test:
     adapter: sqlite3
     database: db/test.sqlite3
   redis:
-    host: 127.0.0.1
-    port: 6379
-    namespace: essi_test
+    rails:
+      url: "redis://127.0.0.1:6379/11"
+    cable:
+      url: "redis://127.0.0.1:6379/10"
+    sidekiq:
+      url: "redis://127.0.0.1:6379/9"
   rails:
       secret_key_base: c9dd75fe2cce941807d14e04c09aa1f9ae41b6e1f7ba9d2f33142659acf9491f4a7835aad0c4110bf2fa40f2a1e6f7a62048b5a1e1a32c361c8c16d772e40bf0
 

@@ -1,17 +1,18 @@
 # rubocop:disable Metrics/ClassLength
 module IuMetadata
   class MarcRecord
-    def initialize(id, source)
+    def initialize(id, source, source_metadata_identifier: nil)
       @id = id
       @source = source
+      @source_metadata_identifier = source_metadata_identifier
     end
 
-    attr_reader :id, :source
+    attr_reader :id, :source, :source_metadata_identifier
 
     class MarcParsingError < StandardError; end
 
     ATTRIBUTES = %i[
-      identifier
+      purl
       title
       sort_title
       responsibility_note
@@ -24,6 +25,7 @@ module IuMetadata
       published
       lccn_call_number
       local_call_number
+      related_url
     ].freeze
 
     def attributes
@@ -126,7 +128,7 @@ module IuMetadata
       parts
     end
 
-    def identifier
+    def purl
       formatted_subfields_as_array(['856'], codes: ['u']).first
     end
 
@@ -174,6 +176,11 @@ module IuMetadata
 
     def publisher
       formatted_subfields_as_array(['260', '264'], codes: ['b'])
+    end
+
+    def related_url
+      return [] unless source_metadata_identifier
+      [ESSI.config.dig(:essi, :metadata, :url).to_s % source_metadata_identifier]
     end
 
     def responsibility_note

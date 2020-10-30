@@ -1,3 +1,38 @@
+GIT
+  remote: https://github.com/notch8/willow_sword.git
+  revision: 0a669d78617c6003e4aa1a46a10447be92be27d5
+  specs:
+    willow_sword (0.2.0)
+      bagit (~> 0.4.1)
+      rails (>= 5.1.6)
+      rubyzip (>= 1.0.0)
+
+GIT
+  remote: https://github.com/samvera-labs/allinson_flex.git
+  revision: 00cf16660517cfe4e7c967437942c0e109362b64
+  specs:
+    allinson_flex (0.1.0)
+      json_schemer
+      rails (>= 5.1.6)
+      react-rails
+      webpacker
+
+GIT
+  remote: https://github.com/samvera-labs/bulkrax.git
+  revision: 12e03c7df0b60e619543394894b59bcd231b5dab
+  specs:
+    bulkrax (0.1.0)
+      bagit (~> 0.4)
+      iso8601 (~> 0.9.0)
+      language_list (~> 1.2, >= 1.2.1)
+      libxml-ruby (~> 3.1.0)
+      loofah (>= 2.2.3)
+      oai (>= 0.4, < 2.x)
+      rack (>= 2.0.6)
+      rails (>= 5.1.6)
+      rdf (>= 2.0.2, < 4.0)
+      simple_form
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -88,7 +123,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    bagit (0.4.3)
+    bagit (0.4.4)
       docopt (~> 0.5.0)
       validatable (~> 1.6)
     bcp47 (0.3.3)
@@ -157,6 +192,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    capybara-screenshot (1.0.24)
+      capybara (>= 1.0, < 4)
+      launchy
     carrierwave (1.3.1)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -173,7 +211,14 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.6)
-    connection_pool (2.2.2)
+    connection_pool (2.2.3)
+    countries (3.0.1)
+      i18n_data (~> 0.10.0)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
+    country_select (4.0.0)
+      countries (~> 3.0)
+      sort_alphabetical (~> 1.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -252,6 +297,8 @@ GEM
     ebnf (1.2.0)
       rdf (~> 3.1)
       sxp (~> 1.1)
+    ecma-re-validator (0.2.1)
+      regexp_parser (~> 1.2)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubi (1.9.0)
@@ -267,6 +314,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
       faraday
+    faraday_middleware (0.14.0)
+      faraday (>= 0.7.4, < 1.0)
     fcrepo_wrapper (0.9.0)
       ruby-progressbar
     ffi (1.11.1)
@@ -302,6 +351,7 @@ GEM
       tilt
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
+    hana (1.3.6)
     hashdiff (0.3.9)
     hashie (3.6.0)
     hiredis (0.6.3)
@@ -402,10 +452,11 @@ GEM
       select2-rails (~> 3.5)
       signet
       tinymce-rails (~> 4.1)
-    i18n (1.8.2)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     i18n-js (3.3.0)
       i18n (>= 0.6.6)
+    i18n_data (0.10.0)
     ice_nine (0.11.2)
     iiif-image-api (0.1.0)
       activesupport (<= 6)
@@ -416,6 +467,7 @@ GEM
     iiif_manifest (0.5.0)
       activesupport (>= 4)
     iso-639 (0.2.8)
+    iso8601 (0.9.1)
     jasmine-core (3.5.0)
     jasmine-jquery-rails (2.0.3)
     jasmine-rails (0.15.0)
@@ -438,7 +490,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (2.2.0)
+    json (2.3.1)
     json-canonicalization (0.2.0)
     json-ld (3.1.0)
       htmlentities (~> 4.3)
@@ -453,21 +505,29 @@ GEM
       rdf (~> 3.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
+    json_schemer (0.2.13)
+      ecma-re-validator (~> 0.2)
+      hana (~> 1.3)
+      regexp_parser (~> 1.5)
+      uri_template (~> 0.7)
     jwt (2.2.1)
-    kaminari (1.1.1)
+    kaminari (1.2.1)
       activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.1.1)
-      kaminari-activerecord (= 1.1.1)
-      kaminari-core (= 1.1.1)
-    kaminari-actionview (1.1.1)
+      kaminari-actionview (= 1.2.1)
+      kaminari-activerecord (= 1.2.1)
+      kaminari-core (= 1.2.1)
+    kaminari-actionview (1.2.1)
       actionview
-      kaminari-core (= 1.1.1)
-    kaminari-activerecord (1.1.1)
+      kaminari-core (= 1.2.1)
+    kaminari-activerecord (1.2.1)
       activerecord
-      kaminari-core (= 1.1.1)
-    kaminari-core (1.1.1)
+      kaminari-core (= 1.2.1)
+    kaminari-core (1.2.1)
     kaminari_route_prefix (0.1.1)
       kaminari (~> 1.0)
+    language_list (1.2.1)
+    launchy (2.5.0)
+      addressable (~> 2.7)
     ld-patch (0.3.3)
       ebnf (~> 1.1)
       rdf (>= 2.2, < 4.0)
@@ -488,6 +548,7 @@ GEM
       slop
     legato (0.7.0)
       multi_json
+    libxml-ruby (3.1.0)
     link_header (0.0.8)
     linkeddata (3.0.1)
       equivalent-xml (~> 0.6)
@@ -518,7 +579,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.5.0)
+    loofah (2.6.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -537,7 +598,7 @@ GEM
     mini_magick (4.9.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.0)
+    minitest (5.14.1)
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -547,15 +608,19 @@ GEM
     net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     net-ldap (0.16.1)
-    nio4r (2.4.0)
+    nio4r (2.5.2)
     noid (0.9.0)
     noid-rails (3.0.1)
       actionpack (>= 5.0.0, < 6)
       noid (~> 0.9)
-    nokogiri (1.10.9)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     nokogumbo (1.5.0)
       nokogiri
+    oai (1.1.0)
+      builder (>= 3.1.0)
+      faraday
+      faraday_middleware
     oauth (0.5.4)
     oauth2 (1.4.2)
       faraday (>= 0.8, < 2.0)
@@ -577,13 +642,17 @@ GEM
     parallel (1.12.1)
     parser (2.5.1.2)
       ast (~> 2.4.0)
+    pdf-core (0.7.0)
     phantomjs (2.1.1.0)
     posix-spawn (0.3.13)
     power_converter (0.1.2)
     powerpack (0.1.2)
+    prawn (2.2.2)
+      pdf-core (~> 0.7.0)
+      ttfunk (~> 1.5)
     public_suffix (4.0.4)
     pul_uv_rails (2.0.1)
-    puma (3.12.4)
+    puma (3.12.6)
     qa (2.2.0)
       activerecord-import
       deprecation
@@ -591,7 +660,7 @@ GEM
       nokogiri (~> 1.6)
       rails (~> 5.0)
       rdf
-    rack (2.2.2)
+    rack (2.2.3)
     rack-protection (2.0.5)
       rack
     rack-test (1.1.0)
@@ -630,7 +699,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rdf (3.1.1)
+    rdf (3.1.4)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (2.2.1)
@@ -685,14 +754,20 @@ GEM
       rdf (~> 3.1)
     rdf-xsd (3.0.1)
       rdf (~> 3.0)
+    react-rails (2.6.1)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     redic (1.5.3)
       hiredis
-    redis (4.1.1)
+    redis (4.2.1)
     redis-namespace (1.6.0)
       redis (>= 3.0.4)
     redlock (1.0.1)
       redis (>= 3.0.0, < 5.0)
-    regexp_parser (1.7.0)
+    regexp_parser (1.7.1)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -777,19 +852,19 @@ GEM
       rdf-xsd (>= 2.2, < 4.0)
       sparql (>= 2.2, < 4.0)
       sxp (~> 1.0)
-    sidekiq (5.2.7)
-      connection_pool (~> 2.2, >= 2.2.2)
-      rack (>= 1.5.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
+    sidekiq (6.1.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     signet (0.12.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simple_form (5.0.1)
+    simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    sixarm_ruby_unaccent (1.2.0)
     slop (4.8.0)
     solr_wrapper (2.1.0)
       faraday
@@ -800,6 +875,8 @@ GEM
       activesupport
       nokogiri
       xml-simple
+    sort_alphabetical (1.1.0)
+      unicode_utils (>= 1.2.2)
     sparql (3.0.2)
       builder (~> 3.2)
       ebnf (~> 1.1)
@@ -834,9 +911,10 @@ GEM
     temple (0.8.2)
     thor (0.20.3)
     thread_safe (0.3.6)
-    tilt (2.0.8)
+    tilt (2.0.10)
     tinymce-rails (4.9.6)
       railties (>= 3.1.1)
+    ttfunk (1.6.2.1)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -855,6 +933,8 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unicode-display_width (1.4.0)
+    unicode_utils (1.4.0)
+    uri_template (0.7.0)
     validatable (1.6.7)
     vcr (4.0.0)
     warden (1.2.8)
@@ -872,9 +952,13 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
+    webpacker (4.2.2)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     xml-simple (1.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -883,14 +967,18 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  allinson_flex!
   bagit
   better_errors
   binding_of_caller
   bixby
   blacklight_iiif_search
+  bulkrax!
   byebug
   capybara
+  capybara-screenshot (~> 1.0)
   coffee-rails (~> 4.2)
+  country_select (~> 4.0)
   database_cleaner
   debase
   devise
@@ -913,9 +1001,11 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-iu-cas
+  prawn
   puma
   rails (~> 5.1.6)
   rails-controller-testing
+  react-rails
   riiif (~> 2.0)
   rsolr
   rspec-rails
@@ -937,6 +1027,8 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webmock
+  webpacker
+  willow_sword!
 
 BUNDLED WITH
-   2.0.2
+   2.1.4

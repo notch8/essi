@@ -36,7 +36,6 @@ fits.log
 .env.*
 
 # Ignore yarn generated files
-yarn.lock
 public/uv
 
 # Ignore public branding
@@ -44,3 +43,17 @@ public/branding
 
 # Ignore Browse Everything dropbox directory
 staged_files
+
+# Ignore any locally mounted engines
+vendor/engines/
+/public/assets
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+spec/tmp/pdfs
+
+# Ignore solr generated files
+solr/config/*

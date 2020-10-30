@@ -10,7 +10,105 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180614174958) do
+ActiveRecord::Schema.define(version: 20200713055031) do
+
+  create_table "allinson_flex_contexts", force: :cascade do |t|
+    t.string "name"
+    t.string "admin_set_ids"
+    t.string "m3_context_name"
+    t.integer "profile_id"
+    t.integer "profile_context_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_context_id"], name: "index_allinson_flex_contexts_on_profile_context_id"
+    t.index ["profile_id"], name: "index_allinson_flex_contexts_on_profile_id"
+  end
+
+  create_table "allinson_flex_dynamic_schemas", force: :cascade do |t|
+    t.string "allinson_flex_class"
+    t.integer "context_id"
+    t.integer "profile_id"
+    t.text "schema", limit: 3000000
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["context_id"], name: "index_allinson_flex_dynamic_schemas_on_context_id"
+    t.index ["profile_id"], name: "index_allinson_flex_dynamic_schemas_on_profile_id"
+  end
+
+  create_table "allinson_flex_profile_available_properties", force: :cascade do |t|
+    t.integer "profile_property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "available_on_type"
+    t.integer "available_on_id"
+    t.index ["available_on_type", "available_on_id"], name: "index_allinson_flex_profile_properties_available_on"
+    t.index ["profile_property_id"], name: "index_available_properties_on_property_id"
+  end
+
+  create_table "allinson_flex_profile_classes", force: :cascade do |t|
+    t.string "name"
+    t.string "display_label"
+    t.string "schema_uri"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_allinson_flex_profile_classes_on_profile_id"
+  end
+
+  create_table "allinson_flex_profile_classes_contexts", force: :cascade do |t|
+    t.integer "profile_context_id"
+    t.integer "profile_class_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_class_id"], name: "index_profile_classes_contexts_on_profile_class_id"
+    t.index ["profile_context_id"], name: "index_profile_classes_contexts_on_profile_context_id"
+  end
+
+  create_table "allinson_flex_profile_contexts", force: :cascade do |t|
+    t.string "name"
+    t.string "display_label"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_allinson_flex_profile_contexts_on_profile_id"
+  end
+
+  create_table "allinson_flex_profile_properties", force: :cascade do |t|
+    t.string "name"
+    t.string "property_uri"
+    t.integer "cardinality_minimum", default: 0
+    t.integer "cardinality_maximum", default: 100
+    t.string "indexing"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_profile_properties_on_profile_id"
+  end
+
+  create_table "allinson_flex_profile_texts", force: :cascade do |t|
+    t.string "name"
+    t.string "value"
+    t.integer "profile_property_id"
+    t.string "textable_type"
+    t.integer "textable_id"
+    t.index ["profile_property_id"], name: "index_profile_texts_on_profile_property_id"
+    t.index ["textable_type", "textable_id"], name: "index_profile_texts_on_type_and_id"
+  end
+
+  create_table "allinson_flex_profiles", force: :cascade do |t|
+    t.string "name"
+    t.float "profile_version"
+    t.string "m3_version"
+    t.string "responsibility"
+    t.string "responsibility_statement"
+    t.string "date_modified"
+    t.string "profile_type"
+    t.text "profile", limit: 3000000
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "locked_at"
+    t.integer "locked_by_id"
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -22,6 +120,86 @@ ActiveRecord::Schema.define(version: 20180614174958) do
     t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_bookmarks_on_document_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "bulkrax_entries", force: :cascade do |t|
+    t.string "identifier"
+    t.string "collection_ids"
+    t.string "type"
+    t.integer "importerexporter_id"
+    t.text "raw_metadata"
+    t.text "parsed_metadata"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "last_error"
+    t.datetime "last_error_at"
+    t.datetime "last_succeeded_at"
+    t.string "importerexporter_type", default: "Bulkrax::Importer"
+    t.index ["importerexporter_id"], name: "index_bulkrax_entries_on_importerexporter_id"
+  end
+
+  create_table "bulkrax_exporter_runs", force: :cascade do |t|
+    t.integer "exporter_id"
+    t.integer "total_work_entries", default: 0
+    t.integer "enqueued_records", default: 0
+    t.integer "processed_records", default: 0
+    t.integer "deleted_records", default: 0
+    t.integer "failed_records", default: 0
+    t.index ["exporter_id"], name: "index_bulkrax_exporter_runs_on_exporter_id"
+  end
+
+  create_table "bulkrax_exporters", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.string "parser_klass"
+    t.integer "limit"
+    t.text "parser_fields"
+    t.text "field_mapping"
+    t.string "export_source"
+    t.string "export_from"
+    t.string "export_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "last_error"
+    t.datetime "last_error_at"
+    t.datetime "last_succeeded_at"
+    t.index ["user_id"], name: "index_bulkrax_exporters_on_user_id"
+  end
+
+  create_table "bulkrax_importer_runs", force: :cascade do |t|
+    t.integer "importer_id"
+    t.integer "total_work_entries", default: 0
+    t.integer "enqueued_records", default: 0
+    t.integer "processed_records", default: 0
+    t.integer "deleted_records", default: 0
+    t.integer "failed_records", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "processed_collections", default: 0
+    t.integer "failed_collections", default: 0
+    t.integer "total_collection_entries", default: 0
+    t.integer "processed_children", default: 0
+    t.integer "failed_children", default: 0
+    t.text "invalid_records"
+    t.index ["importer_id"], name: "index_bulkrax_importer_runs_on_importer_id"
+  end
+
+  create_table "bulkrax_importers", force: :cascade do |t|
+    t.string "name"
+    t.string "admin_set_id"
+    t.integer "user_id"
+    t.string "frequency"
+    t.string "parser_klass"
+    t.integer "limit"
+    t.text "parser_fields"
+    t.text "field_mapping"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "validate_only"
+    t.text "last_error"
+    t.datetime "last_error_at"
+    t.datetime "last_succeeded_at"
+    t.index ["user_id"], name: "index_bulkrax_importers_on_user_id"
   end
 
   create_table "checksum_audit_logs", force: :cascade do |t|
@@ -47,6 +225,8 @@ ActiveRecord::Schema.define(version: 20180614174958) do
     t.integer "width"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file_set_id"
+    t.string "image_path"
   end
 
   create_table "collection_type_participants", force: :cascade do |t|

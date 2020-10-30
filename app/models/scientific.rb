@@ -5,10 +5,10 @@ class Scientific < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include StructuralMetadata
   include ExtraLockable
-  include ESSI::NumPagesMetadata
-  include ESSI::NumPagesBehavior
-  include ESSI::OCRBehavior
-  include ESSI::OCRMetadata
+  # include ESSI::NumPagesMetadata
+  # include ESSI::NumPagesBehavior
+  # include ESSI::OCRBehavior
+  # include ESSI::OCRMetadata
 
   self.indexer = ScientificIndexer
   # Change this to restrict which works can be added as a child.
@@ -16,12 +16,14 @@ class Scientific < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
 
  # Include extended metadata common to most Work Types
-  include ESSI::ExtendedMetadata
+  # include ESSI::ExtendedMetadata
 
   # This model includes metadata properties specific to the Scientific Work Type
   include ESSI::ScientificMetadata
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
+
+  include AllinsonFlex::DynamicMetadataBehavior
   include ::Hyrax::BasicMetadata
 end

@@ -5,7 +5,7 @@ class SolrDocument
 
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior
-
+  include AllinsonFlex::DynamicSolrDocument
 
   # self.unique_key = 'id'
 
@@ -28,13 +28,27 @@ class SolrDocument
 
   attribute :num_pages, Solr::String, solr_name('num_pages')
   attribute :holding_location, Solr::String, solr_name('holding_location')
+  attribute :campus, Solr::String, solr_name('campus')
   attribute :viewing_hint, Solr::String, solr_name('viewing_hint')
   attribute :viewing_direction, Solr::String, solr_name('viewing_direction')
   attribute :ocr_searchable, Solr::String, solr_name('ocr_searchable', Solrizer::Descriptor.new(:boolean, :stored, :indexed))
   # @todo remove after upgrade to Hyrax 3.x
   attribute :original_file_id, Solr::String, "original_file_id_ssi"
+  attribute :allow_pdf_download, Solr::String, solr_name('allow_pdf_download', Solrizer::Descriptor.new(:boolean, :stored, :indexed))
 
   def series
     self[Solrizer.solr_name('series')]
+  end
+  
+  def source_metadata_identifier
+    self[Solrizer.solr_name('source_metadata_identifier')]&.first
+  end
+
+  def related_url
+    Array.wrap(self[Solrizer.solr_name('related_url')]) - [catalog_url]
+  end
+
+  def catalog_url
+    self[Solrizer.solr_name('related_url')]&.select { |url| url.match ESSI.config.dig(:essi, :metadata, :url).gsub('%s', '') }&.first
   end
 end
