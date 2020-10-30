@@ -10,6 +10,6 @@ module Hyrax
     include AllinsonFlex::DynamicPresenterBehavior
     self.model_class = ::Scientific
     delegate(*delegated_properties, to: :solr_document)
-    # TODO include ESSI::PresentsCampus
+    include ESSI::PresentsCampus
   end
 end

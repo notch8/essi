@@ -13,6 +13,6 @@ module Hyrax
     include ESSI::PurlTerms
     include ESSI::RemoteMetadataFormElements
     include AllinsonFlex::DynamicFormBehavior
-    # TODO is this needed with flexible schema? include ESSI::CampusTerms
+    include ESSI::CampusTerms
   end
 end

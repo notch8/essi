@@ -13,6 +13,6 @@ module Hyrax
     include ESSI::PurlTerms
     include ESSI::RemoteMetadataFormElements
     include AllinsonFlex::DynamicFormBehavior
-    # TODO include ESSI::CampusTerms
+    include ESSI::CampusTerms
   end
 end

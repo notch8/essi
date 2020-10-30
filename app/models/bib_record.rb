@@ -22,7 +22,7 @@ class BibRecord < ActiveFedora::Base
   # include ESSI::BibRecordMetadata
 
   # Include properties for remote metadata lookup
-  # include ESSI::RemoteLookupMetadata
+  include ESSI::RemoteLookupMetadata
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)

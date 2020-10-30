@@ -12,6 +12,6 @@ module Hyrax
     include ESSI::OCRTerms
     include ESSI::PurlTerms
     include AllinsonFlex::DynamicFormBehavior
-    # TODO include ESSI::CampusTerms
+    include ESSI::CampusTerms
   end
 end
